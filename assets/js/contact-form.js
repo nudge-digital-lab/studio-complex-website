@@ -1,39 +1,46 @@
 (function ($) {
   "use strict";
 
-  var $form = $("#contact-form");
-  var $messages = $("#form-messages");
+  var forms = [
+    { formId: "#contact-form", messagesId: "#form-messages" },
+    { formId: "#contact-form-2", messagesId: "#form-messages-2" },
+  ];
 
-  if (!$form.length) return;
+  forms.forEach(function (cfg) {
+    var $form = $(cfg.formId);
+    var $messages = $(cfg.messagesId);
 
-  $form.on("submit", function (e) {
-    e.preventDefault();
+    if (!$form.length) return;
 
-    var $button = $form.find('button[type="submit"]');
-    $button.prop("disabled", true);
-    $messages.text("");
+    $form.on("submit", function (e) {
+      e.preventDefault();
 
-    $.ajax({
-      url: "assets/mail/contact-form.php",
-      type: "POST",
-      dataType: "json",
-      data: $form.serialize(),
-    })
-      .done(function (response) {
-        $messages
-          .text(response.message)
-          .css("color", response.status === "success" ? "green" : "red");
-        if (response.status === "success") {
-          $form[0].reset();
-        }
+      var $button = $form.find('button[type="submit"]');
+      $button.prop("disabled", true);
+      $messages.text("");
+
+      $.ajax({
+        url: "assets/mail/contact-form.php",
+        type: "POST",
+        dataType: "json",
+        data: $form.serialize(),
       })
-      .fail(function () {
-        $messages
-          .text("Something went wrong sending your message. Please try again later.")
-          .css("color", "red");
-      })
-      .always(function () {
-        $button.prop("disabled", false);
-      });
+        .done(function (response) {
+          $messages
+            .text(response.message)
+            .css("color", response.status === "success" ? "green" : "red");
+          if (response.status === "success") {
+            $form[0].reset();
+          }
+        })
+        .fail(function () {
+          $messages
+            .text("Something went wrong sending your message. Please try again later.")
+            .css("color", "red");
+        })
+        .always(function () {
+          $button.prop("disabled", false);
+        });
+    });
   });
 })(jQuery);

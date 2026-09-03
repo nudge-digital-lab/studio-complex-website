@@ -7,12 +7,12 @@ header('Content-Type: application/json; charset=utf-8');
 $recipient = 'your-email@yourdomain.com';
 
 $subjects = [
-  '1' => 'Managed IT Services',
-  '2' => 'Cloud Computing',
-  '3' => 'Cybersecurity Solutions',
-  '4' => 'IT Consulting & Strategy',
-  '5' => 'Software Development',
-  '6' => 'Network Infrastructure',
+  '1' => 'Automatización de WhatsApp',
+  '2' => 'Automatización de Procesos (CRM y Ventas)',
+  '3' => 'Chatbots con IA',
+  '4' => 'Integraciones y Conectores',
+  '5' => 'Reportes Automáticos',
+  '6' => 'Soporte y Optimización Continua',
 ];
 
 function clean_field($value) {
@@ -22,27 +22,33 @@ function clean_field($value) {
   return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
 
-$name = clean_field($_POST['cfName'] ?? '');
-$email = trim($_POST['cfEmail'] ?? '');
-$phone = clean_field($_POST['cfPhone'] ?? '');
-$subject = $subjects[$_POST['cfSubject'] ?? ''] ?? 'General Inquiry';
-$message = clean_field($_POST['cfMessage'] ?? '');
+// The homepage's mini contact form uses a "2"-suffixed field naming
+// convention; accept either so both forms share this one handler.
+function field($primary, $fallback) {
+  return $_POST[$primary] ?? $_POST[$fallback] ?? '';
+}
+
+$name = clean_field(field('cfName', 'cfName2'));
+$email = trim(field('cfEmail', 'cfEmail2'));
+$phone = clean_field(field('cfPhone', 'cfPhone2'));
+$subject = $subjects[field('cfSubject', 'cfSubject2')] ?? 'Consulta General';
+$message = clean_field(field('cfMessage', 'cfMessage2'));
 
 if ($name === '' || $message === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
   http_response_code(400);
-  echo json_encode(['status' => 'error', 'message' => 'Please fill in all required fields with a valid email address.']);
+  echo json_encode(['status' => 'error', 'message' => 'Completá todos los campos obligatorios con un email válido.']);
   exit;
 }
 
-$emailSubject = "New contact form message: $subject";
+$emailSubject = "Nuevo mensaje del sitio web: $subject";
 
-$body = "You have a new message from the website contact form\n";
+$body = "Tenés un nuevo mensaje desde el formulario de contacto del sitio\n";
 $body .= "=====================================================\n\n";
-$body .= "Name: $name\n";
+$body .= "Nombre: $name\n";
 $body .= "Email: $email\n";
-$body .= "Phone: $phone\n";
-$body .= "Subject: $subject\n\n";
-$body .= "Message:\n$message\n";
+$body .= "Teléfono: $phone\n";
+$body .= "Servicio de interés: $subject\n\n";
+$body .= "Mensaje:\n$message\n";
 
 // The From header stays on our own domain; the visitor's email only goes in
 // Reply-To, so a malicious value can't be used to spoof or inject headers.
@@ -52,8 +58,8 @@ $headers .= "Reply-To: $email\r\n";
 $headers .= 'X-Mailer: PHP/' . phpversion();
 
 if (mail($recipient, $emailSubject, $body, $headers)) {
-  echo json_encode(['status' => 'success', 'message' => 'Thanks! Your message has been sent.']);
+  echo json_encode(['status' => 'success', 'message' => '¡Gracias! Tu mensaje fue enviado.']);
 } else {
   http_response_code(500);
-  echo json_encode(['status' => 'error', 'message' => 'Something went wrong sending your message. Please try again later.']);
+  echo json_encode(['status' => 'error', 'message' => 'Hubo un problema al enviar tu mensaje. Probá de nuevo más tarde.']);
 }
