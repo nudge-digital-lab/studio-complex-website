@@ -7,12 +7,12 @@ header('Content-Type: application/json; charset=utf-8');
 $recipient = 'your-email@yourdomain.com';
 
 $subjects = [
-  '1' => 'Automatización de WhatsApp',
-  '2' => 'Automatización de Procesos (CRM y Ventas)',
-  '3' => 'Chatbots con IA',
-  '4' => 'Integraciones y Conectores',
-  '5' => 'Reportes Automáticos',
-  '6' => 'Soporte y Optimización Continua',
+  '1' => 'Desarrollo Web',
+  '2' => 'Tiendas Online',
+  '3' => 'SEO Técnico',
+  '4' => 'Campañas de Ads',
+  '5' => 'Automatización de Leads',
+  '6' => 'Cierre de Ventas Automatizado',
 ];
 
 function clean_field($value) {
