@@ -91,7 +91,7 @@ START: Theme Default CSS
   --tj-color-heading-primary: #f6f7f7;
   --tj-color-text-body: #bcbdb9;
   --tj-color-text-body-2: #999996;
-  --tj-color-theme-primary: #FF5C00;
+  --tj-color-theme-primary: #E8A44F;
   --tj-color-theme-bg: #191a18;
   --tj-color-theme-dark: #050505;
   --tj-color-theme-dark-2: #494a46;
@@ -8987,7 +8987,7 @@ START: Blog CSS
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: rgba(255, 92, 0, 0.1);
+  background-color: rgba(232, 164, 79, 0.1);
   -webkit-animation: pulse2 2s linear infinite;
           animation: pulse2 2s linear infinite;
   z-index: -1;
@@ -10190,8 +10190,8 @@ START: Working process CSS
           mask-size: auto;
   -webkit-mask-position: center center;
           mask-position: center center;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 92, 0, 0)), color-stop(50%, var(--tj-color-theme-primary)), to(rgba(255, 92, 0, 0)));
-  background: linear-gradient(90deg, rgba(255, 92, 0, 0) 0%, var(--tj-color-theme-primary) 50%, rgba(255, 92, 0, 0) 100%);
+  background: -webkit-gradient(linear, left top, right top, from(rgba(232, 164, 79, 0)), color-stop(50%, var(--tj-color-theme-primary)), to(rgba(232, 164, 79, 0)));
+  background: linear-gradient(90deg, rgba(232, 164, 79, 0) 0%, var(--tj-color-theme-primary) 50%, rgba(232, 164, 79, 0) 100%);
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .process-border {
@@ -12441,7 +12441,7 @@ START: Blog Details CSS
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: rgba(255, 92, 0, 0.1);
+  background-color: rgba(232, 164, 79, 0.1);
   -webkit-animation: pulse2 2s linear infinite;
           animation: pulse2 2s linear infinite;
   z-index: -1;
@@ -12574,7 +12574,7 @@ START: Blog Details CSS
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: rgba(255, 92, 0, 0.1);
+  background-color: rgba(232, 164, 79, 0.1);
   -webkit-animation: pulse2 2s linear infinite;
           animation: pulse2 2s linear infinite;
   z-index: -1;
@@ -14085,8 +14085,8 @@ START: Animate CSS
 }
 @-webkit-keyframes pulse2 {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgb(255, 92, 0);
-            box-shadow: 0 0 0 0 rgb(255, 92, 0);
+    -webkit-box-shadow: 0 0 0 0 rgb(232, 164, 79);
+            box-shadow: 0 0 0 0 rgb(232, 164, 79);
   }
   100% {
     -webkit-box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
@@ -14095,8 +14095,8 @@ START: Animate CSS
 }
 @keyframes pulse2 {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgb(255, 92, 0);
-            box-shadow: 0 0 0 0 rgb(255, 92, 0);
+    -webkit-box-shadow: 0 0 0 0 rgb(232, 164, 79);
+            box-shadow: 0 0 0 0 rgb(232, 164, 79);
   }
   100% {
     -webkit-box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
@@ -14125,22 +14125,22 @@ START: Animate CSS
 }
 @-webkit-keyframes pulsePrimary {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(255, 92, 0, 0.5);
-            box-shadow: 0 0 0 0 rgba(255, 92, 0, 0.5);
+    -webkit-box-shadow: 0 0 0 0 rgba(232, 164, 79, 0.5);
+            box-shadow: 0 0 0 0 rgba(232, 164, 79, 0.5);
   }
   100% {
-    -webkit-box-shadow: 0 0 0 16px rgba(255, 92, 0, 0);
-            box-shadow: 0 0 0 16px rgba(255, 92, 0, 0);
+    -webkit-box-shadow: 0 0 0 16px rgba(232, 164, 79, 0);
+            box-shadow: 0 0 0 16px rgba(232, 164, 79, 0);
   }
 }
 @keyframes pulsePrimary {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(255, 92, 0, 0.5);
-            box-shadow: 0 0 0 0 rgba(255, 92, 0, 0.5);
+    -webkit-box-shadow: 0 0 0 0 rgba(232, 164, 79, 0.5);
+            box-shadow: 0 0 0 0 rgba(232, 164, 79, 0.5);
   }
   100% {
-    -webkit-box-shadow: 0 0 0 16px rgba(255, 92, 0, 0);
-            box-shadow: 0 0 0 16px rgba(255, 92, 0, 0);
+    -webkit-box-shadow: 0 0 0 16px rgba(232, 164, 79, 0);
+            box-shadow: 0 0 0 16px rgba(232, 164, 79, 0);
   }
 }
 @-webkit-keyframes jumping {
