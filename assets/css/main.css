@@ -75,14 +75,14 @@ START: Theme Default CSS
   /**
      @Font-Size Declaration
    */
-  --tj-fs-body: 16px;
-  --tj-fs-p: 16px;
-  --tj-fs-h1: 74px;
-  --tj-fs-h2: 48px;
-  --tj-fs-h3: 32px;
-  --tj-fs-h4: 24px;
-  --tj-fs-h5: 20px;
-  --tj-fs-h6: 18px;
+  --tj-fs-body: 14px;
+  --tj-fs-p: 14px;
+  --tj-fs-h1: 64px;
+  --tj-fs-h2: 42px;
+  --tj-fs-h3: 28px;
+  --tj-fs-h4: 21px;
+  --tj-fs-h5: 18px;
+  --tj-fs-h6: 16px;
   /**
      @Color Declaration
    */
@@ -91,7 +91,7 @@ START: Theme Default CSS
   --tj-color-heading-primary: #f6f7f7;
   --tj-color-text-body: #bcbdb9;
   --tj-color-text-body-2: #999996;
-  --tj-color-theme-primary: #E8A44F;
+  --tj-color-theme-primary: #FF5C00;
   --tj-color-theme-bg: #191a18;
   --tj-color-theme-dark: #050505;
   --tj-color-theme-dark-2: #494a46;
@@ -151,17 +151,17 @@ h1 {
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   h1 {
-    font-size: 60px;
+    font-size: 52px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   h1 {
-    font-size: 50px;
+    font-size: 44px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   h1 {
-    font-size: 45px;
+    font-size: 38px;
   }
 }
 
@@ -171,17 +171,17 @@ h2 {
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px) {
   h2 {
-    font-size: 40px;
+    font-size: 35px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   h2 {
-    font-size: 36px;
+    font-size: 30px;
   }
 }
 @media (max-width: 575px) {
   h2 {
-    font-size: 30px;
+    font-size: 26px;
   }
 }
 
@@ -191,12 +191,12 @@ h3 {
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   h3 {
-    font-size: 28px;
+    font-size: 24px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   h3 {
-    font-size: 25px;
+    font-size: 22px;
   }
 }
 
@@ -206,12 +206,12 @@ h4 {
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   h4 {
-    font-size: 22px;
+    font-size: 19px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   h4 {
-    font-size: 20px;
+    font-size: 18px;
   }
 }
 
@@ -1644,12 +1644,15 @@ START: Theme Header CSS
 }
 .site_logo .logo {
   display: inline-block;
-  max-width: 169px;
+  max-width: 52px;
   width: 100%;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .site_logo {
     padding: 15px 0;
+  }
+  .site_logo .logo {
+    max-width: 40px;
   }
 }
 
@@ -2036,7 +2039,7 @@ START: Theme Footer CSS
 }
 
 .footer-logo {
-  max-width: 169px;
+  max-width: 52px;
   width: 100%;
 }
 
@@ -3268,7 +3271,7 @@ START: Theme Footer CSS
 
 .hamburger_logo .mobile_logo {
   display: inline-block;
-  max-width: 136px;
+  max-width: 48px;
   width: 100%;
 }
 
@@ -8984,7 +8987,7 @@ START: Blog CSS
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: rgba(211, 237, 49, 0.1);
+  background-color: rgba(255, 92, 0, 0.1);
   -webkit-animation: pulse2 2s linear infinite;
           animation: pulse2 2s linear infinite;
   z-index: -1;
@@ -10187,8 +10190,8 @@ START: Working process CSS
           mask-size: auto;
   -webkit-mask-position: center center;
           mask-position: center center;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(211, 237, 49, 0)), color-stop(50%, var(--tj-color-theme-primary)), to(rgba(211, 237, 49, 0)));
-  background: linear-gradient(90deg, rgba(211, 237, 49, 0) 0%, var(--tj-color-theme-primary) 50%, rgba(211, 237, 49, 0) 100%);
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 92, 0, 0)), color-stop(50%, var(--tj-color-theme-primary)), to(rgba(255, 92, 0, 0)));
+  background: linear-gradient(90deg, rgba(255, 92, 0, 0) 0%, var(--tj-color-theme-primary) 50%, rgba(255, 92, 0, 0) 100%);
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .process-border {
@@ -12438,7 +12441,7 @@ START: Blog Details CSS
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: rgba(211, 237, 49, 0.1);
+  background-color: rgba(255, 92, 0, 0.1);
   -webkit-animation: pulse2 2s linear infinite;
           animation: pulse2 2s linear infinite;
   z-index: -1;
@@ -12571,7 +12574,7 @@ START: Blog Details CSS
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: rgba(211, 237, 49, 0.1);
+  background-color: rgba(255, 92, 0, 0.1);
   -webkit-animation: pulse2 2s linear infinite;
           animation: pulse2 2s linear infinite;
   z-index: -1;
@@ -14082,8 +14085,8 @@ START: Animate CSS
 }
 @-webkit-keyframes pulse2 {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgb(211, 237, 49);
-            box-shadow: 0 0 0 0 rgb(211, 237, 49);
+    -webkit-box-shadow: 0 0 0 0 rgb(255, 92, 0);
+            box-shadow: 0 0 0 0 rgb(255, 92, 0);
   }
   100% {
     -webkit-box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
@@ -14092,8 +14095,8 @@ START: Animate CSS
 }
 @keyframes pulse2 {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgb(211, 237, 49);
-            box-shadow: 0 0 0 0 rgb(211, 237, 49);
+    -webkit-box-shadow: 0 0 0 0 rgb(255, 92, 0);
+            box-shadow: 0 0 0 0 rgb(255, 92, 0);
   }
   100% {
     -webkit-box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
@@ -14122,22 +14125,22 @@ START: Animate CSS
 }
 @-webkit-keyframes pulsePrimary {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(211, 237, 49, 0.5);
-            box-shadow: 0 0 0 0 rgba(211, 237, 49, 0.5);
+    -webkit-box-shadow: 0 0 0 0 rgba(255, 92, 0, 0.5);
+            box-shadow: 0 0 0 0 rgba(255, 92, 0, 0.5);
   }
   100% {
-    -webkit-box-shadow: 0 0 0 16px rgba(211, 237, 49, 0);
-            box-shadow: 0 0 0 16px rgba(211, 237, 49, 0);
+    -webkit-box-shadow: 0 0 0 16px rgba(255, 92, 0, 0);
+            box-shadow: 0 0 0 16px rgba(255, 92, 0, 0);
   }
 }
 @keyframes pulsePrimary {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(211, 237, 49, 0.5);
-            box-shadow: 0 0 0 0 rgba(211, 237, 49, 0.5);
+    -webkit-box-shadow: 0 0 0 0 rgba(255, 92, 0, 0.5);
+            box-shadow: 0 0 0 0 rgba(255, 92, 0, 0.5);
   }
   100% {
-    -webkit-box-shadow: 0 0 0 16px rgba(211, 237, 49, 0);
-            box-shadow: 0 0 0 16px rgba(211, 237, 49, 0);
+    -webkit-box-shadow: 0 0 0 16px rgba(255, 92, 0, 0);
+            box-shadow: 0 0 0 16px rgba(255, 92, 0, 0);
   }
 }
 @-webkit-keyframes jumping {
