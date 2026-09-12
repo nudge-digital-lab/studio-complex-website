@@ -14852,3 +14852,49 @@ START: Integration CSS
 }
 
 /* !END: Integration CSS *//*# sourceMappingURL=main.css.map */
+
+/* !START: Regiones LatAm (footer) */
+.footer-contact-info .contact-item.sc-regions {
+  margin-top: 18px;
+}
+
+.sc-regions-label {
+  display: block;
+  font-size: 13px;
+  line-height: 1.4;
+  opacity: 0.75;
+  margin-bottom: 9px;
+}
+
+.sc-regions-flags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+}
+
+.sc-regions-flags img {
+  width: 24px;
+  height: 16px;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
+  opacity: 0.9;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sc-regions-flags img:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 575px) {
+  .sc-regions-flags {
+    gap: 6px;
+  }
+  .sc-regions-flags img {
+    width: 22px;
+    height: 15px;
+  }
+}
+/* !END: Regiones LatAm (footer) */
