@@ -14898,3 +14898,38 @@ START: Integration CSS
   }
 }
 /* !END: Regiones LatAm (footer) */
+
+/* === Studio Complex: texto justificado ===
+   Justificado con particion de palabras activada. Sin hyphens el
+   justificado abre 'rios' de espacio en las columnas angostas (las
+   tarjetas de ~250px son el peor caso); con hyphens:auto y lang='es'
+   el navegador corta en silaba y el bloque queda parejo.
+   En los bloques centrados el justificado se desactiva, porque
+   pisaria el centrado del template. */
+p,
+.desc,
+.desc p {
+  text-align: justify;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+  -webkit-hyphenate-limit-chars: 6 3 3;
+          hyphenate-limit-chars: 6 3 3;
+}
+
+.text-center p,
+.text-center .desc,
+.tj-page-header-content p,
+.sec-heading.text-center p,
+.cta-content p,
+.testimonial-item .desc p,
+.copyright-text p {
+  text-align: center;
+}
+
+.copyright-text p,
+.tj-page-header-content p {
+  -webkit-hyphens: manual;
+      -ms-hyphens: manual;
+          hyphens: manual;
+}
