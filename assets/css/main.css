@@ -3472,7 +3472,7 @@ START: Back to top CSS
 ----------------------------------------*/
 .back-to-top-wrapper {
   position: fixed;
-  right: 60px;
+  left: 60px;
   bottom: 0;
   display: block;
   border-radius: 50%;
@@ -3485,12 +3485,12 @@ START: Back to top CSS
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .back-to-top-wrapper {
-    right: 45px;
+    left: 45px;
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .back-to-top-wrapper {
-    right: 15px;
+    left: 15px;
   }
 }
 .back-to-top-btn-show {

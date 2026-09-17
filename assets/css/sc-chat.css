@@ -1,8 +1,8 @@
 /* =========================================================================
    Complex — asistente flotante
-   Vive abajo a la IZQUIERDA para no pisarse con el boton "Subir", que es
-   fijo abajo a la derecha (.back-to-top-wrapper). Sin dependencias: solo
-   necesita las variables de color que ya define main.css.
+   Vive abajo a la DERECHA; el boton "Subir" se movio a la izquierda
+   (.back-to-top-wrapper en main.css) para que no se pisen. Sin
+   dependencias: solo usa las variables de color que ya define main.css.
    ========================================================================= */
 
 .sc-chat {
@@ -14,7 +14,7 @@
   --sc-ink: #E7EDF3;
   --sc-dim: #93A2B1;
   position: fixed;
-  left: 60px;
+  right: 60px;
   bottom: 60px;
   z-index: 999;
   font-family: var(--tj-ff-body, "Figtree", system-ui, sans-serif);
@@ -25,6 +25,9 @@
   position: relative;
   display: inline-flex;
   align-items: center;
+  /* El icono queda pegado al borde derecho y la etiqueta crece hacia
+     adentro, para que el boton no se salga de la pantalla al abrirse. */
+  flex-direction: row-reverse;
   height: 56px;
   padding: 0;
   border: 0;
@@ -59,12 +62,12 @@
   font-weight: 700;
   opacity: 0;
   transition: max-width 0.35s ease-in-out, opacity 0.25s ease-in-out,
-    padding-right 0.35s ease-in-out;
+    padding-left 0.35s ease-in-out;
 }
 .sc-chat-launcher:hover .sc-chat-label,
 .sc-chat-launcher:focus-visible .sc-chat-label {
   max-width: 180px;
-  padding-right: 22px;
+  padding-left: 22px;
   opacity: 1;
 }
 /* Puntito verde de "en linea" */
@@ -84,11 +87,12 @@
 /* Globito de invitacion */
 .sc-chat-nudge {
   position: absolute;
-  left: 0;
+  right: 0;
   bottom: 68px;
+  width: max-content;
   max-width: 230px;
   padding: 12px 38px 12px 14px;
-  border-radius: 14px 14px 14px 4px;
+  border-radius: 14px 14px 4px 14px;
   background: var(--sc-panel-2);
   border: 1px solid var(--sc-line);
   color: var(--sc-ink);
@@ -123,7 +127,7 @@
 /* ---- Panel ------------------------------------------------------------ */
 .sc-chat-panel {
   position: absolute;
-  left: 0;
+  right: 0;
   bottom: 70px;
   width: 366px;
   max-height: min(560px, calc(100vh - 150px));
@@ -354,10 +358,10 @@
 
 /* ---- Responsive -------------------------------------------------------- */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .sc-chat { left: 45px; }
+  .sc-chat { right: 45px; }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
-  .sc-chat { left: 15px; bottom: 20px; }
+  .sc-chat { right: 15px; bottom: 20px; }
   .sc-chat-launcher { height: 50px; }
   .sc-chat-launcher .sc-chat-ico { flex-basis: 50px; width: 50px; height: 50px; }
   .sc-chat-launcher .sc-chat-label { display: none; }
