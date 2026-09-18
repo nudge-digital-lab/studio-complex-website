@@ -14973,6 +14973,15 @@ h2, .sec-title { letter-spacing: -0.025em; line-height: 1.12; }
   letter-spacing: 0.16em;
 }
 
+/* --- Taglines: sin corchetes, en negrita --------------------------------
+   Los corchetes se sacaron del HTML (eran decoracion de la plantilla), asi
+   que el peso es lo unico que separa el tagline del titulo que va abajo.
+   La clase se repite para igualar la especificidad de las reglas del
+   template tipo ".banner-content .sub-title", que si no le ganan. */
+.sub-title.sub-title {
+  font-weight: var(--tj-fw-bold, 700);
+}
+
 /* --- Resplandor en los botones principales ------------------------------- */
 .tj-primary-btn,
 .tj-primary-btn.style-2 {
