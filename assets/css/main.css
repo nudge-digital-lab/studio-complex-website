@@ -103,6 +103,18 @@ START: Theme Default CSS
   --tj-color-grey-3: rgba(150, 146, 178, 0.8);
   --tj-color-border-1: #1e2731;
   --tj-color-golden-1: #fdb900;
+
+  /* Superficies, bordes y tinta de acento, separados de las variables
+     originales para que el tema claro pueda invertir los fondos sin tocar,
+     por ejemplo, el texto oscuro que va arriba de los botones naranjas.
+     En oscuro valen exactamente lo mismo que antes. */
+  --sc-surface-1: #10151c;
+  --sc-surface-2: #07090c;
+  --sc-surface-3: #f6f7f7;
+  --sc-surface-4: #ffffff;
+  --sc-border: #1e2731;
+  --sc-ink-accent: #F2801E;
+  --sc-ink-accent-2: #22D3EE;
 }
 
 * {
@@ -118,7 +130,7 @@ html {
 }
 
 body {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   color: var(--tj-color-text-body);
   font-family: var(--tj-ff-body);
   font-size: var(--tj-fs-body);
@@ -299,7 +311,7 @@ a:hover {
 
 a,
 button {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   outline: none;
   border: none;
   background: transparent;
@@ -323,12 +335,12 @@ input[type=email],
 input[type=url],
 textarea {
   outline: none;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   width: 100%;
   height: auto;
   min-height: 44px;
   font-size: var(--tj-fs-body);
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
   color: var(--tj-color-text-body);
   padding: 10px 20px;
   -webkit-box-shadow: 0 0 0;
@@ -354,7 +366,7 @@ input[type=search]::-webkit-search-results-decoration {
 }
 
 .nice-select:hover {
-  border-color: var(--tj-color-border-1);
+  border-color: var(--sc-border);
 }
 .nice-select.open {
   border-color: var(--tj-color-theme-primary);
@@ -676,7 +688,7 @@ img {
 }
 
 .section-separator {
-  border-top: 1px solid var(--tj-color-border-1);
+  border-top: 1px solid var(--sc-border);
 }
 
 #smooth-content {
@@ -735,7 +747,7 @@ img {
   -webkit-text-stroke: 1px var(--tj-color-theme-primary);
 }
 .star-ratings .fill-ratings {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -751,7 +763,7 @@ img {
   margin: 0;
 }
 .star-ratings .empty-ratings {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -789,8 +801,8 @@ body:has(.sticky) .sticky-lg-top {
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
-  background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, var(--tj-color-heading-primary)), color-stop(50%, var(--tj-color-theme-dark-2)));
-  background-image: linear-gradient(to right, var(--tj-color-heading-primary) 50%, var(--tj-color-theme-dark-2) 50%);
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, var(--sc-surface-3)), color-stop(50%, var(--tj-color-theme-dark-2)));
+  background-image: linear-gradient(to right, var(--sc-surface-3) 50%, var(--tj-color-theme-dark-2) 50%);
 }
 
 .line {
@@ -799,8 +811,8 @@ body:has(.sticky) .sticky-lg-top {
   background-clip: text;
   color: transparent;
   --highlight-offset: 0%;
-  background-image: -webkit-gradient(linear, left top, right top, from(var(--tj-color-heading-primary)), to(var(--tj-color-theme-dark-2)));
-  background-image: linear-gradient(90deg, var(--tj-color-heading-primary) var(--highlight-offset), var(--tj-color-theme-dark-2) var(--highlight-offset));
+  background-image: -webkit-gradient(linear, left top, right top, from(var(--sc-surface-3)), to(var(--tj-color-theme-dark-2)));
+  background-image: linear-gradient(90deg, var(--sc-surface-3) var(--highlight-offset), var(--tj-color-theme-dark-2) var(--highlight-offset));
 }
 
 .circle-text {
@@ -982,7 +994,7 @@ body:has(.sticky) .sticky-lg-top {
 }
 .tj-primary-btn .btn-icon::before {
   content: "";
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   width: 46px;
   height: calc(100% - 10px);
   position: absolute;
@@ -1013,8 +1025,8 @@ body:has(.sticky) .sticky-lg-top {
           transform: rotate(0);
 }
 .tj-primary-btn.style-2 {
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   padding: 4px 4px 4px 29px;
 }
 .tj-primary-btn.style-2 .btn-text {
@@ -1032,7 +1044,7 @@ body:has(.sticky) .sticky-lg-top {
   color: var(--tj-color-theme-bg);
 }
 .tj-primary-btn.style-3 {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 
 .tj-text-btn {
@@ -1102,7 +1114,7 @@ body:has(.sticky) .sticky-lg-top {
   content: "";
   height: 1px;
   width: 100%;
-  background-color: var(--tj-color-heading-primary);
+  background-color: var(--sc-surface-3);
   position: absolute;
   left: 0;
   bottom: 0;
@@ -1130,7 +1142,7 @@ body:has(.sticky) .sticky-lg-top {
   max-width: 10px;
 }
 .tj-text-btn:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .tj-text-btn:hover .btn-inner {
   -webkit-margin-start: 0;
@@ -1226,8 +1238,8 @@ body:has(.sticky) .sticky-lg-top {
   font-size: 22px;
   width: 60px;
   height: 60px;
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   border-radius: 50%;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -1261,7 +1273,7 @@ body:has(.sticky) .sticky-lg-top {
 START: Theme Header CSS
 ----------------------------------------*/
 .header-area {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   position: relative;
   left: 0;
   top: 0;
@@ -1274,7 +1286,7 @@ START: Theme Header CSS
   z-index: 98;
 }
 .header-area.header-duplicate {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
           box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
   display: none;
@@ -1312,7 +1324,7 @@ START: Theme Header CSS
   }
 }
 .header-area.header-1.header-duplicate .header-wrapper {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-start-start-radius: 0;
   border-start-end-radius: 0;
 }
@@ -1330,7 +1342,7 @@ START: Theme Header CSS
 .header-area.header-2 .header-wrapper {
   padding: 0 20px;
   border-radius: 10px;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
           box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
 }
@@ -1363,10 +1375,10 @@ START: Theme Header CSS
   color: var(--tj-color-heading-primary);
 }
 .header-area.header-3.header-absolute .mainmenu ul:not(.sub-menu) > li.current-menu-ancestor > a, .header-area.header-3.header-absolute .mainmenu ul:not(.sub-menu) > li.current-menu-item > a, .header-area.header-3.header-absolute .mainmenu ul:not(.sub-menu) > li:hover > a {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .header-area.header-3.header-absolute .mainmenu ul:not(.sub-menu) > li.current-menu-ancestor > a::after, .header-area.header-3.header-absolute .mainmenu ul:not(.sub-menu) > li.current-menu-item > a::after, .header-area.header-3.header-absolute .mainmenu ul:not(.sub-menu) > li:hover > a::after {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .header-area.header-3.header-absolute .header-search .search {
   background-color: rgba(250, 251, 251, 0.08);
@@ -1410,13 +1422,13 @@ START: Theme Header CSS
   gap: 8px;
 }
 .header-top-content .topbar-text i {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   font-size: 17px;
   -webkit-animation: zoomEffect 1.5s linear infinite;
           animation: zoomEffect 1.5s linear infinite;
 }
 .header-top-content .topbar-text a {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   font-weight: var(--tj-fw-medium);
   line-height: 1;
   display: -webkit-inline-box;
@@ -1443,7 +1455,7 @@ START: Theme Header CSS
           transform: rotate(-45deg);
 }
 .header-top-content .topbar-text a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .header-top-content .topbar-text a:hover::after {
   -webkit-transform: rotate(0deg);
@@ -1473,7 +1485,7 @@ START: Theme Header CSS
   gap: 8px;
   position: relative;
   padding: 0 15px;
-  border-left: 2px solid var(--tj-color-border-1);
+  border-left: 2px solid var(--sc-border);
   line-height: 1;
 }
 .header-top-content .header-info .info-item:first-child {
@@ -1494,7 +1506,7 @@ START: Theme Header CSS
   display: inline-flex;
   line-height: 1;
   font-size: 18px;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .header-top-content .header-info .info-item a {
   color: var(--tj-color-text-body);
@@ -1559,7 +1571,7 @@ START: Theme Header CSS
 }
 .header-top-content .header-info .info-item select .list,
 .header-top-content .header-info .info-item .nice-select .list {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   color: var(--tj-color-text-body);
   left: auto;
   right: 0;
@@ -1567,7 +1579,7 @@ START: Theme Header CSS
   min-width: 120px;
   margin-top: 20px;
   padding: 10px 0;
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
 }
 .header-top-content .header-info .info-item select .list .option,
 .header-top-content .header-info .info-item .nice-select .list .option {
@@ -1586,12 +1598,12 @@ START: Theme Header CSS
 .header-top-content .header-info .info-item select .list .option:hover,
 .header-top-content .header-info .info-item .nice-select .list .option:hover {
   background-color: transparent;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .header-top-content .header-info .info-item select .list .option.selected,
 .header-top-content .header-info .info-item .nice-select .list .option.selected {
   font-weight: normal;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .header-top-content .header-info .info-item {
@@ -1711,10 +1723,10 @@ START: Theme Header CSS
           transform: rotate(-180deg);
 }
 .mainmenu ul > li.current-menu-ancestor > a, .mainmenu ul > li.current-menu-item > a, .mainmenu ul > li:hover > a {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .mainmenu ul > li.current-menu-ancestor > a::after, .mainmenu ul > li.current-menu-item > a::after, .mainmenu ul > li:hover > a::after {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .mainmenu ul > li.current-menu-ancestor > a::before, .mainmenu ul > li.current-menu-item > a::before, .mainmenu ul > li:hover > a::before {
   opacity: 1;
@@ -1730,10 +1742,10 @@ START: Theme Header CSS
   left: 0;
   z-index: 99;
   text-align: left;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   -webkit-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
           box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.15);
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
   border-radius: 10px;
   -webkit-transform: scaleY(0);
       -ms-transform: scaleY(0);
@@ -1774,7 +1786,7 @@ START: Theme Header CSS
           transform: rotate(-90deg);
 }
 .mainmenu ul > li > .sub-menu > li.current-menu-ancestor > a, .mainmenu ul > li > .sub-menu > li.current-menu-item > a, .mainmenu ul > li > .sub-menu > li:hover > a {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .mainmenu ul > li > .sub-menu > li.current-menu-ancestor > a::before, .mainmenu ul > li > .sub-menu > li.current-menu-item > a::before, .mainmenu ul > li > .sub-menu > li:hover > a::before {
   opacity: 1;
@@ -1782,7 +1794,7 @@ START: Theme Header CSS
   width: 14px;
 }
 .mainmenu ul > li > .sub-menu > li.current-menu-ancestor > a::after, .mainmenu ul > li > .sub-menu > li.current-menu-item > a::after, .mainmenu ul > li > .sub-menu > li:hover > a::after {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .mainmenu ul > li > .sub-menu > li:hover > a {
   -webkit-padding-start: 25px;
@@ -1835,7 +1847,7 @@ START: Theme Header CSS
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 .header-search .search i {
   font-size: 20px;
@@ -1903,7 +1915,7 @@ START: Theme Header CSS
   display: block;
   width: 18px;
   height: 2px;
-  background-color: var(--tj-color-common-white);
+  background-color: var(--sc-surface-4);
   margin-right: auto;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
@@ -1921,7 +1933,7 @@ START: Theme Header CSS
   border-radius: 7px;
 }
 .menu_bar.mobile_menu_bar span {
-  background-color: var(--tj-color-common-white);
+  background-color: var(--sc-surface-4);
 }
 .menu_bar:hover span {
   width: 100%;
@@ -1957,7 +1969,7 @@ START: Theme Header CSS
   height: 48px;
   gap: 2px;
   padding: 13px;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   border-radius: 50%;
 }
 .cubes span {
@@ -1977,7 +1989,7 @@ START: Theme Header CSS
 START: Theme Footer CSS
 ----------------------------------------*/
 .tj-footer-section {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   position: relative;
   z-index: 1;
   border-radius: 16px;
@@ -2111,7 +2123,7 @@ START: Theme Footer CSS
   letter-spacing: -0.02em;
 }
 .footer-widget.subscription-widget-2 .subscribe-form input[type=email] {
-  outline-color: var(--tj-color-border-1);
+  outline-color: var(--sc-border);
 }
 .footer-widget.subscription-widget-2 .subscribe-form input[type=email]:focus {
   outline-color: var(--tj-color-theme-primary);
@@ -2237,7 +2249,7 @@ START: Theme Footer CSS
   min-width: 100px;
 }
 .footer-widget.hourly_widget ul > li .value.off {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 
 .widget-nav-menu ul {
@@ -2268,7 +2280,7 @@ START: Theme Footer CSS
   transition: all 0.4s ease-in-out;
 }
 .widget-nav-menu ul li a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .widget-nav-menu ul li a:hover > span:not(.badge) {
   -webkit-transform: translateY(-30px);
@@ -2312,7 +2324,7 @@ START: Theme Footer CSS
   border-start-end-radius: 0;
 }
 .footer-2 .tj_footer_inner {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   position: relative;
   z-index: 1;
 }
@@ -2337,7 +2349,7 @@ START: Theme Footer CSS
   color: var(--tj-color-text-body);
 }
 .footer-2 .widget-nav-menu ul li a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .footer-2 .tj_footer_bottom_logo {
   text-align: center;
@@ -2346,7 +2358,7 @@ START: Theme Footer CSS
 .footer-2 .footer_widget_area {
   padding-top: 120px;
   padding-bottom: 120px;
-  border-bottom: 1px solid var(--tj-color-border-1);
+  border-bottom: 1px solid var(--sc-border);
 }
 .footer-2 .footer_bottom_area {
   padding: 20px 0;
@@ -2402,7 +2414,7 @@ START: Theme Footer CSS
 }
 
 .footer-3 .tj_footer_inner {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 16px;
   position: relative;
   z-index: 1;
@@ -2441,7 +2453,7 @@ START: Theme Footer CSS
   color: var(--tj-color-text-body);
 }
 .footer-3 .widget-nav-menu ul li a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .footer-3 .tj_footer_bottom_logo {
   text-align: center;
@@ -2458,7 +2470,7 @@ START: Theme Footer CSS
 .footer-3 .footer_widget_area {
   padding-top: 120px;
   padding-bottom: 120px;
-  border-bottom: 1px solid var(--tj-color-border-1);
+  border-bottom: 1px solid var(--sc-border);
 }
 .footer-3 .footer_bottom_area {
   padding: 20px 0;
@@ -2554,7 +2566,7 @@ START: Theme Footer CSS
 }
 .footer-contact-info .contact-item span i {
   font-size: 20px;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -2572,11 +2584,11 @@ START: Theme Footer CSS
   margin-bottom: 0;
 }
 .footer-contact-info .contact-item a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 
 .tj-copyright-area {
-  border-top: 1px solid var(--tj-color-border-1);
+  border-top: 1px solid var(--sc-border);
   position: relative;
   z-index: 1;
 }
@@ -2637,7 +2649,7 @@ START: Theme Footer CSS
   color: var(--tj-color-common-white);
 }
 .copyright-text a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .copyright-text {
@@ -2684,7 +2696,7 @@ START: Theme Footer CSS
   color: var(--tj-color-text-body-2);
 }
 .copyright-menu ul li a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .copyright-menu ul li:last-child {
   padding-right: 0;
@@ -2722,7 +2734,7 @@ START: Theme Footer CSS
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: var(--tj-color-heading-primary);
+  background-color: var(--sc-surface-3);
   color: var(--tj-color-theme-bg);
   font-size: 18px;
   line-height: 1;
@@ -2747,7 +2759,7 @@ START: Theme Footer CSS
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 0 0 24px 24px;
   z-index: 100;
   padding-top: 120px;
@@ -2835,8 +2847,8 @@ START: Theme Footer CSS
   width: 100%;
   font-family: var(--tj-ff-body);
   color: var(--tj-color-common-white);
-  border: 1px solid var(--tj-color-border-1);
-  background: var(--tj-color-theme-dark);
+  border: 1px solid var(--sc-border);
+  background: var(--sc-surface-2);
   padding: 20px 75px 20px 24px;
   border-radius: 10px;
 }
@@ -2889,8 +2901,8 @@ START: Theme Footer CSS
   inset-inline-start: 0;
   top: 20px;
   height: 28px;
-  -webkit-border-start: 1px solid var(--tj-color-border-1);
-          border-inline-start: 1px solid var(--tj-color-border-1);
+  -webkit-border-start: 1px solid var(--sc-border);
+          border-inline-start: 1px solid var(--sc-border);
 }
 .tj_search_wrapper .search_form form .search_input .search-box [type=submit] i,
 .tj_search_wrapper .search_form form .search_input .search-box input[type=submit] i {
@@ -2967,7 +2979,7 @@ START: Theme Footer CSS
   }
 }
 .hamburger_bg {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -2987,7 +2999,7 @@ START: Theme Footer CSS
   right: 0;
   width: 100%;
   height: 100%;
-  background: var(--tj-color-theme-dark);
+  background: var(--sc-surface-2);
   opacity: 0.6;
   z-index: -1;
 }
@@ -3062,13 +3074,13 @@ START: Theme Footer CSS
   height: 60px;
   line-height: 60px;
   padding: 0 65px 0 16px;
-  background: var(--tj-color-theme-bg);
+  background: var(--sc-surface-1);
   border: none;
   outline: none;
   font-size: 16px;
   font-family: var(--tj-ff-body);
   color: var(--tj-color-text-body);
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
   border-radius: 10px;
 }
 .hamburger_search select::-webkit-input-placeholder, .hamburger_search .nice-select::-webkit-input-placeholder, .hamburger_search input:not([type=submit]):not([type=radio]):not([type=checkbox])::-webkit-input-placeholder, .hamburger_search input::-webkit-input-placeholder {
@@ -3113,7 +3125,7 @@ START: Theme Footer CSS
   left: 0;
   top: 50%;
   height: 22px;
-  border-left: 1px solid var(--tj-color-border-1);
+  border-left: 1px solid var(--sc-border);
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -3158,7 +3170,7 @@ START: Theme Footer CSS
   transition: all 0.4s ease-in-out 0s;
 }
 .hamburger_menu .mean-nav ul li a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .hamburger_menu .mean-nav ul li a.mean-expand {
   padding: 0;
@@ -3179,7 +3191,7 @@ START: Theme Footer CSS
   font-size: 12px;
 }
 .hamburger_menu .mean-nav ul li a.mean-expand.mean-clicked {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   -webkit-transform: rotate(180deg);
       -ms-transform: rotate(180deg);
           transform: rotate(180deg);
@@ -3202,10 +3214,10 @@ START: Theme Footer CSS
   width: 30px;
 }
 .hamburger_menu .mean-nav ul li.dropdown-opened > a {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .hamburger-socials .social-links.style-2 a {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
 }
 
 .tj-offcanvas-area {
@@ -3310,7 +3322,7 @@ START: Theme Footer CSS
   height: 3px;
   width: 35px;
   display: block;
-  background: var(--tj-color-common-white);
+  background: var(--sc-surface-4);
   cursor: pointer;
   -webkit-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
@@ -3338,7 +3350,7 @@ START: Theme Footer CSS
   transition: height 400ms;
 }
 .menu-bar.style-2 button span {
-  background: var(--tj-color-heading-primary);
+  background: var(--sc-surface-3);
 }
 .menu-bar.menu-bar-toggeled button {
   -webkit-transform: rotate(45deg);
@@ -3724,7 +3736,7 @@ START: Heading CSS
       -ms-flex-align: center;
           align-items: center;
   gap: 3px;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   font-size: 15px;
   line-height: 1;
   letter-spacing: 0.15em;
@@ -3736,7 +3748,7 @@ START: Heading CSS
   transition: none;
 }
 .sec-heading .sub-title i {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   font-size: 16px;
   line-height: 1;
   display: -webkit-inline-box;
@@ -3757,13 +3769,13 @@ START: Heading CSS
   display: block;
 }
 .sec-heading.style-2 .sec-title span {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .sec-heading.style-2 .sub-title {
   color: var(--tj-color-text-body);
 }
 .sec-heading.style-2 .sub-title span {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   -webkit-margin-end: 5px;
           margin-inline-end: 5px;
 }
@@ -3772,7 +3784,7 @@ START: Heading CSS
   font-size: 16px;
   text-transform: capitalize;
   letter-spacing: 0;
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
   background-color: rgba(250, 251, 251, 0.08);
   padding: 5px 10px;
   border-radius: 40px;
@@ -3791,7 +3803,7 @@ START: Hero CSS
   position: relative;
   z-index: 1;
   margin: 0 30px;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 20px;
   padding-top: 214px;
   padding-bottom: 60px;
@@ -3850,7 +3862,7 @@ START: Hero CSS
       -ms-flex-align: center;
           align-items: center;
   gap: 3px;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   font-size: 15px;
   line-height: 1;
   letter-spacing: 0.15em;
@@ -3894,7 +3906,7 @@ START: Hero CSS
   gap: 6px;
 }
 .banner-content .btn-area .number i {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   font-size: 24px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -4104,7 +4116,7 @@ START: Hero CSS
   position: absolute;
   inset-inline-end: -125px;
   bottom: -22px;
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
 }
 .banner-img-area .customers-box .rating-area {
   display: -webkit-box;
@@ -4283,7 +4295,7 @@ START: Hero CSS
 }
 
 .customers-box {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   border-radius: 10px;
   position: relative;
   overflow: hidden;
@@ -4318,7 +4330,7 @@ START: Hero CSS
 .customers ul li img {
   width: 58px;
   height: 58px;
-  background-color: var(--tj-color-common-white);
+  background-color: var(--sc-surface-4);
   border: 2px solid var(--tj-color-common-white);
   border-radius: 50%;
 }
@@ -4533,7 +4545,7 @@ START: Hero CSS
   }
 }
 .tj-banner-section-2 .banner-content .banner-title span {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .tj-banner-section-2 .banner-content .btn-area {
   max-width: 327px;
@@ -4545,7 +4557,7 @@ START: Hero CSS
   }
 }
 .tj-banner-section-2 .desc span {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   padding-left: 50px;
 }
 .tj-banner-section-2 .banner-img-area {
@@ -4735,13 +4747,13 @@ START: Choose CSS
 }
 
 .choose-box {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 12px;
   overflow: hidden;
   position: relative;
 }
 .choose-box .choose-inner {
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
   -webkit-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
   height: 100%;
@@ -4761,13 +4773,13 @@ START: Choose CSS
   }
 }
 .choose-box .choose-icon {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   font-size: 40px;
   line-height: 1;
   width: 80px;
   height: 80px;
-  background-color: var(--tj-color-theme-dark);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
   border-radius: 50%;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -4844,7 +4856,7 @@ START: Client CSS
   margin: 0 auto;
   text-align: center;
   border-radius: 40px;
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
 }
 .client-content .sec-title {
   font-size: 18px;
@@ -4935,8 +4947,8 @@ START: Client CSS
 .client-logo {
   width: 285px;
   height: 121px;
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -4971,7 +4983,7 @@ START: Client CSS
 START: About CSS
 ----------------------------------------*/
 .tj-about-section {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 16px;
   position: relative;
   z-index: 1;
@@ -5094,7 +5106,7 @@ START: About CSS
   -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
           transform: rotate(45deg);
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   color: var(--tj-color-common-white);
   text-align: center;
   line-height: 1;
@@ -5146,8 +5158,8 @@ START: About CSS
 .author-area {
   max-width: 380px;
   width: 100%;
-  background-color: var(--tj-color-theme-dark);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
   border-radius: 10px;
   position: relative;
   display: -webkit-box;
@@ -5195,7 +5207,7 @@ START: About CSS
           align-items: center;
   gap: 8px;
   padding: 27px 15px 27px 0;
-  border-right: 1px solid var(--tj-color-border-1);
+  border-right: 1px solid var(--sc-border);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .author-area .author-info {
@@ -5208,7 +5220,7 @@ START: About CSS
     max-width: 100%;
     padding: 20px 0;
     border-right: 0;
-    border-bottom: 1px solid var(--tj-color-border-1);
+    border-bottom: 1px solid var(--sc-border);
   }
 }
 @media (max-width: 400px) {
@@ -5318,7 +5330,7 @@ START: About CSS
           mask-size: cover;
   -webkit-mask-position: bottom right;
           mask-position: bottom right;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   z-index: -1;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -5362,13 +5374,13 @@ START: About CSS
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .about-content-area {
     padding: 40px 30px;
-    background-color: var(--tj-color-theme-dark);
+    background-color: var(--sc-surface-2);
   }
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .about-content-area {
     padding: 40px 20px;
-    background-color: var(--tj-color-theme-dark);
+    background-color: var(--sc-surface-2);
     border-radius: 12px;
   }
 }
@@ -5390,10 +5402,10 @@ START: About CSS
   inset-inline-end: -20px;
   width: 1px;
   height: calc(100% - 5px);
-  border-right: 1px solid var(--tj-color-border-1);
+  border-right: 1px solid var(--sc-border);
 }
 .about-funfact .inline-content {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   font-size: 64px;
   margin-bottom: 15px;
 }
@@ -5519,7 +5531,7 @@ START: About CSS
   padding-bottom: 20px;
   -webkit-padding-end: 20px;
           padding-inline-end: 20px;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   border-end-end-radius: 16px;
 }
 .tj-about-section-2 .about-left::before, .tj-about-section-2 .about-left::after {
@@ -5582,7 +5594,7 @@ START: About CSS
     max-width: 100%;
     padding: 70px 15px 30px;
     border-radius: 12px;
-    background-color: var(--tj-color-theme-bg);
+    background-color: var(--sc-surface-1);
   }
 }
 .tj-about-section-2 .about-content-area::before {
@@ -5654,8 +5666,8 @@ START: About CSS
 }
 .tj-about-section-2 .about-features-item {
   padding: 22px 30px 26px;
-  background-color: var(--tj-color-theme-dark);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
   border-radius: 10px;
 }
 .tj-about-section-2 .about-features-item .title {
@@ -5705,7 +5717,7 @@ START: About CSS
   bottom: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   z-index: -1;
   -webkit-mask-image: url(../images/shapes/h3-about-shape.svg);
           mask-image: url(../images/shapes/h3-about-shape.svg);
@@ -5773,7 +5785,7 @@ START: About CSS
 .about_reviews ul li img {
   width: 50px;
   height: 50px;
-  background-color: var(--tj-color-common-white);
+  background-color: var(--sc-surface-4);
   padding: 2px;
   border-radius: 50%;
 }
@@ -5850,7 +5862,7 @@ START: About CSS
   display: -ms-inline-flexbox;
   display: inline-flex;
   font-size: 20px;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   line-height: 1;
   margin-top: 2px;
 }
@@ -5860,8 +5872,8 @@ START: About CSS
 }
 
 .h3_countup {
-  border: 1px solid var(--tj-color-border-1);
-  background-color: var(--tj-color-theme-bg);
+  border: 1px solid var(--sc-border);
+  background-color: var(--sc-surface-1);
   border-radius: 8px;
   padding: 30px;
   display: -webkit-box;
@@ -5997,7 +6009,7 @@ START: Services CSS
   font-weight: var(--tj-fw-sbold);
   font-family: var(--tj-ff-heading);
   color: var(--tj-color-theme-dark-2);
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   border-bottom-left-radius: 12px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -6009,8 +6021,8 @@ START: Services CSS
       -ms-flex-pack: center;
           justify-content: center;
   z-index: 2;
-  border-left: 1px solid var(--tj-color-border-1);
-  border-bottom: 1px solid var(--tj-color-border-1);
+  border-left: 1px solid var(--sc-border);
+  border-bottom: 1px solid var(--sc-border);
 }
 .service-item .item-count::before, .service-item .item-count::after {
   content: "";
@@ -6024,8 +6036,8 @@ START: Services CSS
           box-shadow: 12px 0 0 0 var(--tj-color-theme-dark);
   border-top-right-radius: 12px;
   z-index: -1;
-  border-top: 1px solid var(--tj-color-border-1);
-  border-right: 1px solid var(--tj-color-border-1);
+  border-top: 1px solid var(--sc-border);
+  border-right: 1px solid var(--sc-border);
 }
 .service-item .item-count::after {
   top: auto;
@@ -6037,13 +6049,13 @@ START: Services CSS
   margin-bottom: 18px;
 }
 .service-item .title a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .service-item .desc {
   margin-bottom: 22px;
 }
 .service-item .tj-text-btn:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .service-item:hover .service-icon {
   color: var(--tj-color-theme-dark);
@@ -6054,7 +6066,7 @@ START: Services CSS
           transform: scale(1);
 }
 .service-item:hover .item-count {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .service-item:hover .item-count i {
   -webkit-transform: rotateY(360deg);
@@ -6062,8 +6074,8 @@ START: Services CSS
 }
 .service-inner {
   padding: 30px;
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   border-radius: 10px 10px 0 10px;
   position: relative;
 }
@@ -6075,11 +6087,11 @@ START: Services CSS
 .service-icon {
   width: 80px;
   height: 80px;
-  background-color: var(--tj-color-theme-dark);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
   border-radius: 50%;
   font-size: 44px;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -6111,8 +6123,8 @@ START: Services CSS
           transform: scale(0);
 }
 .service-list {
-  background-color: var(--tj-color-theme-dark);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
   padding: 16px 15px;
   border-radius: 8px;
 }
@@ -6125,8 +6137,8 @@ START: Services CSS
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   border-top: 0;
   border-radius: 0 0 10px 10px;
   padding: 0 30px 26px 30px;
@@ -6144,8 +6156,8 @@ START: Services CSS
   -webkit-box-shadow: 10px 0 0 0 var(--tj-color-theme-bg);
           box-shadow: 10px 0 0 0 var(--tj-color-theme-bg);
   border-top-right-radius: 10px;
-  border-top: 1px solid var(--tj-color-border-1);
-  border-right: 1px solid var(--tj-color-border-1);
+  border-top: 1px solid var(--sc-border);
+  border-right: 1px solid var(--sc-border);
   z-index: 1;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px), (max-width: 575px) {
@@ -6212,8 +6224,8 @@ START: Services CSS
           transform: scaleY(1);
 }
 .service-item-2:hover .service-icon {
-  background-color: var(--tj-color-theme-dark);
-  color: var(--tj-color-theme-primary);
+  background-color: var(--sc-surface-2);
+  color: var(--sc-ink-accent);
 }
 .service-item-2:hover .service-icon i {
   -webkit-transform: rotateY(360deg);
@@ -6260,7 +6272,7 @@ START: Services CSS
 
 .h3-service-section-wrap {
   position: relative;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 16px;
   overflow: hidden;
   z-index: 1;
@@ -6272,10 +6284,10 @@ START: Services CSS
 }
 
 .h3_services_wrap {
-  border-top: 1px solid var(--tj-color-border-1);
+  border-top: 1px solid var(--sc-border);
 }
 .h3_services_wrap .service_list_item {
-  border-bottom: 1px solid var(--tj-color-border-1);
+  border-bottom: 1px solid var(--sc-border);
 }
 
 .service_list_item {
@@ -6332,9 +6344,9 @@ START: Services CSS
           transform: rotate(180deg);
   width: 50px;
   height: 88px;
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
   border-radius: 60px;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   font-weight: var(--tj-fw-sbold);
   font-size: 48px;
   line-height: 1;
@@ -6373,7 +6385,7 @@ START: Services CSS
   margin: 0;
 }
 .service_list_item .item_content .content_inner .title a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .service_list_item .item_content .content_inner .desc {
   color: var(--tj-color-text-body);
@@ -6391,7 +6403,7 @@ START: Services CSS
   color: var(--tj-color-common-white);
 }
 .service_list_item .item_content .tj-icon-btn:hover i {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .service_list_item:not(.is-active) .item_content .content_inner {
   opacity: 0.25;
@@ -6410,7 +6422,7 @@ START: Services CSS
   margin-left: 0;
 }
 .service_list_item:hover .item_content .tj-icon-btn i {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .service_list_item .item_content {
@@ -6480,8 +6492,8 @@ START: Services CSS
 .services_tabs {
   position: relative;
   list-style: none;
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   border-radius: 8px;
   padding: 8px;
   display: -webkit-box;
@@ -6550,7 +6562,7 @@ START: Services CSS
           justify-content: center;
   width: 30px;
   height: 30px;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   color: var(--tj-color-heading-primary);
   border-radius: 50%;
 }
@@ -6602,8 +6614,8 @@ START: Services CSS
 }
 
 .service_content_wrap {
-  border: 1px solid var(--tj-color-border-1);
-  background-color: var(--tj-color-theme-bg);
+  border: 1px solid var(--sc-border);
+  background-color: var(--sc-surface-1);
   padding: 15px;
   border-radius: 12px;
   display: -webkit-box;
@@ -6666,7 +6678,7 @@ START: Services CSS
   margin: 0;
 }
 .service_content_wrap .service_content .service_title a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .service_content_wrap .service_content .service_excerpt {
   margin-top: 20px;
@@ -6972,8 +6984,8 @@ START: Theme Marquee CSS
 }
 
 .marquee-area {
-  border-top: 1px dashed var(--tj-color-border-1);
-  border-bottom: 1px dashed var(--tj-color-border-1);
+  border-top: 1px dashed var(--sc-border);
+  border-bottom: 1px dashed var(--sc-border);
   padding: 5px 0;
 }
 .marquee-item {
@@ -7029,7 +7041,7 @@ START: Theme Marquee CSS
 .marquee-item .marquee-icon i {
   position: relative;
   top: 4px;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   font-size: 40px;
   line-height: 1;
   -webkit-animation: rotateAntiClock 6s linear infinite;
@@ -7081,8 +7093,8 @@ START: Theme Marquee CSS
 .marquee-item-2 .marquee-icon {
   width: 100px;
   height: 100px;
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   border-radius: 50%;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -7095,7 +7107,7 @@ START: Theme Marquee CSS
           justify-content: center;
   font-size: 40px;
   line-height: 1;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .marquee-item-2 .marquee-icon i,
 .marquee-item-2 .marquee-icon svg {
@@ -7353,8 +7365,8 @@ START: Theme Marquee CSS
 START: Technologies CSS
 ----------------------------------------*/
 .tech-item {
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   padding: 30px 30px 25px 30px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -7470,7 +7482,7 @@ START: Technologies CSS
 START: Project CSS
 ----------------------------------------*/
 .tj-project-section {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 16px;
 }
 .tj-project-section .sec-heading .desc {
@@ -7523,8 +7535,8 @@ START: Project CSS
   pointer-events: none;
 }
 .project-item .project-content {
-  background-color: var(--tj-color-theme-dark);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
   padding: 30px 30px 23px 30px;
   width: calc(100% - 30px);
   margin: 15px;
@@ -7634,9 +7646,9 @@ START: Project CSS
   z-index: 1;
 }
 .categories a {
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
-  color: var(--tj-color-theme-primary);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
+  color: var(--sc-ink-accent);
   font-size: 16px;
   line-height: 1;
   font-weight: var(--tj-fw-medium);
@@ -7671,8 +7683,8 @@ START: Project CSS
       -ms-flex-align: center;
           align-items: center;
   padding: 15px 30px 15px 15px;
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   border-radius: 12px;
   min-height: inherit;
   gap: 30px;
@@ -7703,7 +7715,7 @@ START: Project CSS
   margin-bottom: 16px;
 }
 .project-wrapper-2 .project-item .categories a {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 .project-wrapper-2 .project-item .categories a:hover {
   background-color: var(--tj-color-theme-primary);
@@ -7768,7 +7780,7 @@ START: Project CSS
 START: Testimonial CSS
 ----------------------------------------*/
 .tj-testimonial-section {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 16px;
   padding-top: 432px;
   padding-bottom: 120px;
@@ -7820,7 +7832,7 @@ START: Testimonial CSS
 .testimonial-wrapper .client-thumb .thumb-img {
   width: 84px;
   height: 84px;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 50%;
   border: 3px solid transparent;
   overflow: hidden;
@@ -7880,7 +7892,7 @@ START: Testimonial CSS
   opacity: 1;
 }
 .testimonial-wrapper .testimonial-item {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   border-radius: 12px;
   position: relative;
   margin: 17px 0 0 0;
@@ -7896,7 +7908,7 @@ START: Testimonial CSS
           transform: translateX(-50%) rotate(45deg);
   width: 24px;
   height: 24px;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 .testimonial-wrapper .testimonial-item .rating-area {
   display: -webkit-box;
@@ -7969,8 +7981,8 @@ START: Testimonial CSS
 .testimonial_item_2 {
   max-width: 983px;
   width: 100%;
-  background-color: var(--tj-color-theme-bg);
-  border-radius: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border-radius: 1px solid var(--sc-border);
   border-radius: 8px;
   padding: 15px;
   display: -webkit-box;
@@ -8033,7 +8045,7 @@ START: Testimonial CSS
   margin: 0;
 }
 .testimonial_item_2 .testimonial_content .author_info {
-  border-top: 1px solid var(--tj-color-border-1);
+  border-top: 1px solid var(--sc-border);
   padding-top: 30px;
   margin-top: 30px;
   display: -webkit-box;
@@ -8209,7 +8221,7 @@ START: Testimonial CSS
 }
 .testimonial-wrapper-2 .slider-prev,
 .testimonial-wrapper-2 .slider-next {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   margin-top: 0;
 }
 .testimonial-wrapper-2:hover .testimonial-navigation {
@@ -8226,8 +8238,8 @@ START: Testimonial CSS
           transform: translateX(50%);
 }
 .testimonial_item_3 {
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   border-radius: 10px;
   padding: 36px 30px 35px;
 }
@@ -8333,7 +8345,7 @@ START: Testimonial CSS
   font-size: 20px;
   color: var(--tj-color-common-white);
   background-color: transparent;
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
   border-radius: 50%;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
@@ -8450,7 +8462,7 @@ START: Testimonial CSS
 START: Faq CSS
 ----------------------------------------*/
 .tj-faq-section {
-  border-bottom: 1px solid var(--tj-color-border-1);
+  border-bottom: 1px solid var(--sc-border);
 }
 .tj-faq-section .tj_accordion {
   max-width: 940px;
@@ -8470,14 +8482,14 @@ START: Faq CSS
 }
 
 .accordion_item {
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   border-radius: 10px;
   padding: 0 30px;
 }
 .accordion_item.active {
   border-color: var(--tj-color-theme-primary);
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 .accordion_title {
   position: relative;
@@ -8497,9 +8509,9 @@ START: Faq CSS
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  border: 1px solid var(--tj-color-border-1);
-  background-color: var(--tj-color-theme-dark);
-  color: var(--tj-color-theme-primary);
+  border: 1px solid var(--sc-border);
+  background-color: var(--sc-surface-2);
+  color: var(--sc-ink-accent);
   font-size: 20px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -8517,7 +8529,7 @@ START: Faq CSS
   z-index: 2;
 }
 .accordion_title:not(.collapsed) {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .accordion_title:not(.collapsed)::after {
   content: "\e920";
@@ -8526,7 +8538,7 @@ START: Faq CSS
   color: var(--tj-color-theme-dark);
 }
 .accordion_content {
-  border-top: 1px solid var(--tj-color-border-1);
+  border-top: 1px solid var(--sc-border);
   padding: 30px 0;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
@@ -8554,7 +8566,7 @@ START: Faq CSS
 }
 
 .tj-faq-section-2 {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 16px;
 }
 .tj-faq-section-2 .sec-heading {
@@ -8579,7 +8591,7 @@ START: Faq CSS
 .tj-faq-section-4 {
   background-color: transparent;
   border-radius: 0;
-  border-bottom: 1px solid var(--tj-color-border-1);
+  border-bottom: 1px solid var(--sc-border);
 }
 .tj-faq-section-5 {
   border-bottom: 0;
@@ -8595,8 +8607,8 @@ START: Faq CSS
 }
 .faq-contact {
   padding: 30px 30px 24px;
-  background-color: var(--tj-color-theme-dark);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
   border-radius: 10px;
   max-width: 381px;
   margin-top: 128px;
@@ -8607,10 +8619,10 @@ START: Faq CSS
   }
 }
 .faq-contact-2 {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
 }
 .faq-contact-2 .faq-contact-item {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 .faq-contact .title {
   margin-bottom: 26px;
@@ -8665,8 +8677,8 @@ START: Faq CSS
 }
 .faq-contact-item {
   padding: 24px 20px;
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   border-radius: 8px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -8691,7 +8703,7 @@ START: Faq CSS
   content: "";
   height: 1px;
   width: 100%;
-  background-color: var(--tj-color-heading-primary);
+  background-color: var(--sc-surface-3);
   position: absolute;
   left: 0;
   bottom: 3px;
@@ -8727,18 +8739,18 @@ START: Faq CSS
 }
 .tj_accordion_2 .accordion_item {
   padding: 0;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 .tj_accordion_2 .accordion_item.active {
-  border-color: var(--tj-color-border-1);
+  border-color: var(--sc-border);
 }
 .tj_accordion_2 .accordion_title {
   padding: 27px 70px 27px 30px;
 }
 .tj_accordion_2 .accordion_title::after {
   inset-inline-end: 30px;
-  border-color: var(--tj-color-border-1);
-  background-color: var(--tj-color-theme-bg);
+  border-color: var(--sc-border);
+  background-color: var(--sc-surface-1);
 }
 .tj_accordion_2 .accordion_title:not(.collapsed)::after {
   border-color: var(--tj-color-theme-primary);
@@ -8764,7 +8776,7 @@ START: Faq CSS
   }
 }
 .tj_accordion_3 .accordion_item {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
 }
 .tj_accordion_4 {
   max-width: 100%;
@@ -8785,7 +8797,7 @@ START: Faq CSS
   border-top: 0;
 }
 .tj_accordion_4 .accordion_item {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
 }
 .tj_accordion_4 .accordion_item:has(button:not(.collapsed)) {
   background-color: var(--tj-color-theme-primary);
@@ -8804,7 +8816,7 @@ START: Blog CSS
 
 .blog-item {
   height: 100%;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   padding: 15px;
   border-radius: 10px;
   position: relative;
@@ -8865,8 +8877,8 @@ START: Blog CSS
   margin-bottom: 0;
 }
 .blog-item .categories a {
-  background-color: var(--tj-color-theme-dark);
-  color: var(--tj-color-theme-primary);
+  background-color: var(--sc-surface-2);
+  color: var(--sc-ink-accent);
 }
 .blog-item .categories a:hover {
   background-color: var(--tj-color-theme-primary);
@@ -8896,8 +8908,8 @@ START: Blog CSS
   inset-inline-start: 15px;
   top: 15px;
   text-align: center;
-  background: var(--tj-color-theme-dark);
-  border: 1px solid var(--tj-color-border-1);
+  background: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
   padding: 20px;
   border-radius: 6px;
   z-index: 2;
@@ -8941,7 +8953,7 @@ START: Blog CSS
   color: var(--tj-color-text-body);
 }
 .blog-meta span a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 @media (max-width: 575px) {
   .blog-meta {
@@ -9065,7 +9077,7 @@ START: Blog CSS
   margin-top: -50px;
 }
 .tj-post-slider .slider-prev:not(:hover) {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .tj-post-slider .slider-prev {
@@ -9076,7 +9088,7 @@ START: Blog CSS
   margin-top: -50px;
 }
 .tj-post-slider .slider-next:not(:hover) {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .tj-post-slider .slider-next {
@@ -9341,10 +9353,10 @@ START: Blog CSS
   border-radius: 50%;
   line-height: 48px;
   text-align: center;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   font-weight: var(--tj-fw-medium);
   color: var(--tj-color-heading-primary);
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
 }
 .tj-pagination ul li .page-numbers i {
   line-height: 1;
@@ -9364,7 +9376,7 @@ START: Blog CSS
 
 .tj-post-item {
   height: 100%;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   padding: 15px;
   border-radius: 12px;
   position: relative;
@@ -9379,7 +9391,7 @@ START: Blog CSS
   top: 0;
   left: 0;
   padding: 0 10px 10px 0;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-bottom-right-radius: 12px;
   z-index: 2;
 }
@@ -9419,7 +9431,7 @@ START: Blog CSS
   margin: 0;
 }
 .tj-post-content .title a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .tj-post-content .desc {
   margin-top: 15px;
@@ -9447,7 +9459,7 @@ START: Blog CSS
   color: var(--tj-color-text-body);
 }
 .tj-post-meta span a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .tj-post-meta span:not(:last-child)::after {
   content: "";
@@ -9642,7 +9654,7 @@ START: CTA CSS
           justify-content: center;
   font-size: 26px;
   line-height: 1;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .subscribe-form [type=submit] i,
 .subscribe-form input[type=submit] i {
@@ -9667,8 +9679,8 @@ START: CTA CSS
   inset-inline-start: 0;
   top: 20px;
   height: 24px;
-  -webkit-border-start: 1px solid var(--tj-color-border-1);
-          border-inline-start: 1px solid var(--tj-color-border-1);
+  -webkit-border-start: 1px solid var(--sc-border);
+          border-inline-start: 1px solid var(--sc-border);
 }
 .subscribe-form label {
   color: var(--tj-color-text-body);
@@ -9687,7 +9699,7 @@ START: CTA CSS
           margin-inline-start: 4px;
 }
 .subscribe-form label a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .subscribe-form {
@@ -9695,7 +9707,7 @@ START: CTA CSS
   }
 }
 .subscribe-form.cta-form input[type=email] {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   border-radius: 50px;
   color: var(--tj-color-heading-primary);
   padding: 6px 205px 6px 30px;
@@ -9801,8 +9813,8 @@ START: CTA CSS
   color: var(--tj-color-theme-dark);
 }
 .social-links.cta-social ul li a {
-  background-color: var(--tj-color-theme-dark);
-  color: var(--tj-color-theme-primary);
+  background-color: var(--sc-surface-2);
+  color: var(--sc-ink-accent);
 }
 .social-links.cta-social ul li a::before {
   display: none;
@@ -9870,7 +9882,7 @@ START: Countup CSS
 }
 
 .count-icon {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   font-size: 50px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -9918,14 +9930,14 @@ START: Countup CSS
 
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .tj-countup-section-2 {
-    background-color: var(--tj-color-theme-bg);
+    background-color: var(--sc-surface-1);
     border-radius: 12px;
   }
 }
 
 .funfact-3 {
-  background-color: var(--tj-color-theme-dark);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
   border-radius: 16px;
   gap: 0;
 }
@@ -9988,7 +10000,7 @@ START: Countup CSS
 }
 .funfact-3 .countup-item .countup-icon {
   font-size: 50px;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   margin-bottom: 20px;
   line-height: 1;
 }
@@ -10025,7 +10037,7 @@ START: Countup CSS
             border-inline-end: 0;
   }
   .funfact-3 .countup-item:not(:last-child, :nth-last-child(2)) {
-    border-bottom: 1px solid var(--tj-color-border-1);
+    border-bottom: 1px solid var(--sc-border);
   }
 }
 @media (max-width: 575px) {
@@ -10040,7 +10052,7 @@ START: Countup CSS
     display: block;
     width: 100%;
     height: 0;
-    border-bottom: 1px solid var(--tj-color-border-1);
+    border-bottom: 1px solid var(--sc-border);
     inset-inline-start: 0;
     top: auto;
     bottom: 0;
@@ -10088,7 +10100,7 @@ START: Working process CSS
 }
 .process-item::before {
   content: "";
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   -webkit-mask-image: url(../images/shapes/process-item-bg.svg);
           mask-image: url(../images/shapes/process-item-bg.svg);
   -webkit-mask-repeat: no-repeat;
@@ -10111,7 +10123,7 @@ START: Working process CSS
           transform: translateX(-50%) rotate(90deg);
 }
 .process-item.style-2::before {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   -webkit-mask-image: url(../images/shapes/h3-process-item-bg.svg);
           mask-image: url(../images/shapes/h3-process-item-bg.svg);
 }
@@ -10212,7 +10224,7 @@ START: Working process CSS
 
 .h3-working-process-section-wrap {
   position: relative;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 16px;
   overflow: hidden;
   z-index: 1;
@@ -10323,8 +10335,8 @@ START: Working process CSS
 }
 .process-item-2 .process-content {
   padding: 30px 34px 32px 35px;
-  background-color: var(--tj-color-theme-dark);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
   border-radius: 10px;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -10339,7 +10351,7 @@ START: Working process CSS
   height: 66px;
   border-radius: 50%;
   margin-bottom: 0;
-  background-color: var(--tj-color-heading-primary);
+  background-color: var(--sc-surface-3);
   position: absolute;
   top: 50%;
   left: auto;
@@ -10415,7 +10427,7 @@ START: Working process CSS
 START: Contact CSS
 ----------------------------------------*/
 .tj-contact-section {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 16px;
   position: relative;
   z-index: 1;
@@ -10453,7 +10465,7 @@ START: Contact CSS
   height: 100%;
   border-radius: 12px;
   overflow: hidden;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   padding: 15px;
 }
 .map-area iframe,
@@ -10478,7 +10490,7 @@ START: Contact CSS
   font-family: "tekmino-icon" !important;
 }
 .map-area .custom-marker::before {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 
 .contact-left {
@@ -10513,7 +10525,7 @@ START: Contact CSS
 }
 .contact-info .contact-item:not(:last-child) {
   padding-right: 15px;
-  border-right: 1px solid var(--tj-color-border-1);
+  border-right: 1px solid var(--sc-border);
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px), (max-width: 575px) {
   .contact-info .contact-item:not(:last-child) {
@@ -10541,7 +10553,7 @@ START: Contact CSS
   color: var(--tj-color-common-white);
 }
 .contact-info .contact-item a.contact-link:last-child {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   position: relative;
 }
 .contact-info .contact-item a.contact-link:last-child::after {
@@ -10554,7 +10566,7 @@ START: Contact CSS
   background-color: var(--tj-color-theme-primary);
 }
 .contact-info .contact-item a.contact-link:last-child:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .contact-info .contact-item a.contact-link:last-child:hover::after {
   -webkit-animation: lineHover 0.8s linear;
@@ -10566,7 +10578,7 @@ START: Contact CSS
   display: inline-flex;
 }
 .contact-info .contact-item .contact-link span {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   -webkit-margin-start: 4px;
           margin-inline-start: 4px;
 }
@@ -10577,7 +10589,7 @@ START: Contact CSS
 }
 
 .contact-form {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   -webkit-margin-start: 0;
           margin-inline-start: 0;
   -webkit-margin-end: 15px;
@@ -10657,7 +10669,7 @@ START: Contact CSS
   margin-bottom: 9px;
 }
 .contact-form .form-input .cf-label span {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .contact-form .form-input .nice-select {
   color: var(--tj-color-text-body-2);
@@ -10667,15 +10679,15 @@ START: Contact CSS
 .contact-form .form-input .nice-select .list {
   width: 100%;
   border-radius: 8px;
-  background-color: var(--tj-color-theme-dark);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
   padding: 10px 0;
 }
 .contact-form .form-input .nice-select .list .option {
   padding: 0 15px;
 }
 .contact-form .form-input .nice-select .list .option:hover, .contact-form .form-input .nice-select .list .option.focus {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   background-color: transparent;
 }
 .contact-form .form-input .nice-select .list .option.selected {
@@ -10719,10 +10731,10 @@ START: Contact CSS
   }
 }
 .contact-form.style-2 {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   max-width: 610px;
   width: 100%;
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
   -webkit-margin-start: auto;
           margin-inline-start: auto;
   -webkit-margin-end: 0;
@@ -10733,7 +10745,7 @@ START: Contact CSS
   margin-bottom: 35px;
 }
 .contact-form.style-2 .title span {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .contact-form.style-2 .title {
@@ -10756,7 +10768,7 @@ START: Contact CSS
 .contact-form.style-2 .form-input input[type=tel],
 .contact-form.style-2 .form-input input[type=text],
 .contact-form.style-2 .form-input input[type=email] {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   color: var(--tj-color-heading-primary);
   padding: 8px 20px;
 }
@@ -10797,11 +10809,11 @@ START: Contact CSS
   color: var(--tj-color-text-body-2);
 }
 .contact-form.style-2 .form-input .nice-select {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   padding: 8px 20px;
 }
 .contact-form.style-2 .form-input .nice-select .list {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .contact-form.style-2 {
@@ -10863,7 +10875,7 @@ START: Contact CSS
 
 .contact-item.style-2 {
   padding: 30px 25px 40px;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   text-align: center;
   border-radius: 10px;
 }
@@ -10895,8 +10907,8 @@ START: Contact CSS
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: var(--tj-color-theme-dark);
-  border: 1px solid var(--tj-color-border-1);
+  background: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
   border-radius: 50%;
   margin-bottom: 22px;
   -webkit-transition: all 0.3s ease-in-out 0s;
@@ -10904,7 +10916,7 @@ START: Contact CSS
 }
 .contact-item.style-2 .contact-icon i {
   font-size: 32px;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .contact-item.style-2 .contact-title {
   font-size: 24px;
@@ -10924,11 +10936,11 @@ START: Contact CSS
   color: var(--tj-color-text-body);
 }
 .contact-item.style-2 .contact-list li a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .contact-item.style-2 .contact-list li.active a {
   font-weight: var(--tj-fw-sbold);
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 
 /* !END: Contact CSS */
@@ -11162,7 +11174,7 @@ START: Theme Slider CSS
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   font-size: 16px;
   line-height: 1;
   display: inline-flex;
@@ -11321,7 +11333,7 @@ START: Theme Slider CSS
       flex-wrap: wrap;
   gap: 10px;
   padding: 10px 10px 0 10px;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   border-radius: 12px 12px 0 0;
 }
 .tj_features_wrap::after, .tj_features_wrap::before {
@@ -11370,8 +11382,8 @@ START: Theme Slider CSS
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
-  border: 1px solid var(--tj-color-border-1);
-  background-color: var(--tj-color-theme-bg);
+  border: 1px solid var(--sc-border);
+  background-color: var(--sc-surface-1);
   border-radius: 8px;
   padding: 20px;
   gap: 15px;
@@ -11439,8 +11451,8 @@ START: Team CSS
 }
 
 .team-item {
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   border-radius: 10px;
   padding: 10px;
 }
@@ -11471,7 +11483,7 @@ START: Team CSS
   right: 0;
   -webkit-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-top-left-radius: 10px;
   padding: 15px 5px 0 15px;
   z-index: 2;
@@ -11556,7 +11568,7 @@ START: Team CSS
   margin-bottom: 0;
 }
 .team-item .title a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .team-item .designation {
   font-size: 14px;
@@ -11656,7 +11668,7 @@ START: Team Details CSS
   }
 }
 .team-details__img {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 .team-details__img img {
   border-radius: 12px;
@@ -11712,13 +11724,13 @@ START: Team Details CSS
   }
 }
 .team-details .social-links ul li a {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
 }
 .team-details__contact-info ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   margin: 30px 0;
   border-radius: 12px;
   list-style: none;
@@ -11739,7 +11751,7 @@ START: Team Details CSS
       -ms-flex: 1 1 50%;
           flex: 1 1 50%;
   padding: 25px 28px;
-  border-right: 1px solid var(--tj-color-border-1);
+  border-right: 1px solid var(--sc-border);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11776,7 +11788,7 @@ START: Team Details CSS
         -ms-flex: 1 1 100%;
             flex: 1 1 100%;
     border-right: 0;
-    border-bottom: 1px solid var(--tj-color-border-1);
+    border-bottom: 1px solid var(--sc-border);
   }
 }
 .team-details__contact-info ul span {
@@ -11802,7 +11814,7 @@ START: Team Details CSS
   }
 }
 .team-details__contact-info ul a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .team-details__experience {
   margin-top: 50px;
@@ -11824,7 +11836,7 @@ START: Team Details CSS
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin: 25px 0;
@@ -11841,7 +11853,7 @@ START: Team Details CSS
   display: -ms-flexbox;
   display: flex;
   gap: 8px;
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
   border-top: 0;
   border-left: 0;
 }
@@ -11889,12 +11901,12 @@ START: Team Details CSS
     border-right: 0;
   }
   .team-details__experience__list ul li:nth-last-child(2) {
-    border-bottom: 1px solid var(--tj-color-border-1);
+    border-bottom: 1px solid var(--sc-border);
   }
 }
 
 .contact-team-details-inner {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 16px;
   padding: 80px 60px;
 }
@@ -11908,7 +11920,7 @@ START: Team Details CSS
   margin-top: 20px;
 }
 .contact-team-details-inner .contact-form {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   margin: 0;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px) {
@@ -11917,7 +11929,7 @@ START: Team Details CSS
   }
 }
 .contact-team-details-inner .contact-form .nice-select {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px) {
   .contact-team-details-inner {
@@ -11947,10 +11959,10 @@ START: Team Details CSS
   gap: 6px;
 }
 .contact-team-details-message a i {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .contact-team-details-message a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 
 /* !END: Team Details CSS */
@@ -11966,15 +11978,15 @@ START: Pricing CSS
   visibility: hidden;
 }
 .toggle_switcher .toggle-checkbox:checked + .toggle-switch {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
 }
 .toggle_switcher .toggle-checkbox:checked + .toggle-switch::before {
   left: 37px;
 }
 .toggle_switcher .toggle-switch {
   display: inline-block;
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   border-radius: 43px;
   width: 70px;
   height: 36px;
@@ -12016,7 +12028,7 @@ START: Pricing CSS
   margin: 0;
 }
 .price_switcher span {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 
 .tj-pricing-section .price_switcher {
@@ -12046,8 +12058,8 @@ START: Pricing CSS
 }
 
 .pricing_item {
-  border: 1px solid var(--tj-color-border-1);
-  background-color: var(--tj-color-theme-bg);
+  border: 1px solid var(--sc-border);
+  background-color: var(--sc-surface-1);
   border-radius: 10px;
   padding: 40px 30px;
 }
@@ -12080,8 +12092,8 @@ START: Pricing CSS
 }
 .pricing_item .pricing_btn {
   width: 100%;
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   border-radius: 60px;
   padding: 17px 20px;
 }
@@ -12111,7 +12123,7 @@ START: Pricing CSS
   border-color: var(--tj-color-theme-primary);
 }
 .pricing_item .pricing_btn:hover .btn-text {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .pricing_item .pricing_btn:hover .btn-text > span {
   text-shadow: 0 30px 0 currentColor;
@@ -12147,7 +12159,7 @@ START: Pricing CSS
   display: inline-flex;
   line-height: 1;
   font-size: 18px;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   margin-top: 4px;
 }
 .pricing_item .pricing_features > li svg {
@@ -12157,7 +12169,7 @@ START: Pricing CSS
 .pricing_item.recommend {
   border-color: var(--tj-color-theme-primary);
   border-width: 2px;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 .pricing_item.recommend .pricing_btn {
   border-color: var(--tj-color-theme-primary);
@@ -12167,10 +12179,10 @@ START: Pricing CSS
   color: var(--tj-color-theme-dark);
 }
 .pricing_item.recommend .pricing_btn:hover {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 .pricing_item.recommend .pricing_btn:hover .btn-text {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px), (max-width: 575px) {
   .pricing_item {
@@ -12197,7 +12209,7 @@ START: Pricing CSS
   color: var(--tj-color-theme-dark);
 }
 .pricing_items_wrap_2 .pricing_item.recommend .pricing_btn {
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
 }
 .pricing_items_wrap_2 .pricing_item.recommend .pricing_btn .btn-text {
   color: var(--tj-color-heading-primary);
@@ -12219,7 +12231,7 @@ START: Progress bar CSS
   padding: 0;
   margin: 0;
   height: 4px;
-  background: var(--tj-color-theme-bg);
+  background: var(--sc-surface-1);
   position: relative;
   z-index: 0;
 }
@@ -12272,7 +12284,7 @@ START: Breadcrumb CSS
 .tj-page-header {
   position: relative;
   margin: 0 30px;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   padding-top: 272px;
   padding-bottom: 151px;
   border-radius: 16px;
@@ -12379,7 +12391,7 @@ START: Breadcrumb CSS
   display: inline-flex;
   line-height: 1;
   font-size: 20px;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .tj-page-link span:not(:first-child) i {
   font-size: 12px;
@@ -12616,8 +12628,8 @@ START: Blog Details CSS
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   padding: 25px 0;
   border-radius: 10px;
   margin-top: 20px;
@@ -12648,8 +12660,8 @@ START: Blog Details CSS
           align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-border-end: 1px solid var(--tj-color-border-1);
-          border-inline-end: 1px solid var(--tj-color-border-1);
+  -webkit-border-end: 1px solid var(--sc-border);
+          border-inline-end: 1px solid var(--sc-border);
   padding: 0 30px;
   gap: 10px;
   width: 33.33%;
@@ -12772,7 +12784,7 @@ START: Blog Details CSS
 blockquote {
   position: relative;
   padding: 40px 30px 30px;
-  background: var(--tj-color-theme-bg);
+  background: var(--sc-surface-1);
   border: 2px solid var(--tj-color-theme-primary);
   border-radius: 12px;
   margin-top: 55px;
@@ -12783,7 +12795,7 @@ blockquote {
 blockquote::before {
   content: "\e92e";
   font-size: 40px;
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
   font-family: "tekmino-icon";
   display: inline-block;
   margin-bottom: 16px;
@@ -12852,8 +12864,8 @@ blockquote cite::before {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  border-top: 1px dashed var(--tj-color-border-1);
-  border-bottom: 1px dashed var(--tj-color-border-1);
+  border-top: 1px dashed var(--sc-border);
+  border-bottom: 1px dashed var(--sc-border);
   padding: 22px 0;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -12906,14 +12918,14 @@ blockquote cite::before {
   line-height: 1;
 }
 .tj-tags-post .post-share ul li a:hover i {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .tj-tags-post.no_socials .tagcloud {
   width: 100%;
 }
 
 .tj-post__navigation {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   padding: 20px 25px;
   border-radius: 10px;
   display: -webkit-box;
@@ -12951,9 +12963,9 @@ blockquote cite::before {
           justify-content: center;
   width: 52px;
   height: 52px;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   border-radius: 50%;
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
   font-size: 24px;
   line-height: 1;
   -webkit-transition: all 0.3s ease-in-out 0s;
@@ -12999,7 +13011,7 @@ blockquote cite::before {
   color: currentColor;
 }
 .tj-post__navigation .tj-nav-post__grid a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 @media (max-width: 575px) {
   .tj-post__navigation {
@@ -13034,8 +13046,8 @@ blockquote cite::before {
   display: flex;
   gap: 12px;
   padding: 30px;
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   border-radius: 12px;
   position: relative;
 }
@@ -13068,7 +13080,7 @@ blockquote cite::before {
 }
 .tj-latest-comments ul .tj-comment .comment-content .comments-header .avatar-name .name a:hover,
 .tj-latest-comments ul .tj-comment .comment-content .comments-header .avatar-name .title a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .tj-latest-comments ul .tj-comment .comment-content .comments-header .comment-text {
   display: -webkit-box;
@@ -13092,7 +13104,7 @@ blockquote cite::before {
   text-decoration: none;
 }
 .tj-latest-comments ul .tj-comment .comment-content .comments-header .comment-text .comment-reply-link:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .tj-latest-comments ul .tj-comment .comment-content .comments-header .comment-text span {
   font-size: 14px;
@@ -13146,10 +13158,10 @@ blockquote cite::before {
 .comment-respond .form-input textarea,
 .comment-respond .form-input input[type=email],
 .comment-respond .form-input input[type=text] {
-  background: var(--tj-color-theme-bg);
+  background: var(--sc-surface-1);
   height: 60px;
   padding: 18px 20px;
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
   border-radius: 10px;
 }
 .comment-respond .form-input input:not([type=submit]):not([type=radio]):not([type=checkbox]):not([type=search])::-webkit-input-placeholder, .comment-respond .form-input textarea::-webkit-input-placeholder, .comment-respond .form-input input[type=email]::-webkit-input-placeholder, .comment-respond .form-input input[type=text]::-webkit-input-placeholder {
@@ -13262,8 +13274,8 @@ blockquote cite::before {
 }
 
 .tj-sidebar-widget {
-  background-color: var(--tj-color-theme-bg);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-1);
+  border: 1px solid var(--sc-border);
   margin-bottom: 30px;
   padding: 30px;
   position: relative;
@@ -13306,10 +13318,10 @@ blockquote cite::before {
 }
 .tj-sidebar-widget.widget-search .search-box form input[type=search] {
   font-size: 16px;
-  background: var(--tj-color-theme-dark);
+  background: var(--sc-surface-2);
   width: 100%;
   min-height: 60px;
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
   border-radius: 10px;
   padding: 18px 55px 18px 20px;
   line-height: 1;
@@ -13428,7 +13440,7 @@ blockquote cite::before {
   margin-bottom: 10px;
 }
 .tj-sidebar-widget.tj-recent-posts .post-content .post-title a:hover {
-  color: var(--tj-color-theme-primary);
+  color: var(--sc-ink-accent);
 }
 .tj-sidebar-widget.tj-recent-posts .post-content .blog-meta {
   margin-bottom: 0;
@@ -13460,7 +13472,7 @@ blockquote cite::before {
           justify-content: space-between;
   font-weight: var(--tj-fw-sbold);
   color: var(--tj-color-heading-primary);
-  background: var(--tj-color-theme-dark);
+  background: var(--sc-surface-2);
   padding: 20px 24px 17px 25px;
   border-radius: 8px;
   position: relative;
@@ -13517,8 +13529,8 @@ blockquote cite::before {
   row-gap: 12px;
 }
 .tagcloud a {
-  background-color: var(--tj-color-theme-dark);
-  border: 1px solid var(--tj-color-border-1);
+  background-color: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
   font-size: 14px;
   line-height: 1;
   color: var(--tj-color-text-body);
@@ -13547,7 +13559,7 @@ blockquote cite::before {
   left: -30px;
   width: 120%;
   height: 0;
-  border-top: 1px solid var(--tj-color-border-1);
+  border-top: 1px solid var(--sc-border);
 }
 
 .infos-item {
@@ -13633,7 +13645,7 @@ blockquote cite::before {
           justify-content: space-between;
   font-weight: var(--tj-fw-sbold);
   color: var(--tj-color-heading-primary);
-  background: var(--tj-color-theme-dark);
+  background: var(--sc-surface-2);
   padding: 20px 15px 17px 25px;
   border-radius: 8px;
   position: relative;
@@ -13680,7 +13692,7 @@ blockquote cite::before {
 }
 .widget-feature-item .feature-box {
   position: relative;
-  background: var(--tj-color-theme-dark);
+  background: var(--sc-surface-2);
   border-radius: 10px;
   overflow: hidden;
   position: relative;
@@ -13882,7 +13894,7 @@ blockquote cite::before {
 }
 
 .service-details-item {
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 10px;
   padding: 30px 17px 25px 18px;
   max-width: 280px;
@@ -13997,7 +14009,7 @@ blockquote cite::before {
   left: -30px;
   width: 120%;
   height: 0;
-  border-top: 1px solid var(--tj-color-border-1);
+  border-top: 1px solid var(--sc-border);
 }
 .tj-socials-wrapper .title {
   margin-bottom: 0;
@@ -14029,7 +14041,7 @@ blockquote cite::before {
   height: 28px;
   padding: 0;
   border-radius: 50%;
-  background-color: var(--tj-color-heading-primary);
+  background-color: var(--sc-surface-3);
   color: var(--tj-color-theme-bg);
   font-size: 18px;
   line-height: 1;
@@ -14719,7 +14731,7 @@ START: Integration CSS
 ----------------------------------------*/
 .integration-section-wrap {
   position: relative;
-  background-color: var(--tj-color-theme-bg);
+  background-color: var(--sc-surface-1);
   border-radius: 16px;
   padding-top: 120px;
   padding-bottom: 10px;
@@ -14811,9 +14823,9 @@ START: Integration CSS
   width: 220px;
   height: 76px;
   padding: 13px 30px;
-  border: 1px solid var(--tj-color-border-1);
+  border: 1px solid var(--sc-border);
   border-radius: 85.5px;
-  background-color: var(--tj-color-theme-dark);
+  background-color: var(--sc-surface-2);
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -14965,7 +14977,7 @@ h2, .sec-title { letter-spacing: -0.025em; line-height: 1.12; }
 .tj-service-item .number,
 .countup-item .count-plus,
 .blog-item .categories a {
-  color: var(--tj-color-theme-secondary);
+  color: var(--sc-ink-accent-2);
 }
 
 .eyebrow,
@@ -15003,7 +15015,7 @@ h2, .sec-title { letter-spacing: -0.025em; line-height: 1.12; }
 .faq-item,
 .team-item {
   background:
-    linear-gradient(var(--tj-color-theme-bg), var(--tj-color-theme-bg)) padding-box,
+    linear-gradient(var(--sc-surface-1), var(--sc-surface-1)) padding-box,
     linear-gradient(140deg,
       color-mix(in oklab, var(--tj-color-theme-primary) 52%, transparent),
       color-mix(in oklab, var(--tj-color-theme-secondary) 42%, transparent)) border-box;
@@ -15064,4 +15076,116 @@ h1 .grad {
 [dir="rtl"] .tech-content .desc {
   direction: ltr;
   text-align: left;
+}
+
+/* =========================================================================
+   TEMA CLARO
+   Se activa con data-theme="light" en el <html>. El sitio nace oscuro: esto
+   es una capa de inversion, no un rediseno aparte. Las superficies se dan
+   vuelta, la tinta se oscurece, y la tinta que vive ARRIBA del naranja
+   (--tj-color-theme-dark) no se toca: tiene que seguir siendo oscura.
+   ========================================================================= */
+:root[data-theme="light"] {
+  --sc-surface-1: #ffffff;
+  --sc-surface-2: #f1f4f8;
+  --sc-surface-3: #0f1720;
+  --sc-surface-4: #0f1720;
+  --sc-border: #e2e7ee;
+
+  --tj-color-heading-primary: #0f1720;
+  --tj-color-text-body: #47515f;
+  --tj-color-text-body-2: #626d7d;
+  --tj-color-common-white: #0f1720;
+  --tj-color-theme-dark-2: #8a93a3;
+  --tj-color-theme-dark-3: #aab2bf;
+  --tj-color-border-1: #e2e7ee;
+
+  /* Sobre blanco el naranja de marca da 2.66 de contraste y el cian 1.81:
+     ilegibles. Como texto van dos tonos mas profundos; como fondo de boton
+     siguen siendo los vivos de siempre. */
+  --sc-ink-accent: #C2560A;
+  --sc-ink-accent-2: #0E7490;
+}
+
+:root[data-theme="light"] body {
+  background-color: #ffffff;
+}
+
+/* Las texturas de fondo son imagenes oscuras: en claro ensucian. */
+:root[data-theme="light"] [data-bg-image$="hero-bg.webp"],
+:root[data-theme="light"] [data-bg-image$="footer-bg.webp"],
+:root[data-theme="light"] [data-bg-image$="common-bg.webp"],
+:root[data-theme="light"] [data-bg-image$="common-bg-2.webp"] {
+  background-image: none !important;
+}
+
+/* El halo del hero esta pensado para brillar sobre negro. En claro se baja
+   la opacidad y nada mas: tocar el blur obliga a repintar una capa enorme
+   y en maquinas lentas el cambio de tema se siente. */
+:root[data-theme="light"] .tj-banner-section::before,
+:root[data-theme="light"] .tj-hero-section::before {
+  opacity: 0.4;
+}
+
+/* Velos blancos translucidos del template: sobre blanco desaparecen. */
+:root[data-theme="light"] .sec-heading.style-3 .sub-title,
+:root[data-theme="light"] .search-box input,
+:root[data-theme="light"] .hamburger_search input {
+  background-color: rgba(15, 23, 32, 0.05);
+}
+
+/* Resplandores: en claro molestan mas de lo que suman. */
+:root[data-theme="light"] .tj-primary-btn,
+:root[data-theme="light"] .tj-primary-btn.style-2 {
+  box-shadow: 0 6px 18px -10px rgba(15, 23, 32, 0.45);
+}
+
+/* Las tarjetas se apoyaban en el contraste del fondo oscuro; en claro
+   necesitan un contorno para no quedar flotando sobre blanco.
+   Va como sombra interior y NO como border: un borde cambia el tamanio de
+   la caja, y al cambiar de tema eso obliga a GSAP/ScrollTrigger a recalcular
+   toda la pagina — se cuelga varios segundos. La sombra solo repinta. */
+:root[data-theme="light"] .choose-box,
+:root[data-theme="light"] .tech-item,
+:root[data-theme="light"] .service-item,
+:root[data-theme="light"] .tj-service-item,
+:root[data-theme="light"] .testimonial-item,
+:root[data-theme="light"] .blog-item,
+:root[data-theme="light"] .price-item,
+:root[data-theme="light"] .faq-item,
+:root[data-theme="light"] .team-item {
+  box-shadow: inset 0 0 0 1px var(--sc-border);
+}
+
+/* --- Interruptor de tema ------------------------------------------------- */
+.sc-theme-toggle {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--sc-border);
+  border-radius: 50%;
+  background-color: var(--sc-surface-2);
+  color: var(--tj-color-heading-primary);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.sc-theme-toggle:hover {
+  color: var(--tj-color-theme-primary);
+  border-color: var(--tj-color-theme-primary);
+}
+.sc-theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+.sc-theme-toggle .sc-moon { display: none; }
+:root[data-theme="light"] .sc-theme-toggle .sc-sun { display: none; }
+:root[data-theme="light"] .sc-theme-toggle .sc-moon { display: block; }
+.sc-theme-toggle.d-lg-none { margin-right: 12px; }
+@media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
+  .sc-theme-toggle { width: 38px; height: 38px; flex-basis: 38px; }
+  .sc-theme-toggle svg { width: 16px; height: 16px; }
 }

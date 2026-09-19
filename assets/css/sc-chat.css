@@ -381,3 +381,10 @@
   .sc-chat-msg,
   .sc-chat.is-open .sc-chat-panel { transition: none; animation: none; }
 }
+
+/* El widget mantiene su panel oscuro en los dos temas: es una ventana de
+   chat, no parte del fondo de la pagina. Lo unico que cambia es el borde
+   del lanzador, para que no flote sobre el blanco. */
+:root[data-theme="light"] .sc-chat-launcher {
+  box-shadow: 0 8px 22px -8px rgba(15, 23, 32, 0.45);
+}
