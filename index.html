@@ -398,8 +398,158 @@
               </div>
               <div class="col-xxl-6 col-xl-7 col-lg-6">
                 <div class="banner-img-area">
-                  <div class="banner-img tj-fade-anim" data-delay="0.3" data-direction="right">
-                    <img src="assets/images/hero/hero-img.webp" alt="Image">
+                  <div class="banner-img sc-hero-panel tj-fade-anim" data-delay="0.3" data-direction="right">
+                    <div class="hero-dash-card" aria-label="Panel ilustrativo de resultados por área">
+                    <div class="hero-dash-card__head">
+                    <span class="hero-dash-card__dot"></span>
+                    <span class="hero-dash-card__title">Resultados en Tiempo Real</span>
+                    </div>
+                    <div class="hero-dash-card__tabs" role="tablist" aria-label="Áreas de resultados">
+                    <button type="button" class="hero-dash-card__tab hero-dash-card__tab--active" role="tab"
+                    aria-selected="true" aria-controls="heroDashPanel-ads" id="heroDashTab-ads"
+                    data-tab-target="ads">Ads</button>
+                    <button type="button" class="hero-dash-card__tab" role="tab" aria-selected="false"
+                    aria-controls="heroDashPanel-seo" id="heroDashTab-seo" data-tab-target="seo" tabindex="-1">SEO
+                    &amp; Velocidad</button>
+                    <button type="button" class="hero-dash-card__tab" role="tab" aria-selected="false"
+                    aria-controls="heroDashPanel-auto" id="heroDashTab-auto" data-tab-target="auto"
+                    tabindex="-1">Automatización</button>
+                    </div>
+                    
+                    <div class="hero-dash-card__panel" id="heroDashPanel-ads" role="tabpanel"
+                    aria-labelledby="heroDashTab-ads" data-tab-panel="ads">
+                    <svg class="hero-dash-card__chart" viewBox="0 0 320 88" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                    <linearGradient id="heroDashFade-ads" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="currentColor" stop-opacity="0.35" />
+                    <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+                    </linearGradient>
+                    <clipPath id="heroDashClip-ads">
+                    <rect class="hero-dash-card__chart-clip-rect" x="0" y="0" width="0" height="88" />
+                    </clipPath>
+                    </defs>
+                    <g clip-path="url(#heroDashClip-ads)">
+                    <path d="M0,69 L40,61 L80,66 L120,41 L160,50 L200,25 L240,33 L280,11 L320,6 L320,88 L0,88 Z"
+                    fill="url(#heroDashFade-ads)" />
+                    <path class="hero-dash-card__chart-line" d="M0,69 L40,61 L80,66 L120,41 L160,50 L200,25 L240,33 L280,11 L320,6"
+                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    </g>
+                    </svg>
+                    <div class="hero-dash-card__stats">
+                    <div class="hero-dash-card__stat">
+                    <div class="hero-dash-card__stat-value-row">
+                    <span class="hero-dash-card__stat-arrow">↑</span>
+                    <span class="hero-dash-card__stat-value" data-count-to="34" data-suffix="%">0%</span>
+                    </div>
+                    <span class="hero-dash-card__stat-label">Conversiones</span>
+                    </div>
+                    <div class="hero-dash-card__stat">
+                    <div class="hero-dash-card__stat-value-row">
+                    <span class="hero-dash-card__stat-arrow">↑</span>
+                    <span class="hero-dash-card__stat-value" data-count-to="58" data-suffix="%">0%</span>
+                    </div>
+                    <span class="hero-dash-card__stat-label">Alcance</span>
+                    </div>
+                    <div class="hero-dash-card__stat">
+                    <div class="hero-dash-card__stat-value-row">
+                    <span class="hero-dash-card__stat-arrow">↑</span>
+                    <span class="hero-dash-card__stat-value" data-count-to="4.2" data-decimals="1" data-suffix="x">0.0x</span>
+                    </div>
+                    <span class="hero-dash-card__stat-label">ROAS</span>
+                    </div>
+                    </div>
+                    </div>
+                    
+                    <div class="hero-dash-card__panel" id="heroDashPanel-seo" role="tabpanel"
+                    aria-labelledby="heroDashTab-seo" data-tab-panel="seo" hidden>
+                    <svg class="hero-dash-card__chart" viewBox="0 0 320 88" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                    <linearGradient id="heroDashFade-seo" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="currentColor" stop-opacity="0.35" />
+                    <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+                    </linearGradient>
+                    <clipPath id="heroDashClip-seo">
+                    <rect class="hero-dash-card__chart-clip-rect" x="0" y="0" width="0" height="88" />
+                    </clipPath>
+                    </defs>
+                    <g clip-path="url(#heroDashClip-seo)">
+                    <path d="M0,74 L40,72 L80,55 L120,58 L160,36 L200,41 L240,19 L280,22 L320,6 L320,88 L0,88 Z"
+                    fill="url(#heroDashFade-seo)" />
+                    <path class="hero-dash-card__chart-line" d="M0,74 L40,72 L80,55 L120,58 L160,36 L200,41 L240,19 L280,22 L320,6"
+                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    </g>
+                    </svg>
+                    <div class="hero-dash-card__stats">
+                    <div class="hero-dash-card__stat">
+                    <div class="hero-dash-card__stat-value-row">
+                    <span class="hero-dash-card__stat-arrow">↑</span>
+                    <span class="hero-dash-card__stat-value" data-count-to="41" data-suffix="%">0%</span>
+                    </div>
+                    <span class="hero-dash-card__stat-label">Tráfico Orgánico</span>
+                    </div>
+                    <div class="hero-dash-card__stat">
+                    <div class="hero-dash-card__stat-value-row">
+                    <span class="hero-dash-card__stat-arrow">↑</span>
+                    <span class="hero-dash-card__stat-value" data-count-to="92" data-suffix="/100">0/100</span>
+                    </div>
+                    <span class="hero-dash-card__stat-label">Velocidad</span>
+                    </div>
+                    <div class="hero-dash-card__stat">
+                    <div class="hero-dash-card__stat-value-row">
+                    <span class="hero-dash-card__stat-arrow">↑</span>
+                    <span class="hero-dash-card__stat-value" data-count-to="15" data-prefix="+">+0</span>
+                    </div>
+                    <span class="hero-dash-card__stat-label">Posiciones</span>
+                    </div>
+                    </div>
+                    </div>
+                    
+                    <div class="hero-dash-card__panel" id="heroDashPanel-auto" role="tabpanel"
+                    aria-labelledby="heroDashTab-auto" data-tab-panel="auto" hidden>
+                    <svg class="hero-dash-card__chart" viewBox="0 0 320 88" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                    <linearGradient id="heroDashFade-auto" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="currentColor" stop-opacity="0.35" />
+                    <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+                    </linearGradient>
+                    <clipPath id="heroDashClip-auto">
+                    <rect class="hero-dash-card__chart-clip-rect" x="0" y="0" width="0" height="88" />
+                    </clipPath>
+                    </defs>
+                    <g clip-path="url(#heroDashClip-auto)">
+                    <path d="M0,63 L40,69 L80,47 L120,52 L160,28 L200,33 L240,14 L280,19 L320,8 L320,88 L0,88 Z"
+                    fill="url(#heroDashFade-auto)" />
+                    <path class="hero-dash-card__chart-line" d="M0,63 L40,69 L80,47 L120,52 L160,28 L200,33 L240,14 L280,19 L320,8"
+                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                    </g>
+                    </svg>
+                    <div class="hero-dash-card__stats">
+                    <div class="hero-dash-card__stat">
+                    <div class="hero-dash-card__stat-value-row">
+                    <span class="hero-dash-card__stat-arrow">↑</span>
+                    <span class="hero-dash-card__stat-value" data-count-to="120" data-prefix="+">+0</span>
+                    </div>
+                    <span class="hero-dash-card__stat-label">Leads Atendidos</span>
+                    </div>
+                    <div class="hero-dash-card__stat">
+                    <div class="hero-dash-card__stat-value-row">
+                    <span class="hero-dash-card__stat-arrow">↓</span>
+                    <span class="hero-dash-card__stat-value" data-count-to="85" data-prefix="-" data-suffix="%">-0%</span>
+                    </div>
+                    <span class="hero-dash-card__stat-label">Tiempo Respuesta</span>
+                    </div>
+                    <div class="hero-dash-card__stat">
+                    <div class="hero-dash-card__stat-value-row">
+                    <span class="hero-dash-card__stat-arrow">↑</span>
+                    <span class="hero-dash-card__stat-value" data-count-to="27" data-prefix="+" data-suffix="%">+0%</span>
+                    </div>
+                    <span class="hero-dash-card__stat-label">Conversión</span>
+                    </div>
+                    </div>
+                    </div>
+                    
+                    <p class="hero-dash-card__note">Panel ilustrativo: los números son de ejemplo. Los resultados reales dependen de cada negocio.</p>
+                    </div>
                   </div>
                   <div class="trusted tj-bounce tj-fade-anim" data-delay="1" data-direction="left">
                     <span class="icon"><i class="tji-shield"></i></span>
@@ -1910,6 +2060,7 @@
   <script src="assets/js/contact-form.js"></script>
   <script src="assets/js/sc-chat.js"></script>
   <script src="assets/js/sc-theme.js"></script>
+  <script src="assets/js/sc-hero-panel.js"></script>
 </body>
 
 </html>

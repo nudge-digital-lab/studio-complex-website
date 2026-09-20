@@ -15351,3 +15351,162 @@ h1 .grad {
   .sc-footer-agenda { font-size: 15px; padding-left: 20px; }
   .sc-footer-agenda-ico { width: 38px; height: 38px; }
 }
+
+/* --- Panel de resultados del hero ----------------------------------------
+   Viene del preview que armó Sebastián. Su versión estaba escrita para fondo
+   oscuro (velos blancos translúcidos) y con el naranja quemado en el SVG:
+   acá va con nuestras variables de superficie, así sirve igual en claro.
+   Tampoco lleva backdrop-filter: cuesta caro y con fondo sólido no aporta.
+   ------------------------------------------------------------------------ */
+.sc-hero-panel {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 520px;
+  max-width: 540px;
+  padding-bottom: 150px;
+  overflow: visible;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.hero-dash-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 30px 32px;
+  border-radius: 18px;
+  background-color: var(--sc-surface-2);
+  border: 1px solid var(--sc-border);
+  /* El color del gráfico: el SVG usa currentColor, así que se define acá. */
+  color: var(--sc-ink-accent);
+}
+.hero-dash-card__head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 16px;
+}
+.hero-dash-card__dot {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: heroDashPulse 2s infinite;
+}
+@keyframes heroDashPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+.hero-dash-card__title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--tj-color-heading-primary);
+}
+
+.hero-dash-card__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+.hero-dash-card__tab {
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--sc-border);
+  background-color: var(--sc-surface-1);
+  color: var(--tj-color-text-body);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.hero-dash-card__tab:hover:not(.hero-dash-card__tab--active) {
+  border-color: var(--tj-color-theme-primary);
+  color: var(--tj-color-heading-primary);
+}
+.hero-dash-card__tab:focus-visible {
+  outline: 2px solid var(--tj-color-theme-primary);
+  outline-offset: 2px;
+}
+.hero-dash-card__tab--active {
+  background-color: var(--tj-color-theme-primary);
+  border-color: var(--tj-color-theme-primary);
+  color: var(--tj-color-theme-dark);
+  font-weight: 600;
+}
+
+.hero-dash-card__panel[hidden] { display: none; }
+.hero-dash-card__chart {
+  display: block;
+  width: 100%;
+  height: 104px;
+  margin-bottom: 18px;
+}
+
+.hero-dash-card__stats { display: flex; gap: 10px; }
+.hero-dash-card__stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--sc-border);
+  background-color: var(--sc-surface-1);
+}
+.hero-dash-card__stat-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.hero-dash-card__stat-arrow {
+  flex: none;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--sc-ink-accent);
+}
+.hero-dash-card__stat-value {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--tj-color-heading-primary);
+}
+.hero-dash-card__stat-label {
+  font-size: 11px;
+  color: var(--tj-color-text-body);
+}
+.hero-dash-card__note {
+  margin: 14px 0 0;
+  font-size: 11.5px;
+  line-height: 1.45;
+  text-align: left;
+  color: var(--tj-color-text-body-2);
+}
+
+/* Los dos globos que flotan sobre el hero se acomodan alrededor de la
+   tarjeta: reseñas abajo a la derecha, sello abajo a la izquierda. */
+.banner-img-area .customers-box {
+  max-width: 210px;
+  padding: 16px 18px 14px !important;
+}
+.banner-img-area .customers-box .customers-number { font-size: 32px; }
+.banner-img-area .customers-box .customers ul li img { width: 32px; height: 32px; }
+.banner-img-area .trusted {
+  top: auto !important;
+  bottom: -22px !important;
+  inset-inline-start: -10px !important;
+  inset-inline-end: auto !important;
+  transform: translateY(0);
+  max-width: 220px;
+  padding: 14px 16px !important;
+  z-index: 2;
+}
+@media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
+  .sc-hero-panel { min-height: 360px; padding-bottom: 110px; }
+  .hero-dash-card { padding: 20px; }
+  .hero-dash-card__chart { height: 70px; }
+}
