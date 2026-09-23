@@ -15510,3 +15510,33 @@ h1 .grad {
   .hero-dash-card { padding: 20px; }
   .hero-dash-card__chart { height: 70px; }
 }
+
+/* --- Tarjetas de servicio sin bordes -------------------------------------
+   Pedido del 23/9. La tarjeta se arma con varias piezas y cada una traia su
+   propio borde: el marco, la pestana del numero, el pie de "Ver mas" y las
+   dos muescas que redondean los angulos concavos.
+
+   Ademas la capa 2026 le habia puesto borde degradado a .service-item, que
+   no es la tarjeta sino el contenedor que la envuelve. En el home ese
+   contenedor es mas alto (reserva 42px para el boton del pie), asi que su
+   borde dibujaba un segundo rectangulo corrido en diagonal respecto del
+   marco real. Ese era el contorno doble que se veia.
+
+   Se conservan los fondos, los radios y las sombras que recortan las
+   muescas: sin ellas quedarian angulos rectos donde las piezas se encastran.
+   Para volver atras, borrar este bloque. */
+.service-item {
+  background: none;
+  border: 0;
+}
+.service-inner,
+.service-list,
+.service-btn,
+.service-item .item-count {
+  border: 0;
+}
+.service-item .item-count::before,
+.service-item .item-count::after,
+.service-btn::before {
+  border: 0;
+}
