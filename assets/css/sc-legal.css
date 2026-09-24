@@ -1,0 +1,213 @@
+/* ==========================================================================
+   Studio Complex · Páginas legales y aviso de cookies
+   --------------------------------------------------------------------------
+   Dos cosas separadas que viven acá porque comparten el mismo tono sobrio:
+
+   1. .sc-legal      → tipografía de lectura para páginas de texto largo
+                       (cookies, y mañana privacidad o términos).
+   2. .sc-cookies    → la barra de aviso que aparece abajo una sola vez.
+
+   No toca main.css ni ninguna clase del template: todo lleva prefijo.
+   Hereda las variables de superficie del sitio, así que acompaña el tema.
+   Escrito mobile primero.
+   ========================================================================== */
+
+/* --- Página de texto ------------------------------------------------------ */
+
+.sc-legal {
+  padding: 70px 0 90px;
+}
+@media (min-width: 768px) {
+  .sc-legal {
+    padding: 100px 0 120px;
+  }
+}
+
+/* Columna de lectura. Por encima de ~70 caracteres por línea el ojo pierde
+   el renglón al volver, así que la caja manda sobre el ancho del container. */
+.sc-legal-caja {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.sc-legal-fecha {
+  display: inline-block;
+  margin-bottom: 26px;
+  padding: 6px 14px;
+  border: 1px solid var(--sc-border);
+  border-radius: 99px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--tj-color-text-body-2);
+}
+
+.sc-legal h2 {
+  margin: 44px 0 14px;
+  font-size: 24px;
+  line-height: 1.3;
+}
+@media (min-width: 768px) {
+  .sc-legal h2 {
+    font-size: 28px;
+  }
+}
+.sc-legal h2:first-of-type {
+  margin-top: 0;
+}
+
+.sc-legal p {
+  margin-bottom: 18px;
+  line-height: 1.75;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+.sc-legal ul {
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+.sc-legal li {
+  position: relative;
+  padding-left: 26px;
+  line-height: 1.7;
+}
+.sc-legal li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 12px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #f2801e;
+}
+
+/* Bloque de datos de contacto al final */
+.sc-legal-contacto {
+  margin-top: 40px;
+  padding: 26px;
+  border: 1px solid var(--sc-border);
+  border-radius: 14px;
+  background-color: var(--sc-surface-1);
+}
+.sc-legal-contacto p:last-child {
+  margin-bottom: 0;
+}
+.sc-legal a {
+  color: #f2801e;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.sc-legal a:hover {
+  color: #22d3ee;
+}
+
+/* --- Aviso de cookies ----------------------------------------------------- */
+
+/* Arranca oculto y sin ocupar lugar. sc-cookies.js le saca el hidden solo si
+   la persona no lo cerró antes. Si el JS no corre, no se ve nada roto. */
+.sc-cookies[hidden] {
+  display: none;
+}
+
+.sc-cookies {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 200;
+  padding: 18px 20px;
+  border: 1px solid var(--sc-border);
+  border-radius: 14px;
+  background-color: var(--sc-surface-1);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  display: grid;
+  gap: 14px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.sc-cookies.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (min-width: 768px) {
+  .sc-cookies {
+    left: auto;
+    right: 24px;
+    bottom: 24px;
+    max-width: 420px;
+    padding: 22px 24px;
+  }
+}
+
+.sc-cookies p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--tj-color-text-body-2);
+}
+.sc-cookies a {
+  color: #f2801e;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.sc-cookies a:hover {
+  color: #22d3ee;
+}
+
+.sc-cookies-acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sc-cookies-ok {
+  padding: 10px 22px;
+  border: 0;
+  border-radius: 99px;
+  background-color: #f2801e;
+  color: #07090c;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+.sc-cookies-ok:hover {
+  background-color: #ff9333;
+}
+.sc-cookies-ok:active {
+  transform: translateY(1px);
+}
+.sc-cookies-ok:focus-visible,
+.sc-cookies a:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 3px;
+}
+
+/* Quien pidió menos movimiento ve el aviso aparecer sin desplazamiento. */
+@media (prefers-reduced-motion: reduce) {
+  .sc-cookies {
+    transition: opacity 0.2s ease;
+    transform: none;
+  }
+  .sc-cookies.is-visible {
+    transform: none;
+  }
+}
+
+/* --- Enlace en la barra de copyright -------------------------------------- */
+
+.sc-legal-link {
+  color: var(--tj-color-text-body-2);
+  transition: color 0.25s ease;
+}
+.sc-legal-link:hover {
+  color: #f2801e;
+}
