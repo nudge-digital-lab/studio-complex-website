@@ -693,6 +693,30 @@
                   </span>
                 </li>
 
+                <li class="sc-caso-stack-item sc-rv">
+                  <img src="assets/images/icons/digitalocean.svg" alt="Logo de DigitalOcean" width="40" height="40" loading="lazy">
+                  <span>
+                    <b>DigitalOcean</b>
+                    <span>El servidor propio donde vive el aula</span>
+                  </span>
+                </li>
+
+                <li class="sc-caso-stack-item sc-rv" data-rv-delay="60">
+                  <span class="sc-caso-stack-ico" aria-hidden="true"><i class="tji-envelop"></i></span>
+                  <span>
+                    <b>SMTP dedicado</b>
+                    <span>Para que los mails del curso lleguen a la bandeja, no a spam</span>
+                  </span>
+                </li>
+
+                <li class="sc-caso-stack-item sc-rv" data-rv-delay="120">
+                  <img src="assets/images/icons/whatsapp.svg" alt="Logo de WhatsApp" width="40" height="40" loading="lazy">
+                  <span>
+                    <b>WhatsApp</b>
+                    <span>Avisos y soporte al alumno por donde ya escribe</span>
+                  </span>
+                </li>
+
               </ul>
               <!-- [/DATOS DEL CASO] -->
             </div>
@@ -746,56 +770,7 @@
         </div>
         <!-- ================= fin del caso ================= -->
 
-        <!-- ==================================================================
-             VENTANA DE CONTACTO
-             Se abre desde cualquier elemento con el atributo data-sc-modal.
-             El comportamiento vive en assets/js/sc-modal.js.
-             ================================================================== -->
-        <div class="sc-modal" id="sc-modal-contacto" role="dialog" aria-modal="true"
-          aria-labelledby="sc-modal-titulo" hidden>
-          <div class="sc-modal-fondo" data-sc-cerrar></div>
-          <div class="sc-modal-caja">
 
-            <button type="button" class="sc-modal-cerrar" data-sc-cerrar aria-label="Cerrar">
-              <i class="tji-x-mark" aria-hidden="true"></i>
-            </button>
-
-            <h2 id="sc-modal-titulo">Contanos tu caso</h2>
-            <p class="sc-modal-intro">
-              Dejanos tus datos y en qué andás. Te respondemos con una primera idea de
-              por dónde empezar.
-            </p>
-
-            <form novalidate>
-              <div class="sc-campo">
-                <label for="sc-nombre">Nombre</label>
-                <input type="text" id="sc-nombre" name="nombre" autocomplete="name" placeholder="Cómo te llamás">
-                <span class="sc-campo-error">Necesitamos tu nombre.</span>
-              </div>
-
-              <div class="sc-campo">
-                <label for="sc-email">Email</label>
-                <input type="email" id="sc-email" name="email" autocomplete="email" placeholder="tu@email.com">
-                <span class="sc-campo-error">Revisá el email, parece incompleto.</span>
-              </div>
-
-              <div class="sc-campo">
-                <label for="sc-whatsapp">WhatsApp</label>
-                <input type="tel" id="sc-whatsapp" name="whatsapp" autocomplete="tel" placeholder="Ej: 11 6470 7497">
-                <span class="sc-campo-error">Dejanos un número para escribirte.</span>
-              </div>
-
-              <div class="sc-campo">
-                <label for="sc-mensaje">¿Qué querés automatizar?</label>
-                <textarea id="sc-mensaje" name="mensaje" placeholder="Contanos en dos líneas qué estás haciendo a mano hoy."></textarea>
-              </div>
-
-              <button type="submit" class="sc-modal-enviar">Enviar consulta</button>
-              <p class="sc-modal-pie">Te contactamos dentro de las 24 hs hábiles.</p>
-            </form>
-
-          </div>
-        </div>
 
       </main>
 
@@ -891,6 +866,69 @@
   </div>
 
   <!-- JS here -->
+  <!-- ==================================================================
+       VENTANA DE CONTACTO
+       Vive como hija directa de body, FUERA de main, a proposito.
+       #smooth-content (de GSAP ScrollSmoother) lleva will-change: transform,
+       y eso crea bloque contenedor para cualquier position:fixed que este
+       adentro: el modal tomaba la altura de toda la pagina en vez de la de
+       la ventana y la caja quedaba centrada a 1790px, fuera de pantalla.
+       Cualquier elemento fijo nuevo de este sitio tiene que ir aca tambien.
+       El comportamiento vive en assets/js/sc-modal.js.
+       ================================================================== -->
+  <!-- ==================================================================
+       VENTANA DE CONTACTO
+       Se abre desde cualquier elemento con el atributo data-sc-modal.
+       El comportamiento vive en assets/js/sc-modal.js.
+       ================================================================== -->
+  <div class="sc-modal" id="sc-modal-contacto" role="dialog" aria-modal="true"
+    aria-labelledby="sc-modal-titulo" hidden>
+    <div class="sc-modal-fondo" data-sc-cerrar></div>
+    <div class="sc-modal-centro">
+    <div class="sc-modal-caja">
+
+      <button type="button" class="sc-modal-cerrar" data-sc-cerrar aria-label="Cerrar">
+        <i class="tji-x-mark" aria-hidden="true"></i>
+      </button>
+
+      <h2 id="sc-modal-titulo">Contanos tu caso</h2>
+      <p class="sc-modal-intro">
+        Dejanos tus datos y en qué andás. Te respondemos con una primera idea de
+        por dónde empezar.
+      </p>
+
+      <form novalidate>
+        <div class="sc-campo">
+          <label for="sc-nombre">Nombre</label>
+          <input type="text" id="sc-nombre" name="nombre" autocomplete="name" placeholder="Cómo te llamás">
+          <span class="sc-campo-error">Necesitamos tu nombre.</span>
+        </div>
+
+        <div class="sc-campo">
+          <label for="sc-email">Email</label>
+          <input type="email" id="sc-email" name="email" autocomplete="email" placeholder="tu@email.com">
+          <span class="sc-campo-error">Revisá el email, parece incompleto.</span>
+        </div>
+
+        <div class="sc-campo">
+          <label for="sc-whatsapp">WhatsApp</label>
+          <input type="tel" id="sc-whatsapp" name="whatsapp" autocomplete="tel" placeholder="Ej: 11 6470 7497">
+          <span class="sc-campo-error">Dejanos un número para escribirte.</span>
+        </div>
+
+        <div class="sc-campo">
+          <label for="sc-mensaje">¿Qué querés automatizar?</label>
+          <textarea id="sc-mensaje" name="mensaje" placeholder="Contanos en dos líneas qué estás haciendo a mano hoy."></textarea>
+        </div>
+
+        <button type="submit" class="sc-modal-enviar">Enviar consulta</button>
+        <p class="sc-modal-pie">Te contactamos dentro de las 24 hs hábiles.</p>
+      </form>
+
+    </div>
+    </div>
+  </div>
+
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/gsap.min.js"></script>
