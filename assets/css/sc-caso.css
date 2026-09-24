@@ -652,7 +652,12 @@
   transition: transform 0.25s ease;
 }
 .sc-caso-nav-link:hover { transform: translateY(-3px); }
-.sc-caso-nav-link.is-next { text-align: right; }
+/* Centrados a pedido del 24/9. Antes uno tiraba a la izquierda y el otro a
+   la derecha, y con titulos de distinto largo quedaban desparejos. */
+.sc-caso-nav-link {
+  align-items: center;
+  text-align: center;
+}
 .sc-caso-nav-link small {
   font-size: 12px;
   font-weight: 700;
