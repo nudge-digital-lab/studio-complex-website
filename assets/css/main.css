@@ -15359,7 +15359,17 @@ h1 .grad {
    acá va con nuestras variables de superficie, así sirve igual en claro.
    Tampoco lleva backdrop-filter: cuesta caro y con fondo sólido no aporta.
    ------------------------------------------------------------------------ */
-.sc-hero-panel {
+/* El panel de resultados ocupa el lugar donde el template ponia una foto.
+   Ese contenedor trae una mascara SVG (hero-img-shape.svg) con un recorte
+   decorativo pensado para una imagen, mas overflow: hidden. Sobre el panel
+   eso le cortaba la esquina de abajo.
+
+   El selector lleva las tres clases a proposito: .banner-img-area .banner-img
+   son dos clases, asi que un .sc-hero-panel suelto perdia por especificidad y
+   la mascara seguia aplicandose. Ademas los media queries del template solo la
+   apagaban en algunos anchos, por eso el corte aparecia y desaparecia segun la
+   pantalla. */
+.banner-img-area .banner-img.sc-hero-panel {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -15367,6 +15377,7 @@ h1 .grad {
   max-width: 540px;
   padding-bottom: 150px;
   overflow: visible;
+  border-radius: 0;
   -webkit-mask-image: none;
   mask-image: none;
 }
@@ -15507,7 +15518,7 @@ h1 .grad {
   z-index: 2;
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
-  .sc-hero-panel { min-height: 360px; padding-bottom: 110px; }
+  .banner-img-area .banner-img.sc-hero-panel { min-height: 360px; padding-bottom: 110px; }
   .hero-dash-card { padding: 20px; }
   .hero-dash-card__chart { height: 70px; }
 }

@@ -1,0 +1,184 @@
+/* ==========================================================================
+   Studio Complex · Landing de servicio
+   --------------------------------------------------------------------------
+   IMPORTANTE: esta hoja NO se basta sola. La página de servicio carga primero
+   assets/css/sc-caso.css y después esta. La razón es deliberada: el mockup de
+   dispositivos, los pasos, las cifras, el stack, el acordeón de preguntas, las
+   tarjetas de caso y el modal de contacto ya están resueltos ahí y se ven de
+   una manera. Si los volviera a escribir con otro prefijo, en tres meses serían
+   dos sistemas parecidos pero distintos, que es justo lo que no queremos.
+
+   Entonces la página de servicio usa las clases .sc-caso-* para todo lo
+   compartido, y acá viven solamente los bloques que un caso no tiene:
+
+     .sc-serv-encaje   → para quién es y para quién no, en dos columnas
+     .sc-serv-tiempos  → el calendario del proyecto, semana por semana
+     .sc-serv-precio   → la franja honesta sobre cuánto sale
+
+   Escrito mobile primero, igual que el resto.
+   ========================================================================== */
+
+/* --- Para quién es y para quién no ---------------------------------------
+   Dos paneles enfrentados. El de la izquierda marca con cian, el de la
+   derecha queda apagado a propósito: decir a quién NO le sirve es lo que
+   hace creíble lo otro. */
+
+.sc-serv-encaje {
+  display: grid;
+  gap: 18px;
+  margin-top: 8px;
+}
+@media (min-width: 992px) {
+  .sc-serv-encaje {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+}
+
+.sc-serv-panel {
+  padding: 26px 24px;
+  border: 1px solid var(--sc-border);
+  border-radius: var(--radio, 14px);
+  background-color: var(--sc-surface-1);
+}
+@media (min-width: 768px) {
+  .sc-serv-panel {
+    padding: 30px 28px;
+  }
+}
+
+.sc-serv-panel h3 {
+  margin: 0 0 18px;
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+.sc-serv-panel ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 14px;
+}
+.sc-serv-panel li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 12px;
+  align-items: start;
+  line-height: 1.6;
+}
+
+/* El ícono se dibuja con CSS para no sumar otra dependencia */
+.sc-serv-panel li::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  margin-top: 4px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  position: relative;
+}
+
+.sc-serv-panel.es-si {
+  border-color: color-mix(in oklab, #22d3ee 34%, var(--sc-border));
+}
+.sc-serv-panel.es-si li::before {
+  color: #22d3ee;
+  background-image: linear-gradient(45deg, transparent 44%, #22d3ee 44%, #22d3ee 56%, transparent 56%),
+    linear-gradient(-45deg, transparent 44%, #22d3ee 44%, #22d3ee 56%, transparent 56%);
+  background-size: 9px 9px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.sc-serv-panel.es-no {
+  background-color: var(--sc-surface-2);
+}
+.sc-serv-panel.es-no li::before {
+  color: var(--tj-color-text-body-2);
+  background-image: linear-gradient(90deg, currentColor, currentColor);
+  background-size: 9px 1.5px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.sc-serv-panel.es-no li {
+  color: var(--tj-color-text-body-2);
+}
+
+/* --- El calendario del proyecto -------------------------------------------
+   Una fila por tramo: a la izquierda cuándo, a la derecha qué pasa. Se lee
+   de arriba abajo como un plan real, no como una lista de servicios. */
+
+.sc-serv-tiempos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--sc-border);
+}
+
+.sc-serv-tramo {
+  display: grid;
+  gap: 6px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--sc-border);
+}
+@media (min-width: 768px) {
+  .sc-serv-tramo {
+    grid-template-columns: 170px 1fr;
+    gap: 28px;
+    padding: 24px 0;
+    align-items: baseline;
+  }
+}
+
+.sc-serv-cuando {
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: #f2801e;
+  font-variant-numeric: tabular-nums;
+}
+
+.sc-serv-que h3 {
+  margin: 0 0 6px;
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+.sc-serv-que p {
+  margin: 0;
+}
+
+/* --- Franja de presupuesto ------------------------------------------------ */
+
+.sc-serv-precio {
+  padding: 28px 24px;
+  border: 1px solid var(--sc-border);
+  border-left: 3px solid #f2801e;
+  border-radius: var(--radio, 14px);
+  background-color: var(--sc-surface-1);
+}
+@media (min-width: 768px) {
+  .sc-serv-precio {
+    padding: 32px 30px;
+  }
+}
+.sc-serv-precio p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Ajustes de lo heredado ----------------------------------------------- */
+
+/* En un caso la portada abre con "volver a trabajos". Acá no hay a dónde
+   volver, así que el título arranca más arriba. */
+.sc-servicio .sc-caso-hero .sc-caso-eyebrow {
+  margin-top: 0;
+}
+
+/* Los dos botones de la portada */
+.sc-serv-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
