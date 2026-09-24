@@ -32,6 +32,7 @@
     if (yaCerrado) return;
 
     aviso.hidden = false;
+    document.body.classList.add("sc-cookies-visible");
     void aviso.offsetHeight; // fuerza el reflow para que la transición corra
     aviso.classList.add("is-visible");
 
@@ -40,6 +41,7 @@
 
     boton.addEventListener("click", function () {
       aviso.classList.remove("is-visible");
+      document.body.classList.remove("sc-cookies-visible");
       try {
         window.localStorage.setItem(CLAVE, "1");
       } catch (e) {

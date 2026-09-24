@@ -137,10 +137,12 @@
   transform: none;
 }
 
+/* El boton Subir vive en la esquina inferior derecha, asi que en pantallas
+   grandes el aviso se va a la izquierda y no se pisan. */
 @media (min-width: 768px) {
   .sc-cookies {
-    left: auto;
-    right: 24px;
+    left: 24px;
+    right: auto;
     bottom: 24px;
     max-width: 420px;
     padding: 22px 24px;
@@ -210,4 +212,13 @@
 }
 .sc-legal-link:hover {
   color: #f2801e;
+}
+
+/* En telefono el aviso ocupa todo el ancho de abajo. Mientras esta a la vista,
+   el boton Subir se corre hacia arriba para no quedar tapado. La clase la pone
+   sc-cookies.js en el body. */
+@media (max-width: 767px) {
+  body.sc-cookies-visible .back-to-top-btn-show {
+    bottom: 190px;
+  }
 }
