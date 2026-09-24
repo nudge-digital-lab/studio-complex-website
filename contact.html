@@ -24,7 +24,11 @@
   <link rel="stylesheet" href="assets/css/leaflet.css" />
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/sc-chat.css">
-  <!-- Tema guardado: se aplica antes de pintar para que no parpadee -->
+  <!-- Tema claro DESACTIVADO el 23/9: no convencia visualmente. Queda comentado
+       para reactivarlo sin rehacerlo. Al no correr este script no se aplica
+       ningun data-theme, asi que el sitio arranca y se queda en oscuro, que es
+       el valor por defecto del CSS. Para volver: descomentar esto y el script
+       sc-theme.js del final del body.
   <script>
     (function () {
       try {
@@ -33,6 +37,7 @@
       } catch (e) {}
     })();
   </script>
+  -->
 </head>
 
 <body>
@@ -608,7 +613,7 @@
                         <div class="sc-footer-cta">
                           <p class="sc-footer-cta-gancho">Media hora y te decimos por dónde empezar.</p>
                           <a class="sc-footer-agenda" href="agenda.html">
-                            <span class="sc-footer-agenda-txt">Agendá una reunión</span>
+                            <span class="sc-footer-agenda-cal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg></span><span class="sc-footer-agenda-txt">Agendá una reunión</span>
                             <span class="sc-footer-agenda-ico"><i class="tji-arrow-right-2"></i></span>
                           </a>
                           <span class="sc-footer-cta-letra">Sin cargo y sin compromiso</span>
@@ -673,7 +678,8 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/contact-form.js"></script>
   <script src="assets/js/sc-chat.js"></script>
-  <script src="assets/js/sc-theme.js"></script>
+  <!-- Interruptor de tema DESACTIVADO el 23/9 (ver nota en el head) -->
+  <!-- <script src="assets/js/sc-theme.js"></script> -->
 </body>
 
 </html>

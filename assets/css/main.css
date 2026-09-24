@@ -15540,3 +15540,62 @@ h1 .grad {
 .service-btn::before {
   border: 0;
 }
+
+/* --- Tarjetas de proyecto: sin recuadro y etiqueta en naranja -------------
+   Pedido del 23/9 sobre el carrusel "Proyectos que Ejecutamos".
+
+   El recuadro alrededor de la etiqueta y el titulo venia del borde degradado
+   que la capa 2026 le puso a .content-inner. Se saca igual que en las
+   tarjetas de servicio.
+
+   La etiqueta (Automatizacion, Desarrollo Web, SEO & Ads) estaba en cian
+   porque el bloque "el cian entra donde antes solo habia naranja" incluye
+   .project-item .categories a. Vuelve al naranja de marca y se le saca el
+   contorno de pastilla, que sin el recuadro de atras quedaba suelto. */
+.project-item .project-content .content-inner {
+  background: none;
+  border: 0;
+}
+.project-item .categories a {
+  color: var(--sc-ink-accent);
+  border: 0;
+  background-color: transparent;
+  padding-left: 0;
+}
+.project-item .categories a:hover {
+  color: var(--tj-color-theme-primary);
+}
+
+/* --- Boton de agendar: texto negro y calendario ---------------------------
+   El texto se veia gris claro sobre el naranja. No era herencia: el pie trae
+   .footer-contact-info .contact-item span con color de cuerpo, y esa regla
+   (tres clases) le gana al color que define .sc-footer-agenda sobre el enlace
+   (una clase). Por eso aca se pinta el span directamente, con una clase mas
+   de contexto para ganarle sin recurrir a important.
+
+   El icono de calendario va como SVG en linea porque la fuente de iconos del
+   template (tekmino-icon) no trae ninguno de calendario ni de fecha. */
+.footer-contact-info .contact-item .sc-footer-agenda,
+.footer-contact-info .contact-item .sc-footer-agenda .sc-footer-agenda-txt {
+  color: #07090c;
+}
+.sc-footer-agenda-cal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 19px;
+  height: 19px;
+  flex: none;
+  color: #07090c;
+}
+.sc-footer-agenda-cal svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.sc-footer-agenda {
+  gap: 10px;
+}
+.sc-footer-agenda .sc-footer-agenda-txt {
+  margin-right: 4px;
+}
