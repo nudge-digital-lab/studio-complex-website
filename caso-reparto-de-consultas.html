@@ -5,10 +5,11 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Los frentes de trabajo que implementamos de punta a punta: sitios corporativos, tiendas online, SEO técnico, campañas de Ads, automatización y operación conectada.">
+  <meta name="description"
+    content="Caso de éxito: siete botones de WhatsApp unificados en un circuito que reparte cada consulta entre los asesores por turno y la registra sola.">
 
   <!-- Site Title -->
-  <title>Lo que Implementamos - Frentes de Trabajo | Studio Complex</title>
+  <title>Las consultas se reparten solas - Caso de éxito - Studio Complex</title>
 
   <!-- Place favicon.ico in the root directory -->
   <link rel="shortcut icon" type="image/x-icon" href="assets/images/fav.png">
@@ -256,7 +257,7 @@
                   <ul>
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="about.html">Conocenos</a></li>
-                    <li><a href="service.html">Paquete de Servicios</a></li>
+                    <li class="current-menu-item"><a href="service.html">Paquete de Servicios</a></li>
                     <li><a href="partners.html">Partners</a></li>
                     <li><a href="contact.html">Contacto</a></li>
                   </ul>
@@ -322,7 +323,7 @@
                   <ul>
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="about.html">Conocenos</a></li>
-                    <li><a href="service.html">Paquete de Servicios</a></li>
+                    <li class="current-menu-item"><a href="service.html">Paquete de Servicios</a></li>
                     <li><a href="partners.html">Partners</a></li>
                     <li><a href="contact.html">Contacto</a></li>
                   </ul>
@@ -374,255 +375,388 @@
     <div id="smooth-content">
 
       <main id="primary" class="site-main">
-        <div class="top-space-30"></div>
-        <!-- start: Breadcrumb Section -->
-        <section class="tj-page-header fix">
-          <div class="hero-bg" data-bg-image="assets/images/hero/hero-bg.webp"></div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="tj-page-header-content text-center">
-                  <h1 class="tj-page-title tj-split-text-2">Lo que Implementamos</h1>
-                  <div class="tj-page-link tj-fade-anim" data-delay="0.3">
-                    <span><i class="tji-home"></i></span>
-                    <span>
-                      <a href="index.html">Inicio</a>
-                    </span>
-                    <span><i class="tji-arrow-right"></i></span>
-                    <span>
-                      <span>Lo que Implementamos</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </section>
-        <!-- end: Breadcrumb Section -->
-
-
         <!-- ==================================================================
-             CASOS DE ÉXITO
+             CASO DE ÉXITO · "Las consultas se reparten solas"
              ------------------------------------------------------------------
-             Índice de los casos publicados. Para sumar uno: duplicar un
-             <article class="sc-caso-tarjeta"> y cambiar tipo, título, bajada,
-             etiquetas y el href. Los estilos vienen de assets/css/sc-caso.css,
-             que esta página carga en el head.
+             Misma plantilla que los casos 1 y 2. Solo cambia lo que está entre
+             las marcas [DATOS DEL CASO].
+
+             ⚠ ANONIMATO: no se nombra a la clienta ni a la marca de alarmas que
+             representa. Se presenta como "servicios de seguridad para el hogar".
+             Nombrar la marca daría a entender que trabajamos para ella y no
+             para la asesora, que es lo real.
+
+             El mockup usa el amarillo y negro de la identidad del cliente, a
+             propósito: la página es de Studio Complex, la pieza mostrada es de
+             él. El color entra por la variable --marca en sc-caso.css.
              ================================================================== -->
-        <section class="sc-caso-casos section-gap pb-0">
-          <div class="container">
-            <div class="sec-heading mb-40">
-              <span class="sub-title">Casos de éxito</span>
-              <h2 class="sec-title">Trabajos Que Ya Están Funcionando.</h2>
+        <div class="sc-caso">
+
+          <!-- ============================================================
+               1 · ENCABEZADO
+               ============================================================ -->
+          <section class="sc-caso-hero">
+            <div class="container">
+              <div class="row align-items-center rg-40">
+                <div class="col-lg-6">
+
+                  <a class="sc-caso-volver" href="project.html">
+                    <i class="tji-arrow-left-2" aria-hidden="true"></i>
+                    <span>Trabajos realizados</span>
+                  </a>
+
+                  <!-- [DATOS DEL CASO] encabezado -->
+                  <span class="sc-caso-eyebrow sc-rv">Caso de éxito</span>
+                  <h1 class="sc-caso-titulo sc-rv" data-rv-delay="60">
+                    Las consultas se reparten solas.
+                  </h1>
+                  <p class="sc-caso-bajada sc-rv" data-rv-delay="120">
+                    Siete botones de WhatsApp que antes iban todos al mismo teléfono. Hoy cada
+                    consulta se asigna por turno entre los asesores, llega con el mensaje ya
+                    escrito y queda registrada sola.
+                  </p>
+                  <ul class="sc-caso-tags sc-rv" data-rv-delay="180">
+                    <li>Automatización</li>
+                    <li>WhatsApp</li>
+                    <li>Servicios</li>
+                  </ul>
+                  <!-- [/DATOS DEL CASO] -->
+
+                </div>
+
+                <!-- Mockup: la landing del cliente con su identidad, y a un
+                     costado el reparto entre asesores. HTML y CSS, sin imagen. -->
+                <div class="col-lg-6">
+                  <div class="sc-caso-mk tiene-marca sc-rv" data-rv-delay="240" role="img"
+                    aria-label="La página del cliente vista en una computadora y en un teléfono, con su botón de WhatsApp, y al lado los dos asesores que reciben las consultas por turno.">
+
+                    <div class="sc-caso-mk-desk">
+                      <div class="sc-caso-mk-barra">
+                        <span class="sc-caso-mk-punto"></span>
+                        <span class="sc-caso-mk-punto"></span>
+                        <span class="sc-caso-mk-punto"></span>
+                        <span class="sc-caso-mk-url"></span>
+                      </div>
+                      <div class="sc-caso-mk-pantalla">
+                        <span class="sc-caso-mk-marca"></span>
+                        <span class="sc-caso-mk-tit"></span>
+                        <span class="sc-caso-mk-tit corta"></span>
+                        <span class="sc-caso-mk-parr"></span>
+                        <span class="sc-caso-mk-parr corta"></span>
+                        <span class="sc-caso-mk-cta">
+                          <i class="tji-whatsapp" aria-hidden="true"></i>
+                          Quiero que me asesoren
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="sc-caso-mk-tel">
+                      <div class="sc-caso-mk-tel-pantalla">
+                        <span class="sc-caso-mk-notch"></span>
+                        <span class="sc-caso-mk-marca"></span>
+                        <span class="sc-caso-mk-tit"></span>
+                        <span class="sc-caso-mk-parr"></span>
+                        <span class="sc-caso-mk-parr corta"></span>
+                        <span class="sc-caso-mk-cta">
+                          <i class="tji-whatsapp" aria-hidden="true"></i>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="sc-caso-mk-reparto">
+                      <div class="sc-caso-mk-asesor es-turno">
+                        <i class="tji-user" aria-hidden="true"></i>
+                        <span>
+                          <b>Asesor 1</b>
+                          <small>Le toca esta</small>
+                        </span>
+                      </div>
+                      <div class="sc-caso-mk-asesor">
+                        <i class="tji-user" aria-hidden="true"></i>
+                        <span>
+                          <b>Asesor 2</b>
+                          <small>Recibe la próxima</small>
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
             </div>
+          </section>
 
-            <div class="sc-casos-grid">
-
-              <article class="sc-caso-tarjeta">
-                <span class="sc-caso-tarjeta-tipo">Desarrollo a medida</span>
-                <h3><a href="caso-plataforma-de-cursos.html">Plataforma de cursos</a></h3>
-                <p>
-                  Una tienda que cobra el curso y deja al alumno adentro sola, sin trabajo
-                  manual ni abono mensual de plataforma.
-                </p>
-                <ul class="sc-caso-tarjeta-tags">
-                  <li>Tiendanube</li>
-                  <li>Automatización</li>
-                  <li>E-learning</li>
-                </ul>
-                <a class="sc-caso-tarjeta-ver" href="caso-plataforma-de-cursos.html">
-                  Ver el caso
-                  <i class="tji-arrow-right-2" aria-hidden="true"></i>
-                </a>
-              </article>
-
-              <article class="sc-caso-tarjeta">
-                <span class="sc-caso-tarjeta-tipo">Gestión de campañas</span>
-                <h3><a href="caso-retail-rubro-restringido.html">Retail en un rubro con restricciones</a></h3>
-                <p>
-                  Google Ads en un rubro donde la mayoría de los formatos no está
-                  disponible: tres meses publicando sin una sola suspensión.
-                </p>
-                <ul class="sc-caso-tarjeta-tags">
-                  <li>Google Ads</li>
-                  <li>E-commerce</li>
-                  <li>Rubro restringido</li>
-                </ul>
-                <a class="sc-caso-tarjeta-ver" href="caso-retail-rubro-restringido.html">
-                  Ver el caso
-                  <i class="tji-arrow-right-2" aria-hidden="true"></i>
-                </a>
-              </article>
-
-              <article class="sc-caso-tarjeta">
-                <span class="sc-caso-tarjeta-tipo">Automatización</span>
-                <h3><a href="caso-reparto-de-consultas.html">Las consultas se reparten solas</a></h3>
-                <p>
-                  Siete botones de WhatsApp unificados en un circuito que asigna cada
-                  consulta por turno entre los asesores y la registra sola.
-                </p>
-                <ul class="sc-caso-tarjeta-tags">
-                  <li>Automatización</li>
-                  <li>WhatsApp</li>
-                  <li>Servicios</li>
-                </ul>
-                <a class="sc-caso-tarjeta-ver" href="caso-reparto-de-consultas.html">
-                  Ver el caso
-                  <i class="tji-arrow-right-2" aria-hidden="true"></i>
-                </a>
-              </article>
-
-              <!-- Acá va el segundo caso de ads cuando esté listo. -->
-
-            </div>
-          </div>
-        </section>
-
-
-        <!-- start: Project Section -->
-        <section class="tj-project-section-2 section-gap">
-          <div class="project-wrapper ">
-            <div class="container ">
-              <div class="row rg-30">
-                <div class="col-12 col-md-6 col-xl-4">
-                  <div class="project-item">
-                    <div class="project-img">
-                      <img src="assets/images/project/project-4.webp" alt="Sitio corporativo a medida en pantalla">
-                    </div>
-                    <div class="project-content">
-                      <div class="content-inner">
-                        <span class="categories"><a href="service-details.html">Desarrollo Web</a></span>
-                        <h4 class="title"><a href="service-details.html">Sitios Corporativos a Medida</a></h4>
-                      </div>
-                      <a class="tj-icon-btn" href="service-details.html">
-                        <i class="tji-arrow-right-3"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 col-xl-4">
-                  <div class="project-item">
-                    <div class="project-img">
-                      <img src="assets/images/project/project-2.webp" alt="Venta en mostrador con cobro digital">
-                    </div>
-                    <div class="project-content">
-                      <div class="content-inner">
-                        <span class="categories"><a href="service-details.html">Tiendas Online</a></span>
-                        <h4 class="title"><a href="service-details.html">E-commerce Listo para Vender</a></h4>
-                      </div>
-                      <a class="tj-icon-btn" href="service-details.html">
-                        <i class="tji-arrow-right-3"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 col-xl-4">
-                  <div class="project-item">
-                    <div class="project-img">
-                      <img src="assets/images/project/project-1.webp" alt="Panel de métricas de velocidad y rebote de un sitio">
-                    </div>
-                    <div class="project-content">
-                      <div class="content-inner">
-                        <span class="categories"><a href="service-details.html">SEO Técnico</a></span>
-                        <h4 class="title"><a href="service-details.html">Auditoría Técnica y Posicionamiento</a></h4>
-                      </div>
-                      <a class="tj-icon-btn" href="service-details.html">
-                        <i class="tji-arrow-right-3"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 col-xl-4">
-                  <div class="project-item">
-                    <div class="project-img">
-                      <img src="assets/images/project/project-5.webp" alt="Dos personas analizando resultados de campañas">
-                    </div>
-                    <div class="project-content">
-                      <div class="content-inner">
-                        <span class="categories"><a href="service-details.html">Campañas de Ads</a></span>
-                        <h4 class="title"><a href="service-details.html">Google y Meta Orientadas a Conversión</a></h4>
-                      </div>
-                      <a class="tj-icon-btn" href="service-details.html">
-                        <i class="tji-arrow-right-3"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 col-xl-4">
-                  <div class="project-item">
-                    <div class="project-img">
-                      <img src="assets/images/project/project-6.webp" alt="Equipo revisando el seguimiento comercial">
-                    </div>
-                    <div class="project-content">
-                      <div class="content-inner">
-                        <span class="categories"><a href="service-details.html">Automatización</a></span>
-                        <h4 class="title"><a href="service-details.html">Seguimiento y Cierre de Ventas</a></h4>
-                      </div>
-                      <a class="tj-icon-btn" href="service-details.html">
-                        <i class="tji-arrow-right-3"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 col-xl-4">
-                  <div class="project-item">
-                    <div class="project-img">
-                      <img src="assets/images/project/project-3.webp" alt="Depósito con stock ordenado en estanterías">
-                    </div>
-                    <div class="project-content">
-                      <div class="content-inner">
-                        <span class="categories"><a href="service-details.html">Integración y Operación</a></span>
-                        <h4 class="title"><a href="service-details.html">Stock, Pedidos y Logística Conectados</a></h4>
-                      </div>
-                      <a class="tj-icon-btn" href="service-details.html">
-                        <i class="tji-arrow-right-3"></i>
-                      </a>
-                    </div>
+          <!-- ============================================================
+               2 · EL DESAFÍO
+               ============================================================ -->
+          <section class="sc-caso-desafio">
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <div class="sc-caso-desafio-caja sc-rv">
+                    <!-- [DATOS DEL CASO] desafío -->
+                    <h2 class="sc-caso-h2">El desafío</h2>
+                    <p>
+                      La página tenía siete botones de WhatsApp repartidos entre el encabezado,
+                      las promociones, el pie y el botón flotante. Los siete iban al mismo
+                      teléfono. Cuando entran dos consultas juntas, una espera; y si esa persona
+                      se cansa, se va con la competencia.
+                    </p>
+                    <p>
+                      Tampoco quedaba registro de nada. No se sabía cuántas consultas llegaban,
+                      desde qué parte de la página, ni cuáles venían de la publicidad. Sin ese
+                      dato es imposible saber si la inversión está funcionando.
+                    </p>
+                    <!-- [/DATOS DEL CASO] -->
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
 
-        </section>
-        <!-- end: Project Section -->
+          <!-- ============================================================
+               3 · CÓMO FUNCIONA · diagrama de flujo
+               ============================================================ -->
+          <section class="sc-caso-flujo">
+            <div class="container">
+              <div class="sc-caso-flujo-cab sc-rv">
+                <!-- [DATOS DEL CASO] intro del flujo -->
+                <h2 class="sc-caso-h2">Qué pasa cuando alguien toca el botón</h2>
+                <p>Cuatro pasos que ocurren en menos de medio segundo, sin que el visitante espere nada.</p>
+                <!-- [/DATOS DEL CASO] -->
+              </div>
 
-        <!-- start: Cta Section -->
-        <section class="tj-cta-section">
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <div class="cta-area tj-fade-anim">
-                  <div class="cta-content">
-                    <h2 class="title">No te Quedes Afuera del Futuro!</h2>
-                  </div>
-                  <div class="cta-right">
-                    <div class="subscribe-form cta-form">
-                      <form action="#">
-                        <input type="email" name="email" placeholder="Ingresá tu email...">
-                        <button class="tj-primary-btn style-2" type="submit">
-                          <span class="btn-text"><span>Suscribirme</span></span>
-                          <span class="btn-icon"><i class="tji-bell"></i></span>
-                        </button>
-                      </form>
-                    </div>
-                    <div class="social-links cta-social">
-                      <span class="title">Seguinos:</span>
-                      <ul>
-                        <li><a href="https://www.facebook.com/" target="_blank"><i class="tji-facebook"></i></a></li>
-                        <li><a href="https://www.instagram.com/" target="_blank"><i class="tji-instagram"></i></a></li>
-                        <li><a href="https://www.x.com/" target="_blank"><i class="tji-x-twitter"></i></a></li>
-                        <li><a href="https://www.linkedin.com/" target="_blank"><i class="tji-linkedin"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
+              <!-- [DATOS DEL CASO] pasos -->
+              <ol class="sc-caso-pasos">
+
+                <li class="sc-caso-paso">
+                  <span class="sc-caso-paso-ico" aria-hidden="true"><i class="tji-whatsapp"></i></span>
+                  <span class="sc-caso-paso-n">Paso 1</span>
+                  <h3 class="sc-caso-paso-t">Alguien toca un botón</h3>
+                  <p class="sc-caso-paso-d">
+                    Cualquiera de los siete de la página. Cada uno avisa desde qué sección se tocó,
+                    para saber qué parte del sitio genera consultas.
+                  </p>
+                </li>
+
+                <li class="sc-caso-paso">
+                  <span class="sc-caso-paso-ico" aria-hidden="true"><i class="tji-share"></i></span>
+                  <span class="sc-caso-paso-n">Paso 2</span>
+                  <h3 class="sc-caso-paso-t">Se decide a quién le toca</h3>
+                  <p class="sc-caso-paso-d">
+                    El sistema lleva la cuenta y asigna al siguiente asesor de la rotación. El
+                    reparto queda parejo sin que nadie tenga que coordinarlo.
+                  </p>
+                </li>
+
+                <li class="sc-caso-paso">
+                  <span class="sc-caso-paso-ico" aria-hidden="true"><i class="tji-chat"></i></span>
+                  <span class="sc-caso-paso-n">Paso 3</span>
+                  <h3 class="sc-caso-paso-t">Se abre el chat ya escrito</h3>
+                  <p class="sc-caso-paso-d">
+                    La persona llega al asesor con el mensaje redactado según la sección desde la
+                    que vino. El asesor sabe de entrada qué le están preguntando.
+                  </p>
+                </li>
+
+                <li class="sc-caso-paso">
+                  <span class="sc-caso-paso-ico" aria-hidden="true"><i class="tji-chart"></i></span>
+                  <span class="sc-caso-paso-n">Paso 4</span>
+                  <h3 class="sc-caso-paso-t">Queda registrado solo</h3>
+                  <p class="sc-caso-paso-d">
+                    Fecha, sección, asesor asignado y si vino de un anuncio. Todo en una planilla
+                    que el cliente abre cuando quiere.
+                  </p>
+                </li>
+
+              </ol>
+              <!-- [/DATOS DEL CASO] -->
+            </div>
+          </section>
+
+          <!-- ============================================================
+               4 · QUÉ INCLUYE
+               ============================================================ -->
+          <section class="sc-caso-incluye">
+            <div class="container">
+              <div class="sc-rv">
+                <h2 class="sc-caso-h2">Qué incluye</h2>
+              </div>
+
+              <!-- [DATOS DEL CASO] prestaciones -->
+              <div class="sc-caso-grid">
+
+                <article class="sc-caso-card sc-rv">
+                  <span class="sc-caso-card-ico" aria-hidden="true"><i class="tji-share"></i></span>
+                  <h3>Reparto por turno</h3>
+                  <p>Cada consulta va al siguiente de la lista. Sumar o sacar un asesor es cambiar una línea.</p>
+                </article>
+
+                <article class="sc-caso-card sc-rv" data-rv-delay="60">
+                  <span class="sc-caso-card-ico" aria-hidden="true"><i class="tji-chat"></i></span>
+                  <h3>Mensaje según la sección</h3>
+                  <p>No es el mismo texto el de quien viene de una promoción que el de quien busca asesoramiento.</p>
+                </article>
+
+                <article class="sc-caso-card sc-rv" data-rv-delay="120">
+                  <span class="sc-caso-card-ico" aria-hidden="true"><i class="tji-chart"></i></span>
+                  <h3>Planilla en vivo</h3>
+                  <p>Cada consulta queda anotada con su fecha, su origen y el asesor que la recibió.</p>
+                </article>
+
+                <article class="sc-caso-card sc-rv">
+                  <span class="sc-caso-card-ico" aria-hidden="true"><i class="tji-signal"></i></span>
+                  <h3>Origen de la consulta</h3>
+                  <p>Se distingue si la persona llegó por un anuncio o entró por su cuenta, sin preguntarle nada.</p>
+                </article>
+
+                <article class="sc-caso-card sc-rv" data-rv-delay="60">
+                  <span class="sc-caso-card-ico" aria-hidden="true"><i class="tji-shield"></i></span>
+                  <h3>Filtro de rastreadores</h3>
+                  <p>Los robots que recorren la web no cuentan como consultas. Solo se registran personas.</p>
+                </article>
+
+                <article class="sc-caso-card sc-rv" data-rv-delay="120">
+                  <span class="sc-caso-card-ico" aria-hidden="true"><i class="tji-computer"></i></span>
+                  <h3>Panel propio</h3>
+                  <p>El cliente entra con su usuario y ve todo sin depender de nosotros ni de la planilla.</p>
+                </article>
+
+              </div>
+              <!-- [/DATOS DEL CASO] -->
+            </div>
+          </section>
+
+          <!-- ============================================================
+               5 · LO QUE APARECIÓ EN EL CAMINO
+               Los dos hallazgos son el diferencial del caso: muestran que el
+               trabajo no fue solo montar algo nuevo.
+               ============================================================ -->
+          <section class="sc-caso-desafio">
+            <div class="container">
+              <div class="sc-rv">
+                <h2 class="sc-caso-h2">Dos cosas que aparecieron en el camino</h2>
+              </div>
+
+              <!-- [DATOS DEL CASO] hallazgos -->
+              <div class="sc-caso-hallazgos">
+
+                <div class="sc-caso-desafio-caja sc-rv">
+                  <h3 class="sc-caso-hallazgo-tit">Los botones no funcionaban en celulares</h3>
+                  <p>
+                    Al revisar el circuito encontramos que en teléfonos los botones podían no
+                    hacer nada. El código de medición cancelaba el clic y dejaba la apertura del
+                    chat a cargo de un aviso posterior que muchas veces no llegaba a tiempo.
+                  </p>
+                  <p>
+                    Venía así desde antes de que tomáramos el proyecto, con la campaña ya en
+                    marcha. Es decir que hubo gente que quiso escribir y no pudo, sin que nadie
+                    se enterara. Se corrigió para que el botón abra el chat siempre.
+                  </p>
                 </div>
+
+                <div class="sc-caso-desafio-caja sc-rv" data-rv-delay="80">
+                  <h3 class="sc-caso-hallazgo-tit">Un robot infló las consultas</h3>
+                  <p>
+                    Una madrugada el registro marcó siete consultas seguidas. Eran los siete
+                    botones tocados en nueve segundos desde la misma dirección: un rastreador
+                    automático recorriendo la página.
+                  </p>
+                  <p>
+                    Estuvimos a punto de informar siete consultas que no existían. Ahora un filtro
+                    separa a las personas de los robots, y lo descartado queda aparte por si hace
+                    falta revisarlo.
+                  </p>
+                </div>
+
+              </div>
+              <!-- [/DATOS DEL CASO] -->
+            </div>
+          </section>
+
+          <!-- ============================================================
+               6 · CIFRAS
+               ============================================================ -->
+          <section class="sc-caso-cifras">
+            <div class="container">
+              <div class="sc-caso-cifras-caja sc-rv">
+                <h2 class="sc-caso-h2">Cómo quedó</h2>
+
+                <!-- [DATOS DEL CASO] cifras -->
+                <div class="sc-caso-cifras-grid">
+
+                  <div class="sc-caso-cifra">
+                    <span class="sc-caso-cifra-n" data-contar>7</span>
+                    <p class="sc-caso-cifra-t">Botones de la página unificados en un solo circuito.</p>
+                  </div>
+
+                  <div class="sc-caso-cifra">
+                    <span class="sc-caso-cifra-n" data-contar>2</span>
+                    <p class="sc-caso-cifra-t">Asesores recibiendo consultas por turno, con reparto parejo.</p>
+                  </div>
+
+                  <div class="sc-caso-cifra">
+                    <span class="sc-caso-cifra-n">400 ms</span>
+                    <p class="sc-caso-cifra-t">Lo que tarda el registro. El visitante no espera nada.</p>
+                  </div>
+
+                  <div class="sc-caso-cifra">
+                    <span class="sc-caso-cifra-n" data-contar>0</span>
+                    <p class="sc-caso-cifra-t">Consultas sin asignar desde que está funcionando.</p>
+                  </div>
+
+                </div>
+                <!-- [/DATOS DEL CASO] -->
+
               </div>
             </div>
-          </div>
-        </section>
-        <!-- end: Cta Section -->
+          </section>
+
+          <!-- ============================================================
+               7 · CIERRE
+               ============================================================ -->
+          <section class="sc-caso-cta">
+            <div class="container">
+              <div class="sc-caso-cta-caja sc-rv">
+                <h2 class="sc-caso-h2">¿Tenés varias personas atendiendo consultas?</h2>
+                <p>Contanos cómo las reciben hoy y te decimos qué se puede repartir y medir solo.</p>
+                <a class="tj-primary-btn" href="contact.html" data-sc-modal>
+                  <span class="btn-text"><span>Hablemos de tu caso</span></span>
+                  <span class="btn-icon"><i class="tji-arrow-right-2"></i></span>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============================================================
+               8 · NAVEGACIÓN ENTRE CASOS
+               ============================================================ -->
+          <nav class="sc-caso-nav" aria-label="Navegación entre casos">
+            <div class="container">
+              <div class="sc-caso-nav-grid">
+
+                <!-- [DATOS DEL CASO] anterior -->
+                <a class="sc-caso-nav-link" href="caso-retail-rubro-restringido.html">
+                  <small>Caso anterior</small>
+                  <b>Retail en un rubro con restricciones</b>
+                </a>
+                <!-- [/DATOS DEL CASO] -->
+
+                <!-- [DATOS DEL CASO] siguiente -->
+                <a class="sc-caso-nav-link is-next" href="caso-plataforma-de-cursos.html">
+                  <small>Volver al primero</small>
+                  <b>Plataforma de cursos</b>
+                </a>
+                <!-- [/DATOS DEL CASO] -->
+
+              </div>
+            </div>
+          </nav>
+
+        </div>
+        <!-- ================= fin del caso ================= -->
+
       </main>
 
       <!-- start: Footer Section -->
@@ -717,6 +851,69 @@
   </div>
 
   <!-- JS here -->
+  <!-- ==================================================================
+       VENTANA DE CONTACTO
+       Vive como hija directa de body, FUERA de main, a proposito.
+       #smooth-content (de GSAP ScrollSmoother) lleva will-change: transform,
+       y eso crea bloque contenedor para cualquier position:fixed que este
+       adentro: el modal tomaba la altura de toda la pagina en vez de la de
+       la ventana y la caja quedaba centrada a 1790px, fuera de pantalla.
+       Cualquier elemento fijo nuevo de este sitio tiene que ir aca tambien.
+       El comportamiento vive en assets/js/sc-modal.js.
+       ================================================================== -->
+  <!-- ==================================================================
+       VENTANA DE CONTACTO
+       Se abre desde cualquier elemento con el atributo data-sc-modal.
+       El comportamiento vive en assets/js/sc-modal.js.
+       ================================================================== -->
+  <div class="sc-modal" id="sc-modal-contacto" role="dialog" aria-modal="true"
+    aria-labelledby="sc-modal-titulo" hidden>
+    <div class="sc-modal-fondo" data-sc-cerrar></div>
+    <div class="sc-modal-centro">
+    <div class="sc-modal-caja">
+
+      <button type="button" class="sc-modal-cerrar" data-sc-cerrar aria-label="Cerrar">
+        <i class="tji-x-mark" aria-hidden="true"></i>
+      </button>
+
+      <h2 id="sc-modal-titulo">Contanos tu caso</h2>
+      <p class="sc-modal-intro">
+        Dejanos tus datos y en qué andás. Te respondemos con una primera idea de
+        por dónde empezar.
+      </p>
+
+      <form novalidate>
+        <div class="sc-campo">
+          <label for="sc-nombre">Nombre</label>
+          <input type="text" id="sc-nombre" name="nombre" autocomplete="name" placeholder="Cómo te llamás">
+          <span class="sc-campo-error">Necesitamos tu nombre.</span>
+        </div>
+
+        <div class="sc-campo">
+          <label for="sc-email">Email</label>
+          <input type="email" id="sc-email" name="email" autocomplete="email" placeholder="tu@email.com">
+          <span class="sc-campo-error">Revisá el email, parece incompleto.</span>
+        </div>
+
+        <div class="sc-campo">
+          <label for="sc-whatsapp">WhatsApp</label>
+          <input type="tel" id="sc-whatsapp" name="whatsapp" autocomplete="tel" placeholder="Ej: 11 6470 7497">
+          <span class="sc-campo-error">Dejanos un número para escribirte.</span>
+        </div>
+
+        <div class="sc-campo">
+          <label for="sc-mensaje">¿Qué querés automatizar?</label>
+          <textarea id="sc-mensaje" name="mensaje" placeholder="Contanos en dos líneas qué estás haciendo a mano hoy."></textarea>
+        </div>
+
+        <button type="submit" class="sc-modal-enviar">Enviar consulta</button>
+        <p class="sc-modal-pie">Te contactamos dentro de las 24 hs hábiles.</p>
+      </form>
+
+    </div>
+    </div>
+  </div>
+
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/gsap.min.js"></script>
@@ -733,6 +930,8 @@
   <script src="assets/js/gsap-animation.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/sc-chat.js"></script>
+  <script src="assets/js/sc-caso.js"></script>
+  <script src="assets/js/sc-modal.js"></script>
   <!-- Interruptor de tema DESACTIVADO el 23/9 (ver nota en el head) -->
   <!-- <script src="assets/js/sc-theme.js"></script> -->
 </body>
