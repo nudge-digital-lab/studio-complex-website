@@ -15583,15 +15583,12 @@ h1 .grad {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 19px;
-  height: 19px;
   flex: none;
   color: #07090c;
 }
-.sc-footer-agenda-cal svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+.sc-footer-agenda-cal i {
+  font-size: 18px;
+  line-height: 1;
 }
 .sc-footer-agenda {
   gap: 10px;

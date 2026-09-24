@@ -1,0 +1,614 @@
+/* ==========================================================================
+   Studio Complex · Caso de éxito
+   --------------------------------------------------------------------------
+   Estilos del componente de caso. Sirven para los tres casos sin cambios:
+   lo único que varía entre uno y otro es el contenido del HTML.
+
+   No toca main.css ni ninguna clase del template. Todas las clases llevan
+   el prefijo sc-caso- para que no puedan chocar con nada.
+
+   Hereda del sistema del sitio: tipografía Figtree, naranja #F2801E, cian
+   #22D3EE y las variables de superficie --sc-surface-* / --sc-border, así
+   que acompaña el tema sin repetir valores. Escrito mobile primero.
+   ========================================================================== */
+
+.sc-caso {
+  --paso: 22px;
+  --radio: 14px;
+}
+
+/* --- Revelado al entrar en pantalla --------------------------------------
+   Las animaciones GSAP del template están desactivadas, así que el revelado
+   lo maneja sc-caso.js con un IntersectionObserver. Sin JS el contenido se
+   ve igual: el estado inicial solo se aplica cuando el script marca el
+   documento, y nunca si el visitante pidió menos movimiento. */
+.sc-caso-js .sc-rv {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.sc-caso-js .sc-rv.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ==========================================================================
+   1 · Encabezado del caso
+   ========================================================================== */
+.sc-caso-hero {
+  padding: 96px 0 56px;
+  position: relative;
+  overflow: hidden;
+}
+.sc-caso-hero::before {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto -20%;
+  height: 460px;
+  background:
+    radial-gradient(52% 60% at 30% 40%,
+      color-mix(in oklab, var(--tj-color-theme-primary) 20%, transparent) 0%,
+      transparent 70%),
+    radial-gradient(46% 56% at 72% 34%,
+      color-mix(in oklab, var(--tj-color-theme-secondary) 16%, transparent) 0%,
+      transparent 72%);
+  pointer-events: none;
+  z-index: 0;
+}
+.sc-caso-hero > .container {
+  position: relative;
+  z-index: 1;
+}
+.sc-caso-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--tj-color-text-body-2);
+  margin-bottom: 26px;
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+.sc-caso-volver:hover {
+  color: var(--sc-ink-accent);
+  gap: 12px;
+}
+.sc-caso-volver i {
+  font-size: 13px;
+}
+.sc-caso-eyebrow {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sc-ink-accent-2);
+  margin-bottom: 14px;
+}
+.sc-caso-titulo {
+  font-size: clamp(2.1rem, 7vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+.sc-caso-bajada {
+  font-size: clamp(1.02rem, 3.4vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--tj-color-text-body);
+  max-width: 54ch;
+  margin: 0 0 28px;
+}
+.sc-caso-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sc-caso-tags li {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 9px 14px;
+  border-radius: 999px;
+  color: var(--sc-ink-accent);
+  background-color: color-mix(in oklab, var(--tj-color-theme-primary) 12%, transparent);
+}
+
+/* ==========================================================================
+   2 · El desafío
+   ========================================================================== */
+.sc-caso-desafio {
+  padding: 8px 0 56px;
+}
+.sc-caso-desafio-caja {
+  background-color: var(--sc-surface-1);
+  border-radius: var(--radio);
+  padding: 30px 24px;
+  border-left: 3px solid var(--sc-ink-accent);
+}
+.sc-caso-h2 {
+  font-size: clamp(1.55rem, 5.2vw, 2.3rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+.sc-caso-desafio p {
+  font-size: clamp(1rem, 3.2vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--tj-color-text-body);
+  margin: 0;
+  max-width: 62ch;
+}
+.sc-caso-desafio p + p {
+  margin-top: 14px;
+}
+
+/* ==========================================================================
+   3 · El flujo
+   Cuatro pasos. En teléfono se apilan en vertical y el recorrido baja; desde
+   992px se acuestan en fila y el recorrido avanza hacia la derecha.
+   ========================================================================== */
+.sc-caso-flujo {
+  padding: 56px 0;
+}
+.sc-caso-flujo-cab {
+  margin-bottom: 34px;
+}
+.sc-caso-flujo-cab p {
+  color: var(--tj-color-text-body);
+  margin: 0;
+  max-width: 58ch;
+}
+
+.sc-caso-pasos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  position: relative;
+}
+.sc-caso-paso {
+  position: relative;
+  padding-left: 62px;
+  padding-bottom: 34px;
+}
+.sc-caso-paso:last-child {
+  padding-bottom: 0;
+}
+
+/* La vía por donde corre el recorrido */
+.sc-caso-paso::before {
+  content: "";
+  position: absolute;
+  left: 21px;
+  top: 46px;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--sc-border);
+}
+.sc-caso-paso:last-child::before {
+  display: none;
+}
+/* El recorrido en sí: crece de arriba hacia abajo cuando el paso se activa */
+.sc-caso-paso::after {
+  content: "";
+  position: absolute;
+  left: 21px;
+  top: 46px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--tj-color-theme-primary), var(--tj-color-theme-secondary));
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 0.65s ease;
+}
+.sc-caso-paso:last-child::after {
+  display: none;
+}
+.sc-caso-paso.is-on::after {
+  transform: scaleY(1);
+}
+
+.sc-caso-paso-ico {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+  color: var(--tj-color-text-body-2);
+  background-color: var(--sc-surface-1);
+  box-shadow: inset 0 0 0 1px var(--sc-border);
+  transition: color 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+  z-index: 1;
+}
+.sc-caso-paso.is-on .sc-caso-paso-ico {
+  color: var(--tj-color-theme-dark);
+  background-color: var(--tj-color-theme-primary);
+  box-shadow: inset 0 0 0 1px var(--tj-color-theme-primary),
+              0 0 0 6px color-mix(in oklab, var(--tj-color-theme-primary) 14%, transparent);
+}
+.sc-caso-paso-n {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sc-ink-accent-2);
+  margin-bottom: 6px;
+}
+.sc-caso-paso-t {
+  font-size: 1.12rem;
+  line-height: 1.25;
+  margin: 0 0 6px;
+}
+.sc-caso-paso-d {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--tj-color-text-body-2);
+  margin: 0;
+  max-width: 44ch;
+}
+
+@media (min-width: 992px) {
+  .sc-caso-pasos {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 26px;
+  }
+  .sc-caso-paso {
+    padding-left: 0;
+    padding-bottom: 0;
+    padding-top: 62px;
+  }
+  .sc-caso-paso::before,
+  .sc-caso-paso::after {
+    left: 56px;
+    right: -26px;
+    top: 21px;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+  }
+  .sc-caso-paso::after {
+    background: linear-gradient(90deg, var(--tj-color-theme-primary), var(--tj-color-theme-secondary));
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+  .sc-caso-paso.is-on::after {
+    transform: scaleX(1);
+  }
+  .sc-caso-paso-d {
+    max-width: none;
+  }
+}
+
+/* ==========================================================================
+   4 · Qué incluye
+   ========================================================================== */
+.sc-caso-incluye {
+  padding: 56px 0;
+}
+.sc-caso-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 30px;
+}
+@media (min-width: 576px) {
+  .sc-caso-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 992px) {
+  .sc-caso-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+}
+.sc-caso-card {
+  background-color: var(--sc-surface-1);
+  border-radius: var(--radio);
+  padding: 26px 22px;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+.sc-caso-card:hover {
+  transform: translateY(-4px);
+  background-color: color-mix(in oklab, var(--sc-surface-1) 88%, var(--tj-color-theme-primary));
+}
+.sc-caso-card-ico {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--sc-ink-accent);
+  background-color: color-mix(in oklab, var(--tj-color-theme-primary) 12%, transparent);
+  margin-bottom: 16px;
+}
+.sc-caso-card h3 {
+  font-size: 1.08rem;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+.sc-caso-card p {
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: var(--tj-color-text-body-2);
+  margin: 0;
+}
+
+/* ==========================================================================
+   5 · Resultados
+   ========================================================================== */
+.sc-caso-cifras {
+  padding: 56px 0;
+}
+.sc-caso-cifras-caja {
+  background-color: var(--sc-surface-1);
+  border-radius: var(--radio);
+  padding: 34px 22px;
+}
+.sc-caso-cifras-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  margin-top: 26px;
+}
+@media (min-width: 768px) {
+  .sc-caso-cifras-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+.sc-caso-cifra {
+  text-align: left;
+}
+@media (min-width: 768px) {
+  .sc-caso-cifra + .sc-caso-cifra {
+    padding-left: 22px;
+    border-left: 1px solid var(--sc-border);
+  }
+}
+.sc-caso-cifra-n {
+  display: block;
+  font-size: clamp(2.6rem, 11vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--sc-ink-accent);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 10px;
+}
+.sc-caso-cifra-t {
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--tj-color-text-body);
+  margin: 0;
+  max-width: 26ch;
+}
+.sc-caso-cifras-pie {
+  font-size: 0.86rem;
+  color: var(--tj-color-text-body-2);
+  margin: 24px 0 0;
+}
+
+/* ==========================================================================
+   6 · Stack
+   ========================================================================== */
+.sc-caso-stack {
+  padding: 56px 0;
+}
+.sc-caso-stack-lista {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+}
+@media (min-width: 576px) {
+  .sc-caso-stack-lista { grid-template-columns: repeat(3, 1fr); }
+}
+.sc-caso-stack-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background-color: var(--sc-surface-1);
+  border-radius: var(--radio);
+  padding: 18px 20px;
+}
+.sc-caso-stack-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex: none;
+}
+.sc-caso-stack-item b {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+.sc-caso-stack-item span {
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: var(--tj-color-text-body-2);
+}
+
+/* ==========================================================================
+   7 · Cierre
+   ========================================================================== */
+.sc-caso-cta {
+  padding: 56px 0 8px;
+}
+.sc-caso-cta-caja {
+  background-color: var(--sc-surface-1);
+  border-radius: var(--radio);
+  padding: 40px 24px;
+  text-align: center;
+}
+.sc-caso-cta-caja p {
+  color: var(--tj-color-text-body);
+  max-width: 48ch;
+  margin: 0 auto 26px;
+}
+
+/* ==========================================================================
+   8 · Navegación entre casos
+   ========================================================================== */
+.sc-caso-nav {
+  padding: 40px 0 88px;
+}
+.sc-caso-nav-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  border-top: 1px solid var(--sc-border);
+  padding-top: 28px;
+}
+@media (min-width: 768px) {
+  .sc-caso-nav-grid { grid-template-columns: 1fr 1fr; }
+}
+.sc-caso-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: var(--sc-surface-1);
+  border-radius: var(--radio);
+  padding: 20px 22px;
+  transition: transform 0.25s ease;
+}
+.sc-caso-nav-link:hover { transform: translateY(-3px); }
+.sc-caso-nav-link.is-next { text-align: right; }
+.sc-caso-nav-link small {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tj-color-text-body-2);
+}
+.sc-caso-nav-link b {
+  font-size: 1.05rem;
+  line-height: 1.25;
+  color: var(--tj-color-heading-primary);
+}
+.sc-caso-nav-link:hover b { color: var(--sc-ink-accent); }
+.sc-caso-nav-link.is-vacio {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Card del caso para el índice del portfolio
+   ========================================================================== */
+.sc-casos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 768px) { .sc-casos-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1200px) { .sc-casos-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.sc-caso-tarjeta {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--sc-surface-1);
+  border-radius: var(--radio);
+  padding: 28px 24px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.28s ease, background-color 0.28s ease;
+}
+.sc-caso-tarjeta::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--tj-color-theme-primary), var(--tj-color-theme-secondary));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s ease;
+}
+.sc-caso-tarjeta:hover { transform: translateY(-6px); }
+.sc-caso-tarjeta:hover::before { transform: scaleX(1); }
+.sc-caso-tarjeta-tipo {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sc-ink-accent-2);
+  margin-bottom: 12px;
+}
+.sc-caso-tarjeta h3 {
+  font-size: 1.3rem;
+  line-height: 1.2;
+  margin: 0 0 10px;
+}
+.sc-caso-tarjeta h3 a { color: inherit; }
+.sc-caso-tarjeta:hover h3 a { color: var(--sc-ink-accent); }
+.sc-caso-tarjeta p {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--tj-color-text-body-2);
+  margin: 0 0 18px;
+}
+.sc-caso-tarjeta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+.sc-caso-tarjeta-tags li {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 7px 11px;
+  border-radius: 999px;
+  color: var(--tj-color-text-body);
+  background-color: var(--sc-surface-2);
+}
+.sc-caso-tarjeta-ver {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--sc-ink-accent);
+  transition: gap 0.2s ease;
+}
+.sc-caso-tarjeta:hover .sc-caso-tarjeta-ver { gap: 13px; }
+
+/* --- Menos movimiento ----------------------------------------------------
+   Si el visitante lo pide, todo aparece en su sitio y el recorrido queda
+   dibujado entero, sin transiciones. */
+@media (prefers-reduced-motion: reduce) {
+  .sc-caso-js .sc-rv,
+  .sc-caso-js .sc-rv.is-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .sc-caso-paso::after {
+    transform: none !important;
+    transition: none;
+  }
+  .sc-caso-paso-ico,
+  .sc-caso-card,
+  .sc-caso-tarjeta,
+  .sc-caso-tarjeta::before,
+  .sc-caso-nav-link {
+    transition: none;
+  }
+}
