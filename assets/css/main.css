@@ -15335,13 +15335,14 @@ h1 .grad {
   justify-content: center;
   width: 42px;
   height: 42px;
+  flex: none;
   border-radius: 50%;
   background-color: var(--sc-surface-2);
   color: var(--tj-color-heading-primary);
-  font-size: 15px;
+  font-size: 19px;
   transition: transform 0.25s ease;
 }
-.sc-footer-agenda:hover .sc-footer-agenda-ico { transform: rotate(45deg); }
+.sc-footer-agenda:hover .sc-footer-agenda-ico { transform: scale(1.08); }
 .sc-footer-cta-letra {
   font-size: 13.5px;
   color: var(--tj-color-text-body-2);
@@ -15579,29 +15580,16 @@ h1 .grad {
 .footer-contact-info .contact-item .sc-footer-agenda .sc-footer-agenda-txt {
   color: #07090c;
 }
-.sc-footer-agenda-cal {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-  color: #07090c;
-}
-.sc-footer-agenda-cal i {
-  /* Antes quedaba casi invisible: el glifo es de trazo fino y a 18px sobre el
-     naranja no se leia. Mas grande y en el negro del texto, se ve. */
-  font-size: 21px;
-  line-height: 1;
-  color: inherit;
-  opacity: 1;
-}
+/* El calendario paso a ir DENTRO del circulo oscuro de la derecha. Sobre el
+   naranja, a cualquier tamano, el glifo de trazo fino no se leia; sobre el
+   circulo oscuro contrasta y ademas se ahorra un elemento suelto. */
 .sc-footer-agenda {
-  /* La columna del pie es angosta: al sumar el calendario el texto se partia
-     en dos lineas y el boton quedaba deforme. Ocupando el ancho de la columna
-     con la flecha pegada a la derecha, entra en una sola linea. */
+  /* La columna del pie es angosta, asi que el boton ocupa su ancho y el
+     circulo queda pegado a la derecha. Sin space-between: con tres elementos
+     separaba el icono del texto y dejaba un hueco raro en el medio. */
   gap: 10px;
   width: 100%;
-  max-width: 340px;
-  justify-content: space-between;
+  max-width: 330px;
 }
 .sc-footer-agenda .sc-footer-agenda-txt {
   white-space: nowrap;
@@ -15609,5 +15597,5 @@ h1 .grad {
 }
 @media only screen and (max-width: 360px) {
   .sc-footer-agenda { font-size: 14px; padding-left: 16px; }
-  .sc-footer-agenda-cal i { font-size: 17px; }
+  .sc-footer-agenda-ico { width: 38px; height: 38px; font-size: 17px; }
 }
