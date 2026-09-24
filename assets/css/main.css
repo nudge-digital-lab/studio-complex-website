@@ -15587,12 +15587,27 @@ h1 .grad {
   color: #07090c;
 }
 .sc-footer-agenda-cal i {
-  font-size: 18px;
+  /* Antes quedaba casi invisible: el glifo es de trazo fino y a 18px sobre el
+     naranja no se leia. Mas grande y en el negro del texto, se ve. */
+  font-size: 21px;
   line-height: 1;
+  color: inherit;
+  opacity: 1;
 }
 .sc-footer-agenda {
+  /* La columna del pie es angosta: al sumar el calendario el texto se partia
+     en dos lineas y el boton quedaba deforme. Ocupando el ancho de la columna
+     con la flecha pegada a la derecha, entra en una sola linea. */
   gap: 10px;
+  width: 100%;
+  max-width: 340px;
+  justify-content: space-between;
 }
 .sc-footer-agenda .sc-footer-agenda-txt {
-  margin-right: 4px;
+  white-space: nowrap;
+  margin-right: auto;
+}
+@media only screen and (max-width: 360px) {
+  .sc-footer-agenda { font-size: 14px; padding-left: 16px; }
+  .sc-footer-agenda-cal i { font-size: 17px; }
 }

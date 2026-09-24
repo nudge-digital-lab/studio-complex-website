@@ -391,8 +391,8 @@
                ============================================================ -->
           <section class="sc-caso-hero">
             <div class="container">
-              <div class="row">
-                <div class="col-lg-10">
+              <div class="row align-items-center rg-40">
+                <div class="col-lg-6">
 
                   <a class="sc-caso-volver" href="project.html">
                     <i class="tji-arrow-left-2" aria-hidden="true"></i>
@@ -416,6 +416,62 @@
                   <!-- [/DATOS DEL CASO] -->
 
                 </div>
+
+                <!-- Mockup de la plataforma. Dibujado con HTML y CSS, sin
+                     imagen: no se puede mostrar el nombre del cliente y una
+                     captura real habría que taparla a medias. Si más adelante
+                     hay una captura aprobada, reemplaza a este bloque. -->
+                <div class="col-lg-6">
+                  <div class="sc-caso-mk sc-rv" data-rv-delay="240" role="img"
+                    aria-label="La plataforma de cursos vista en una computadora y en un teléfono: el catálogo de cursos y el aula virtual del alumno.">
+
+                    <div class="sc-caso-mk-desk">
+                      <div class="sc-caso-mk-barra">
+                        <span class="sc-caso-mk-punto"></span>
+                        <span class="sc-caso-mk-punto"></span>
+                        <span class="sc-caso-mk-punto"></span>
+                        <span class="sc-caso-mk-url"></span>
+                      </div>
+                      <div class="sc-caso-mk-pantalla">
+                        <span class="sc-caso-mk-titulo"></span>
+                        <div class="sc-caso-mk-grid">
+                          <div class="sc-caso-mk-curso">
+                            <span class="sc-caso-mk-tapa"></span><i></i><i></i>
+                          </div>
+                          <div class="sc-caso-mk-curso">
+                            <span class="sc-caso-mk-tapa"></span><i></i><i></i>
+                          </div>
+                          <div class="sc-caso-mk-curso">
+                            <span class="sc-caso-mk-tapa"></span><i></i><i></i>
+                          </div>
+                        </div>
+                        <div class="sc-caso-mk-grid">
+                          <div class="sc-caso-mk-curso">
+                            <span class="sc-caso-mk-tapa"></span><i></i><i></i>
+                          </div>
+                          <div class="sc-caso-mk-curso">
+                            <span class="sc-caso-mk-tapa"></span><i></i><i></i>
+                          </div>
+                          <div class="sc-caso-mk-curso">
+                            <span class="sc-caso-mk-tapa"></span><i></i><i></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="sc-caso-mk-tel">
+                      <div class="sc-caso-mk-tel-pantalla">
+                        <span class="sc-caso-mk-notch"></span>
+                        <div class="sc-caso-mk-fila"><span></span><i></i></div>
+                        <div class="sc-caso-mk-fila"><span></span><i></i></div>
+                        <div class="sc-caso-mk-fila"><span></span><i></i></div>
+                        <span class="sc-caso-mk-boton"></span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
               </div>
             </div>
           </section>
@@ -650,7 +706,7 @@
               <div class="sc-caso-cta-caja sc-rv">
                 <h2 class="sc-caso-h2">¿Querés automatizar tu negocio así?</h2>
                 <p>Contanos qué estás haciendo a mano hoy y te decimos qué se puede resolver solo.</p>
-                <a class="tj-primary-btn" href="contact.html">
+                <a class="tj-primary-btn" href="contact.html" data-sc-modal>
                   <span class="btn-text"><span>Hablemos de tu caso</span></span>
                   <span class="btn-icon"><i class="tji-arrow-right-2"></i></span>
                 </a>
@@ -689,6 +745,57 @@
 
         </div>
         <!-- ================= fin del caso ================= -->
+
+        <!-- ==================================================================
+             VENTANA DE CONTACTO
+             Se abre desde cualquier elemento con el atributo data-sc-modal.
+             El comportamiento vive en assets/js/sc-modal.js.
+             ================================================================== -->
+        <div class="sc-modal" id="sc-modal-contacto" role="dialog" aria-modal="true"
+          aria-labelledby="sc-modal-titulo" hidden>
+          <div class="sc-modal-fondo" data-sc-cerrar></div>
+          <div class="sc-modal-caja">
+
+            <button type="button" class="sc-modal-cerrar" data-sc-cerrar aria-label="Cerrar">
+              <i class="tji-x-mark" aria-hidden="true"></i>
+            </button>
+
+            <h2 id="sc-modal-titulo">Contanos tu caso</h2>
+            <p class="sc-modal-intro">
+              Dejanos tus datos y en qué andás. Te respondemos con una primera idea de
+              por dónde empezar.
+            </p>
+
+            <form novalidate>
+              <div class="sc-campo">
+                <label for="sc-nombre">Nombre</label>
+                <input type="text" id="sc-nombre" name="nombre" autocomplete="name" placeholder="Cómo te llamás">
+                <span class="sc-campo-error">Necesitamos tu nombre.</span>
+              </div>
+
+              <div class="sc-campo">
+                <label for="sc-email">Email</label>
+                <input type="email" id="sc-email" name="email" autocomplete="email" placeholder="tu@email.com">
+                <span class="sc-campo-error">Revisá el email, parece incompleto.</span>
+              </div>
+
+              <div class="sc-campo">
+                <label for="sc-whatsapp">WhatsApp</label>
+                <input type="tel" id="sc-whatsapp" name="whatsapp" autocomplete="tel" placeholder="Ej: 11 6470 7497">
+                <span class="sc-campo-error">Dejanos un número para escribirte.</span>
+              </div>
+
+              <div class="sc-campo">
+                <label for="sc-mensaje">¿Qué querés automatizar?</label>
+                <textarea id="sc-mensaje" name="mensaje" placeholder="Contanos en dos líneas qué estás haciendo a mano hoy."></textarea>
+              </div>
+
+              <button type="submit" class="sc-modal-enviar">Enviar consulta</button>
+              <p class="sc-modal-pie">Te contactamos dentro de las 24 hs hábiles.</p>
+            </form>
+
+          </div>
+        </div>
 
       </main>
 
@@ -801,6 +908,7 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/sc-chat.js"></script>
   <script src="assets/js/sc-caso.js"></script>
+  <script src="assets/js/sc-modal.js"></script>
   <!-- Interruptor de tema DESACTIVADO el 23/9 (ver nota en el head) -->
   <!-- <script src="assets/js/sc-theme.js"></script> -->
 </body>
