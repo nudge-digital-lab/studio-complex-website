@@ -516,7 +516,8 @@
 }
 @media (min-width: 768px) {
   .sc-caso-cifras-grid {
-    grid-template-columns: repeat(3, 1fr);
+    /* auto-fit para que sirva igual con 3 o con 4 cifras segun el caso */
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 20px;
   }
 }
@@ -931,4 +932,132 @@
   .sc-modal-fondo,
   .sc-modal-caja,
   .sc-modal-enviar { transition: none; }
+}
+
+/* ==========================================================================
+   Gráfico de barras
+   --------------------------------------------------------------------------
+   Genérico, sirve para cualquier caso. Cada barra lleva su porcentaje en la
+   variable --v y crece sola cuando el bloque entra en pantalla. Sin
+   librerías ni imágenes. La modalidad is-bloqueado pinta en gris la barra de
+   algo que no está disponible, en vez de dibujar una barra en cero.
+   ========================================================================== */
+.sc-caso-barras {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+}
+.sc-caso-barra-cab {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.sc-caso-barra-nom {
+  font-size: 0.97rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.sc-caso-barra-val {
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--sc-ink-accent);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.sc-caso-barra-via {
+  height: 10px;
+  border-radius: 999px;
+  background-color: var(--sc-surface-2);
+  overflow: hidden;
+}
+.sc-caso-barra-carga {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--tj-color-theme-primary), var(--tj-color-theme-secondary));
+  transition: width 0.9s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.sc-caso-barras.is-in .sc-caso-barra-carga { width: var(--v, 0%); }
+.sc-caso-barra-pie {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--tj-color-text-body-2);
+  margin: 8px 0 0;
+}
+
+.sc-caso-barra.is-bloqueado .sc-caso-barra-val { color: var(--tj-color-text-body-2); }
+.sc-caso-barra.is-bloqueado .sc-caso-barra-carga {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--sc-border) 0 6px,
+    transparent 6px 12px);
+  width: 100%;
+}
+.sc-caso-barra.is-bloqueado .sc-caso-barra-nom { color: var(--tj-color-text-body-2); }
+
+/* --- Lista de lo que se gestiona mes a mes ------------------------------- */
+.sc-caso-mensual {
+  list-style: none;
+  margin: 26px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+@media (min-width: 768px) {
+  .sc-caso-mensual { grid-template-columns: repeat(2, 1fr); gap: 14px 26px; }
+}
+.sc-caso-mensual li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  font-size: 0.97rem;
+  line-height: 1.5;
+  color: var(--tj-color-text-body);
+}
+.sc-caso-mensual li i {
+  color: var(--sc-ink-accent);
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc-caso-barra-carga { transition: none; width: var(--v, 0%); }
+}
+
+/* --- Linea explicativa dentro de la barra --------------------------------
+   Para que un lector no tecnico entienda que es cada formato de Google sin
+   tener que buscarlo. */
+.sc-caso-barra-det {
+  display: block;
+  font-size: 0.83rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--tj-color-text-body-2);
+  margin-top: 3px;
+  max-width: 44ch;
+}
+.sc-caso-barra-cab {
+  align-items: flex-start;
+}
+@media (max-width: 480px) {
+  /* En telefono el valor baja debajo del nombre en vez de apretarse al lado */
+  .sc-caso-barra-cab { flex-direction: column; gap: 4px; }
+  .sc-caso-barra-val { white-space: normal; }
+}
+
+/* --- Periodo debajo de cada cifra ---------------------------------------- */
+.sc-caso-cifra-per {
+  display: block;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--tj-color-text-body-2);
+  margin-top: 8px;
+  opacity: 0.85;
 }
