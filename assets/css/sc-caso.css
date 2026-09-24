@@ -1453,3 +1453,77 @@
   line-height: 1.6;
   color: var(--tj-color-text-body-2);
 }
+
+/* ==========================================================================
+   Monitor
+   --------------------------------------------------------------------------
+   La ventana sola se leia como un rectangulo flotante. Con cuello y base se
+   reconoce como un monitor y se distingue del telefono de al lado.
+   Va envolviendo a .sc-caso-mk-desk, que tiene overflow oculto y por eso no
+   puede dibujar la base con un pseudo-elemento propio.
+   ========================================================================== */
+.sc-caso-mk-monitor {
+  position: relative;
+  padding-bottom: 26px;
+}
+.sc-caso-mk-base {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 34%;
+  max-width: 150px;
+  height: 5px;
+  border-radius: 99px;
+  background-color: var(--sc-border);
+}
+.sc-caso-mk-base::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 20px;
+  background: linear-gradient(180deg, var(--sc-surface-2), var(--sc-border));
+  clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%);
+}
+.sc-caso-mk.tiene-marca .sc-caso-mk-base { background-color: #2a2a2a; }
+.sc-caso-mk.tiene-marca .sc-caso-mk-base::before {
+  background: linear-gradient(180deg, #1a1a1a, #2a2a2a);
+}
+
+/* Con el monitor adentro, el telefono y los paneles se anclan al wrapper del
+   mockup, no al monitor, asi que se corre la referencia. */
+.sc-caso-mk { position: relative; }
+
+/* --- Proporción fija del monitor -----------------------------------------
+   Hasta acá la pantalla crecia con su contenido, y cada caso terminaba con un
+   monitor de alto distinto: 433px en unos, 225px en otro. Se ve mal puestos
+   uno al lado del otro y ademas hace que un caso parezca mas importante que
+   los demas.
+
+   Con proporcion fija de 16:10, que es la de un monitor real, los cuatro
+   quedan identicos sin importar cuanto contenido tenga cada pantalla. Lo que
+   sobra se reparte con space-between en vez de estirar los elementos. */
+.sc-caso-mk-desk {
+  aspect-ratio: 16 / 10;
+  display: flex;
+  flex-direction: column;
+}
+.sc-caso-mk-pantalla {
+  flex: 1;
+  align-content: start;
+  min-height: 0;
+  overflow: hidden;
+}
+.sc-caso-mk.tiene-marca .sc-caso-mk-pantalla {
+  align-content: center;
+}
+
+/* Con la proporcion fija, el caso de mas contenido (dos filas de productos)
+   se pasaba 16px y se recortaba abajo. Se ajustan las medidas internas para
+   que entre completo sin cambiar la proporcion del monitor. */
+.sc-caso-mk-pantalla { padding: 13px; gap: 9px; }
+.sc-caso-mk-grid { gap: 8px; }
+.sc-caso-mk-curso { padding: 7px; gap: 5px; }

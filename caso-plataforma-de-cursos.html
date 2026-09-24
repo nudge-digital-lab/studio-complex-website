@@ -6,10 +6,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-    content="Caso de éxito: una tienda que vende cursos online y matricula sola al alumno. Del pago al aula en segundos, sin trabajo manual ni abono mensual de plataforma.">
+    content="El alumno paga el curso en la tienda y entra al aula sin que nadie lo habilite. Cómo conectamos la venta con la matriculación.">
 
   <!-- Site Title -->
-  <title>Plataforma de cursos - Caso de éxito - Studio Complex</title>
+  <title>Plataforma de cursos online con acceso automático - Caso de éxito - Studio Complex</title>
 
   <!-- Place favicon.ico in the root directory -->
   <link rel="shortcut icon" type="image/x-icon" href="assets/images/fav.png">
@@ -39,15 +39,14 @@
   </script>
   -->
   <!-- Datos estructurados: le dicen a Google y a los modelos de IA que esto
-       es un caso de trabajo, de quien es y de que trata. Sin esto tienen que
-       adivinarlo del texto. -->
+       es un caso de trabajo, de quien es y de que trata. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Plataforma de cursos online con matriculación automática",
-    "description": "Una tienda que cobra el curso y matricula sola al alumno en el aula virtual, sin trabajo manual ni abono mensual de plataforma.",
-    "keywords": "automatización, Tiendanube, Make, WordPress, cursos online, e-learning",
+    "headline": "El alumno paga el curso y entra al aula sin que nadie lo habilite",
+    "description": "El alumno paga el curso en la tienda y entra al aula sin que nadie lo habilite. Cómo conectamos la venta con la matriculación.",
+    "keywords": "automatización, Tiendanube, Make, WordPress, cursos online",
     "inLanguage": "es",
     "url": "https://nudge-digital-lab.github.io/studio-complex-website/caso-plataforma-de-cursos.html",
     "isPartOf": {
@@ -65,6 +64,65 @@
       "name": "Studio Complex",
       "url": "https://nudge-digital-lab.github.io/studio-complex-website/"
     }
+  }
+  </script>
+  <!-- Preguntas frecuentes marcadas. Generado leyendo el HTML real de la
+       pagina, asi no se desincroniza si alguien edita una respuesta. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "es",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Se pueden vender cursos online desde Tiendanube?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. El curso se carga como un producto más y se cobra con los medios de pago de la tienda. Lo que Tiendanube no hace es dar el acceso al aula, así que esa parte hay que conectarla con la plataforma donde están los contenidos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Hace falta pagar una plataforma de cursos todos los meses?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No necesariamente. Se puede montar el aula sobre un sitio propio en WordPress con un plugin de cursos gratuito. Se paga el hosting y nada más, sin comisión por alumno ni por venta."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es un webhook, en criollo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un aviso que un sistema le manda a otro en el momento exacto en que pasa algo. Cuando se acredita un pago, la tienda avisa sin que nadie tenga que entrar a mirar si hubo una venta."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto tarda el alumno en tener acceso después de pagar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Segundos. El circuito se dispara con el pago acreditado y termina con el alumno matriculado, sin pasar por ninguna persona."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué pasa si falla algún paso del circuito?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Make guarda el registro de cada ejecución, así que se ve en qué punto se cortó y se puede volver a correr esa venta puntual sin tocar el resto."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Sirve para otra cosa además de cursos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. El mismo esquema funciona para cualquier venta que tenga que habilitar un acceso: membresías, descargas, suscripciones o altas en un sistema externo."
+        }
+      }
+    ]
   }
   </script>
 </head>
@@ -404,25 +462,30 @@
     <div id="smooth-content">
 
       <main id="primary" class="site-main">
-
         <!-- ==================================================================
-             CASO DE ÉXITO · "Plataforma de cursos"
+             CASO · Plataforma de cursos
              ------------------------------------------------------------------
-             Para crear otro caso: copiá este archivo entero y reemplazá
-             solamente lo que está entre las marcas [DATOS DEL CASO].
-             El layout, los estilos (assets/css/sc-caso.css) y el
-             comportamiento (assets/js/sc-caso.js) no se tocan nunca.
+             ESTRUCTURA COMÚN A LOS CUATRO CASOS. Si se agrega uno nuevo, va con
+             estas mismas secciones y en este orden:
+               1 Encabezado (texto + mockup)
+               2 El problema
+               3 Cómo lo resolvimos (cuatro pasos)
+               4 Qué incluye (seis tarjetas)
+               5 Los números (cuatro cifras)
+               6 Con qué está hecho (tres herramientas)
+               7 Preguntas frecuentes (seis)
+               8 Cierre
+               9 Navegación
+             Los encabezados de sección son siempre los mismos, para que los
+             cuatro casos se lean como una serie y no como páginas sueltas.
              ================================================================== -->
         <div class="sc-caso">
 
-          <!-- ============================================================
-               1 · ENCABEZADO
-               ============================================================ -->
+          <!-- 1 · ENCABEZADO -->
           <section class="sc-caso-hero">
             <div class="container">
               <div class="row align-items-center rg-40">
                 <div class="col-lg-6">
-
                   <a class="sc-caso-volver" href="project.html">
                     <i class="tji-arrow-left-2" aria-hidden="true"></i>
                     <span>Trabajos realizados</span>
@@ -431,11 +494,13 @@
                   <!-- [DATOS DEL CASO] encabezado -->
                   <span class="sc-caso-eyebrow sc-rv">Caso de éxito</span>
                   <h1 class="sc-caso-titulo sc-rv" data-rv-delay="60">
-                    Del pago al aula en segundos, sin tocar nada.
+                    El alumno paga el curso y entra al aula sin que nadie lo habilite
                   </h1>
                   <p class="sc-caso-bajada sc-rv" data-rv-delay="120">
-                    Una tienda que cobra el curso y deja al alumno adentro sola. Sin planillas,
-                    sin mandar accesos a mano y sin abono mensual de plataforma.
+                    Le armamos a un cliente una tienda para vender sus cursos online y la
+                    conectamos con el aula virtual. Cuando alguien compra, el sistema lo da de
+                    alta y le abre el acceso, a cualquier hora, sin que nadie del equipo tenga
+                    que hacer nada.
                   </p>
                   <ul class="sc-caso-tags sc-rv" data-rv-delay="180">
                     <li>Tiendanube</li>
@@ -443,51 +508,35 @@
                     <li>E-learning</li>
                   </ul>
                   <!-- [/DATOS DEL CASO] -->
-
                 </div>
 
-                <!-- Mockup de la plataforma. Dibujado con HTML y CSS, sin
-                     imagen: no se puede mostrar el nombre del cliente y una
-                     captura real habría que taparla a medias. Si más adelante
-                     hay una captura aprobada, reemplaza a este bloque. -->
                 <div class="col-lg-6">
-                  <div class="sc-caso-mk sc-rv" data-rv-delay="240" role="img"
-                    aria-label="La plataforma de cursos vista en una computadora y en un teléfono: el catálogo de cursos y el aula virtual del alumno.">
-
-                    <div class="sc-caso-mk-desk">
-                      <div class="sc-caso-mk-barra">
-                        <span class="sc-caso-mk-punto"></span>
-                        <span class="sc-caso-mk-punto"></span>
-                        <span class="sc-caso-mk-punto"></span>
-                        <span class="sc-caso-mk-url"></span>
-                      </div>
-                      <div class="sc-caso-mk-pantalla">
-                        <span class="sc-caso-mk-titulo"></span>
-                        <div class="sc-caso-mk-grid">
-                          <div class="sc-caso-mk-curso">
-                            <span class="sc-caso-mk-tapa"></span><i></i><i></i>
-                          </div>
-                          <div class="sc-caso-mk-curso">
-                            <span class="sc-caso-mk-tapa"></span><i></i><i></i>
-                          </div>
-                          <div class="sc-caso-mk-curso">
-                            <span class="sc-caso-mk-tapa"></span><i></i><i></i>
-                          </div>
+                    <div class="sc-caso-mk sc-rv" data-rv-delay="240" role="img"
+                      aria-label="La plataforma de cursos vista en un monitor y en un teléfono: el catálogo y el aula del alumno.">
+                    <div class="sc-caso-mk-monitor">
+                      <div class="sc-caso-mk-desk">
+                        <div class="sc-caso-mk-barra">
+                          <span class="sc-caso-mk-punto"></span>
+                          <span class="sc-caso-mk-punto"></span>
+                          <span class="sc-caso-mk-punto"></span>
+                          <span class="sc-caso-mk-url"></span>
                         </div>
-                        <div class="sc-caso-mk-grid">
-                          <div class="sc-caso-mk-curso">
-                            <span class="sc-caso-mk-tapa"></span><i></i><i></i>
+                        <div class="sc-caso-mk-pantalla">
+                          <span class="sc-caso-mk-titulo"></span>
+                          <div class="sc-caso-mk-grid">
+                          <div class="sc-caso-mk-curso"><span class="sc-caso-mk-tapa"></span><i></i><i></i></div>
+                          <div class="sc-caso-mk-curso"><span class="sc-caso-mk-tapa"></span><i></i><i></i></div>
+                          <div class="sc-caso-mk-curso"><span class="sc-caso-mk-tapa"></span><i></i><i></i></div>
                           </div>
-                          <div class="sc-caso-mk-curso">
-                            <span class="sc-caso-mk-tapa"></span><i></i><i></i>
-                          </div>
-                          <div class="sc-caso-mk-curso">
-                            <span class="sc-caso-mk-tapa"></span><i></i><i></i>
+                          <div class="sc-caso-mk-grid">
+                          <div class="sc-caso-mk-curso"><span class="sc-caso-mk-tapa"></span><i></i><i></i></div>
+                          <div class="sc-caso-mk-curso"><span class="sc-caso-mk-tapa"></span><i></i><i></i></div>
+                          <div class="sc-caso-mk-curso"><span class="sc-caso-mk-tapa"></span><i></i><i></i></div>
                           </div>
                         </div>
                       </div>
+                      <span class="sc-caso-mk-base" aria-hidden="true"></span>
                     </div>
-
                     <div class="sc-caso-mk-tel">
                       <div class="sc-caso-mk-tel-pantalla">
                         <span class="sc-caso-mk-notch"></span>
@@ -497,34 +546,31 @@
                         <span class="sc-caso-mk-boton"></span>
                       </div>
                     </div>
-
-                  </div>
+                    </div>
                 </div>
-
               </div>
             </div>
           </section>
 
-          <!-- ============================================================
-               2 · EL DESAFÍO
-               ============================================================ -->
+          <!-- 2 · EL PROBLEMA -->
           <section class="sc-caso-desafio">
             <div class="container">
               <div class="row">
                 <div class="col-12">
                   <div class="sc-caso-desafio-caja sc-rv">
-                    <!-- [DATOS DEL CASO] desafío -->
-                    <h2 class="sc-caso-h2">El desafío</h2>
+                    <h2 class="sc-caso-h2">El problema</h2>
+                    <!-- [DATOS DEL CASO] problema -->
                     <p>
-                      Vender un curso online suele terminar en trabajo manual: alguien cobra,
-                      revisa que el pago esté acreditado, da de alta al alumno y le manda los
-                      accesos. Cada venta cuesta tiempo y cada demora enfría al comprador, que
-                      ya pagó y todavía no puede entrar.
+                      Cada venta terminaba en trabajo manual. Revisar que el pago estuviera
+                      acreditado, crear el usuario y mandar los accesos por mail.
                     </p>
                     <p>
-                      La salida habitual son las plataformas de cursos con abono mensual, que
-                      cobran por alumno o por venta. El costo fijo crece justo cuando el negocio
-                      empieza a funcionar.
+                      Y el que compra a las once de la noche quiere entrar esa misma noche. Si
+                      espera hasta mañana, empieza a dudar de la compra.
+                    </p>
+                    <p>
+                      La otra opción eran las plataformas de cursos con abono mensual. Cobran por
+                      alumno, así que el costo sube cuando el negocio empieza a andar.
                     </p>
                     <!-- [/DATOS DEL CASO] -->
                   </div>
@@ -533,232 +579,203 @@
             </div>
           </section>
 
-          <!-- ============================================================
-               3 · LA SOLUCIÓN · diagrama de flujo
-               Los pasos se encienden en cascada al entrar en pantalla.
-               En teléfono el recorrido baja, desde 992px avanza a la derecha.
-               ============================================================ -->
+          <!-- 3 · CÓMO LO RESOLVIMOS -->
           <section class="sc-caso-flujo">
             <div class="container">
               <div class="sc-caso-flujo-cab sc-rv">
-                <!-- [DATOS DEL CASO] intro de la solución -->
                 <h2 class="sc-caso-h2">Cómo lo resolvimos</h2>
-                <p>Cuatro pasos que ocurren solos, en el orden en que los ve el alumno.</p>
+                <!-- [DATOS DEL CASO] intro -->
+                <p>Cuatro pasos encadenados. Los cuatro pasan solos.</p>
                 <!-- [/DATOS DEL CASO] -->
               </div>
 
-              <!-- [DATOS DEL CASO] pasos del flujo -->
+              <!-- [DATOS DEL CASO] pasos -->
               <ol class="sc-caso-pasos">
-
                 <li class="sc-caso-paso">
                   <span class="sc-caso-paso-ico" aria-hidden="true"><i class="tji-budget"></i></span>
                   <span class="sc-caso-paso-n">Paso 1</span>
-                  <h3 class="sc-caso-paso-t">Compra en la tienda</h3>
+                  <h3 class="sc-caso-paso-t">Compra el curso</h3>
                   <p class="sc-caso-paso-d">
-                    El alumno elige el curso y paga en Tiendanube, con los mismos medios de pago
-                    que ya usa para cualquier compra.
+                    Lo elige en la tienda y lo paga con tarjeta, transferencia o en cuotas, con
+                    los medios de pago que ya trae Tiendanube.
                   </p>
                 </li>
-
                 <li class="sc-caso-paso">
                   <span class="sc-caso-paso-ico" aria-hidden="true"><i class="tji-signal"></i></span>
                   <span class="sc-caso-paso-n">Paso 2</span>
-                  <h3 class="sc-caso-paso-t">La tienda avisa sola</h3>
+                  <h3 class="sc-caso-paso-t">La tienda da el aviso</h3>
                   <p class="sc-caso-paso-d">
-                    Apenas se acredita el pago se dispara un webhook: un aviso automático que un
-                    sistema le manda a otro en el momento exacto en que algo pasa.
+                    En cuanto el pago se acredita, la tienda manda un aviso automático con los
+                    datos de la compra. En la jerga se llama webhook.
                   </p>
                 </li>
-
                 <li class="sc-caso-paso">
                   <span class="sc-caso-paso-ico" aria-hidden="true"><i class="tji-gear"></i></span>
                   <span class="sc-caso-paso-n">Paso 3</span>
-                  <h3 class="sc-caso-paso-t">Make hace el trabajo</h3>
+                  <h3 class="sc-caso-paso-t">Make hace el alta</h3>
                   <p class="sc-caso-paso-d">
-                    Recibe el aviso, lee los datos de la compra y ejecuta en orden todos los pasos
-                    que antes hacía una persona.
+                    Recibe el aviso, ve qué curso compró y quién es, y ejecuta los pasos que
+                    antes hacía una persona a mano.
                   </p>
                 </li>
-
                 <li class="sc-caso-paso">
                   <span class="sc-caso-paso-ico" aria-hidden="true"><i class="tji-user"></i></span>
                   <span class="sc-caso-paso-n">Paso 4</span>
-                  <h3 class="sc-caso-paso-t">El alumno ya está adentro</h3>
+                  <h3 class="sc-caso-paso-t">Entra al aula</h3>
                   <p class="sc-caso-paso-d">
-                    Queda matriculado en el aula virtual y entra a ver su curso, sin esperar a que
-                    alguien lo habilite.
+                    Queda matriculado y puede empezar a cursar. Todo el circuito tarda menos que
+                    lo que la persona tarda en cerrar la pestaña.
                   </p>
                 </li>
-
               </ol>
               <!-- [/DATOS DEL CASO] -->
             </div>
           </section>
 
-          <!-- ============================================================
-               4 · QUÉ INCLUYE
-               ============================================================ -->
+          <!-- 4 · QUÉ INCLUYE -->
           <section class="sc-caso-incluye">
             <div class="container">
-              <div class="sc-rv">
-                <h2 class="sc-caso-h2">Qué incluye</h2>
-              </div>
+              <div class="sc-rv"><h2 class="sc-caso-h2">Qué incluye</h2></div>
 
               <!-- [DATOS DEL CASO] prestaciones -->
               <div class="sc-caso-grid">
-
                 <article class="sc-caso-card sc-rv">
                   <span class="sc-caso-card-ico" aria-hidden="true"><i class="tji-window"></i></span>
-                  <h3>Tienda y checkout</h3>
-                  <p>Catálogo de cursos con su ficha, su precio y un proceso de compra que el alumno ya conoce.</p>
+                  <h3>Tienda y proceso de compra</h3>
+                  <p>Cada curso con su ficha, su precio y un carrito que la gente ya sabe usar porque es el mismo de cualquier tienda.</p>
                 </article>
-
                 <article class="sc-caso-card sc-rv" data-rv-delay="60">
                   <span class="sc-caso-card-ico" aria-hidden="true"><i class="tji-budget"></i></span>
-                  <h3>Cobros integrados</h3>
-                  <p>Tarjeta, transferencia y cuotas con los medios de pago que ya trae la tienda.</p>
+                  <h3>Cobros</h3>
+                  <p>Tarjeta, transferencia y cuotas, con los medios de pago que ya vienen integrados en la plataforma.</p>
                 </article>
-
                 <article class="sc-caso-card sc-rv" data-rv-delay="120">
                   <span class="sc-caso-card-ico" aria-hidden="true"><i class="tji-gear"></i></span>
-                  <h3>Automatización</h3>
-                  <p>El circuito entre la venta y el alta del alumno corre solo, sin que nadie lo empuje.</p>
+                  <h3>El circuito automático</h3>
+                  <p>La conexión entre la venta y el alta del alumno, que es la parte que antes se hacía a mano.</p>
                 </article>
-
                 <article class="sc-caso-card sc-rv">
                   <span class="sc-caso-card-ico" aria-hidden="true"><i class="tji-computer"></i></span>
-                  <h3>Aula virtual propia</h3>
-                  <p>Los cursos viven en un sitio del cliente, con su marca. No en la plataforma de un tercero.</p>
+                  <h3>Aula propia</h3>
+                  <p>Los cursos viven en un sitio del cliente, con su marca y su dominio, no dentro de la plataforma de otro.</p>
                 </article>
-
                 <article class="sc-caso-card sc-rv" data-rv-delay="60">
                   <span class="sc-caso-card-ico" aria-hidden="true"><i class="tji-clock"></i></span>
-                  <h3>Acceso inmediato</h3>
-                  <p>El alumno entra apenas termina de pagar, a cualquier hora y cualquier día.</p>
+                  <h3>Acceso a cualquier hora</h3>
+                  <p>Un domingo a la madrugada funciona igual que un martes al mediodía. Nadie tiene que estar mirando.</p>
                 </article>
-
                 <article class="sc-caso-card sc-rv" data-rv-delay="120">
                   <span class="sc-caso-card-ico" aria-hidden="true"><i class="tji-growth"></i></span>
-                  <h3>Escala sin costo por alumno</h3>
-                  <p>Vender diez o vender mil cuesta el mismo trabajo, y no hay fee por inscripción.</p>
+                  <h3>Sin costo por alumno</h3>
+                  <p>Vender diez o vender mil cuesta el mismo trabajo, y no hay que pagar una comisión por cada inscripción.</p>
                 </article>
-
               </div>
               <!-- [/DATOS DEL CASO] -->
             </div>
           </section>
 
-          <!-- ============================================================
-               5 · RESULTADOS
-
-               ⚠ LAS TRES CIFRAS SON PLACEHOLDERS. Reemplazar [X], [0] y
-               [24/7] por los datos reales ANTES de publicar. El contador de
-               sc-caso.js solo anima si encuentra un número, así que mientras
-               digan [X] se muestran quietas y no rompen nada.
-               ============================================================ -->
+          <!-- 5 · LOS NÚMEROS
+               ⚠ Las tres primeras son placeholders. Reemplazar [X], [0] y
+               [24/7] por los datos reales antes de publicar el caso. El
+               contador solo anima si encuentra un número, así que mientras
+               digan [X] se quedan quietas sin romper nada. -->
           <section class="sc-caso-cifras">
             <div class="container">
               <div class="sc-caso-cifras-caja sc-rv">
-                <h2 class="sc-caso-h2">Qué cambió</h2>
+                <h2 class="sc-caso-h2">Los números</h2>
 
                 <!-- [DATOS DEL CASO] cifras -->
                 <div class="sc-caso-cifras-grid">
-
                   <div class="sc-caso-cifra">
                     <span class="sc-caso-cifra-n" data-contar>[X]</span>
-                    <p class="sc-caso-cifra-t">Minutos de trabajo manual ahorrados en cada venta.</p>
+                    <p class="sc-caso-cifra-t">Minutos de trabajo manual que se ahorran en cada venta.</p>
                   </div>
-
                   <div class="sc-caso-cifra">
                     <span class="sc-caso-cifra-n" data-contar>[0]</span>
-                    <p class="sc-caso-cifra-t">Matriculaciones hechas a mano desde que está andando.</p>
+                    <p class="sc-caso-cifra-t">Altas hechas a mano desde que quedó andando.</p>
                   </div>
-
                   <div class="sc-caso-cifra">
                     <span class="sc-caso-cifra-n">[24/7]</span>
-                    <p class="sc-caso-cifra-t">Ventas y accesos disponibles, sin que nadie esté atento.</p>
+                    <p class="sc-caso-cifra-t">Horario en que se puede comprar y entrar al curso.</p>
                   </div>
-
+                  <div class="sc-caso-cifra">
+                    <span class="sc-caso-cifra-n">$0</span>
+                    <p class="sc-caso-cifra-t">De abono mensual por usar una plataforma de cursos.</p>
+                  </div>
                 </div>
                 <!-- [/DATOS DEL CASO] -->
-
               </div>
             </div>
           </section>
 
-          <!-- ============================================================
-               6 · STACK
-               ============================================================ -->
+          <!-- 6 · CON QUÉ ESTÁ HECHO -->
           <section class="sc-caso-stack">
             <div class="container">
-              <div class="sc-rv">
-                <h2 class="sc-caso-h2">Con qué está hecho</h2>
-              </div>
+              <div class="sc-rv"><h2 class="sc-caso-h2">Con qué está hecho</h2></div>
 
-              <!-- [DATOS DEL CASO] stack -->
+              <!-- [DATOS DEL CASO] herramientas -->
               <ul class="sc-caso-stack-lista">
-
                 <li class="sc-caso-stack-item sc-rv">
                   <img src="assets/images/icons/tiendanube.png" alt="Logo de Tiendanube" width="40" height="40" loading="lazy">
-                  <span>
-                    <b>Tiendanube</b>
-                    <span>Catálogo, checkout y cobros</span>
-                  </span>
+                  <span><b>Tiendanube</b><span>La tienda, el carrito y los cobros</span></span>
                 </li>
-
                 <li class="sc-caso-stack-item sc-rv" data-rv-delay="60">
                   <img src="assets/images/icons/make.svg" alt="Logo de Make" width="40" height="40" loading="lazy">
-                  <span>
-                    <b>Make</b>
-                    <span>Conecta la venta con el alta del alumno</span>
-                  </span>
+                  <span><b>Make</b><span>Conecta la venta con el alta del alumno</span></span>
                 </li>
-
                 <li class="sc-caso-stack-item sc-rv" data-rv-delay="120">
                   <img src="assets/images/icons/wordpress.svg" alt="Logo de WordPress" width="40" height="40" loading="lazy">
-                  <span>
-                    <b>WordPress</b>
-                    <span>El aula virtual, con la marca del cliente</span>
-                  </span>
+                  <span><b>WordPress</b><span>El aula virtual, con la marca del cliente</span></span>
                 </li>
-
-                <li class="sc-caso-stack-item sc-rv">
-                  <img src="assets/images/icons/digitalocean.svg" alt="Logo de DigitalOcean" width="40" height="40" loading="lazy">
-                  <span>
-                    <b>DigitalOcean</b>
-                    <span>El servidor propio donde vive el aula</span>
-                  </span>
-                </li>
-
-                <li class="sc-caso-stack-item sc-rv" data-rv-delay="60">
-                  <span class="sc-caso-stack-ico" aria-hidden="true"><i class="tji-envelop"></i></span>
-                  <span>
-                    <b>SMTP dedicado</b>
-                    <span>Para que los mails del curso lleguen a la bandeja, no a spam</span>
-                  </span>
-                </li>
-
-                <li class="sc-caso-stack-item sc-rv" data-rv-delay="120">
-                  <img src="assets/images/icons/whatsapp.svg" alt="Logo de WhatsApp" width="40" height="40" loading="lazy">
-                  <span>
-                    <b>WhatsApp</b>
-                    <span>Avisos y soporte al alumno por donde ya escribe</span>
-                  </span>
-                </li>
-
               </ul>
               <!-- [/DATOS DEL CASO] -->
             </div>
           </section>
 
-          <!-- ============================================================
-               7 · CIERRE
-               ============================================================ -->
+          <!-- 7 · PREGUNTAS FRECUENTES -->
+          <section class="sc-caso-stack">
+            <div class="container">
+              <div class="sc-rv"><h2 class="sc-caso-h2">Preguntas frecuentes</h2></div>
+
+              <!-- [DATOS DEL CASO] preguntas -->
+              <dl class="sc-caso-faq sc-rv">
+                <div>
+                  <dt>¿Se pueden vender cursos online desde Tiendanube?</dt>
+                  <dd>Sí. El curso se carga como un producto más y se cobra con los medios de pago de la tienda. Lo que Tiendanube no hace es dar el acceso al aula, así que esa parte hay que conectarla con la plataforma donde están los contenidos.</dd>
+                </div>
+                <div>
+                  <dt>¿Hace falta pagar una plataforma de cursos todos los meses?</dt>
+                  <dd>No necesariamente. Se puede montar el aula sobre un sitio propio en WordPress con un plugin de cursos gratuito. Se paga el hosting y nada más, sin comisión por alumno ni por venta.</dd>
+                </div>
+                <div>
+                  <dt>¿Qué es un webhook, en criollo?</dt>
+                  <dd>Un aviso que un sistema le manda a otro en el momento exacto en que pasa algo. Cuando se acredita un pago, la tienda avisa sin que nadie tenga que entrar a mirar si hubo una venta.</dd>
+                </div>
+                <div>
+                  <dt>¿Cuánto tarda el alumno en tener acceso después de pagar?</dt>
+                  <dd>Segundos. El circuito se dispara con el pago acreditado y termina con el alumno matriculado, sin pasar por ninguna persona.</dd>
+                </div>
+                <div>
+                  <dt>¿Qué pasa si falla algún paso del circuito?</dt>
+                  <dd>Make guarda el registro de cada ejecución, así que se ve en qué punto se cortó y se puede volver a correr esa venta puntual sin tocar el resto.</dd>
+                </div>
+                <div>
+                  <dt>¿Sirve para otra cosa además de cursos?</dt>
+                  <dd>Sí. El mismo esquema funciona para cualquier venta que tenga que habilitar un acceso: membresías, descargas, suscripciones o altas en un sistema externo.</dd>
+                </div>
+              </dl>
+              <!-- [/DATOS DEL CASO] -->
+            </div>
+          </section>
+
+          <!-- 8 · CIERRE -->
           <section class="sc-caso-cta">
             <div class="container">
               <div class="sc-caso-cta-caja sc-rv">
-                <h2 class="sc-caso-h2">¿Querés automatizar tu negocio así?</h2>
-                <p>Contanos qué estás haciendo a mano hoy y te decimos qué se puede resolver solo.</p>
+                <!-- [DATOS DEL CASO] cierre -->
+                <h2 class="sc-caso-h2">¿Hay algo que estés haciendo a mano?</h2>
+                <p>Contanos cómo trabajás hoy y te decimos qué parte se puede automatizar.</p>
+                <!-- [/DATOS DEL CASO] -->
                 <a class="tj-primary-btn" href="contact.html" data-sc-modal>
                   <span class="btn-text"><span>Hablemos de tu caso</span></span>
                   <span class="btn-icon"><i class="tji-arrow-right-2"></i></span>
@@ -767,39 +784,26 @@
             </div>
           </section>
 
-          <!-- ============================================================
-               8 · NAVEGACIÓN ENTRE CASOS
-
-               Hoy este es el único caso publicado, así que los dos enlaces
-               están apagados con la clase is-vacio. Al sumar los casos de
-               ads: sacar is-vacio, poner el href real y el título.
-               ============================================================ -->
+          <!-- 9 · NAVEGACIÓN -->
           <nav class="sc-caso-nav" aria-label="Navegación entre casos">
             <div class="container">
               <div class="sc-caso-nav-grid">
-
-                <!-- [DATOS DEL CASO] anterior -->
-                <span class="sc-caso-nav-link is-vacio">
+                <!-- [DATOS DEL CASO] navegación -->
+                <a class="sc-caso-nav-link" href="caso-tienda-a-medida.html">
                   <small>Caso anterior</small>
-                  <b>Este es el primero</b>
-                </span>
-                <!-- [/DATOS DEL CASO] -->
-
-                <!-- [DATOS DEL CASO] siguiente -->
+                  <b>Una tienda con el menú programado a medida</b>
+                </a>
                 <a class="sc-caso-nav-link is-next" href="caso-retail-rubro-restringido.html">
                   <small>Caso siguiente</small>
-                  <b>Retail en un rubro con restricciones</b>
+                  <b>Google Ads en un rubro con restricciones</b>
                 </a>
                 <!-- [/DATOS DEL CASO] -->
-
               </div>
             </div>
           </nav>
 
         </div>
         <!-- ================= fin del caso ================= -->
-
-
 
       </main>
 
