@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="es">
+<html class="no-js" lang="es-AR">
 
 <head>
   <meta charset="utf-8">
@@ -10,10 +10,25 @@
 
   <!-- Site Title -->
   <link rel="canonical" href="https://studiocomplex.com.ar/caso-plataforma-de-cursos.html">
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Studio Complex">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Plataforma de cursos online con acceso automático - Caso de éxito - Studio Complex">
+  <meta property="og:description" content="El alumno paga el curso en la tienda y entra al aula sin que nadie lo habilite. Cómo conectamos la venta con la matriculación.">
+  <meta property="og:url" content="https://studiocomplex.com.ar/caso-plataforma-de-cursos.html">
+  <meta property="og:image" content="https://studiocomplex.com.ar/assets/images/og-studio-complex-v2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Plataforma de cursos online con acceso automático - Caso de éxito - Studio Complex">
+  <meta name="twitter:description" content="El alumno paga el curso en la tienda y entra al aula sin que nadie lo habilite. Cómo conectamos la venta con la matriculación.">
+  <meta name="twitter:image" content="https://studiocomplex.com.ar/assets/images/og-studio-complex-v2.png">
   <title>Plataforma de cursos online con acceso automático - Caso de éxito - Studio Complex</title>
 
   <!-- Place favicon.ico in the root directory -->
-  <link rel="shortcut icon" type="image/x-icon" href="assets/images/fav.png">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/favicon-96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192.png">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
 
   <!-- CSS here -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -23,7 +38,7 @@
   <link rel="stylesheet" href="assets/css/venobox.min.css">
   <link rel="stylesheet" href="assets/css/meanmenu.css">
   <link rel="stylesheet" href="assets/css/main.css?v=202609300856">
-  <link rel="stylesheet" href="assets/css/sc-legal.css?v=202609300856">
+  <link rel="stylesheet" href="assets/css/sc-legal.css?v=202610081800">
   <!-- Chat flotante: oculto a pedido. Para reactivarlo, sacar los comentarios de estas dos lineas (esta y la del script al final). -->
   <!-- <link rel="stylesheet" href="assets/css/sc-chat.css?v=202609300856"> -->
   <link rel="stylesheet" href="assets/css/sc-caso.css?v=202609300856">
@@ -128,6 +143,60 @@
     ]
   }
   </script>
+<!-- Analytics: GA4 + Clarity (production host only). Solo cargan si la persona acepta en el aviso de cookies (sc-cookies.js). -->
+<script>
+  (function () {
+    if (!/(^|\.)studiocomplex\.com\.ar$/.test(location.hostname)) return;
+    var cargado = false;
+    window.scCargarAnalitica = function () {
+      if (cargado) return;
+      cargado = true;
+      var g = document.createElement("script");
+      g.async = true;
+      g.src = "https://www.googletagmanager.com/gtag/js?id=G-4B82XMYNSR";
+      document.head.appendChild(g);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag("js", new Date());
+      gtag("config", "G-4B82XMYNSR");
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "yrfrc3lgnm");
+    };
+    try {
+      if (window.localStorage.getItem("sc-consent") === "granted") window.scCargarAnalitica();
+    } catch (e) {}
+  })();
+</script>
+  <!-- Migas de pan (schema): las genera tools/seo-tags.py -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://studiocomplex.com.ar/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Trabajos realizados",
+      "item": "https://studiocomplex.com.ar/project.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Plataforma de cursos online con acceso automático",
+      "item": "https://studiocomplex.com.ar/caso-plataforma-de-cursos.html"
+    }
+  ]
+}
+  </script>
 </head>
 
 <body>
@@ -155,9 +224,10 @@
   <!-- Va fuera de #smooth-content: ese contenedor tiene will-change: transform
        y rompe cualquier position: fixed que quede adentro. -->
   <div class="sc-cookies" id="sc-cookies" role="region" aria-label="Aviso de cookies" hidden>
-    <p>Este sitio no usa cookies de seguimiento. Solo recuerda si preferís el modo claro u oscuro. <a href="cookies.html">Cómo funciona</a></p>
+    <p>Usamos Google Analytics y Microsoft Clarity para medir cómo se usa el sitio y mejorarlo. Solo se activan si las aceptás. Además, recordamos si preferís el modo claro u oscuro. <a href="cookies.html">Cómo funciona</a></p>
     <div class="sc-cookies-acciones">
-      <button type="button" class="sc-cookies-ok">Entendido</button>
+      <button type="button" class="sc-cookies-ok">Aceptar</button>
+      <button type="button" class="sc-cookies-no">Rechazar</button>
     </div>
   </div>
   <!-- end: Aviso de cookies -->
@@ -253,10 +323,8 @@
         <h5 class="hamburger-title">Síguenos</h5>
         <div class="social-links style-2">
           <ul>
-            <li><a href="https://www.facebook.com/" target="_blank"><i class="tji-facebook"></i></a></li>
-            <li><a href="https://www.linkedin.com/" target="_blank"><i class="tji-linkedin"></i></a></li>
-            <li><a href="https://www.instagram.com/" target="_blank"><i class="tji-instagram"></i></a></li>
-            <li><a href="https://x.com/" target="_blank"><i class="tji-x-twitter"></i></a></li>
+            <li><a href="https://www.facebook.com/share/1Z2zPaB9vT/" target="_blank"><i class="tji-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/studiocs.arg/" target="_blank"><i class="tji-instagram"></i></a></li>
           </ul>
         </div>
       </div>
@@ -307,10 +375,8 @@
         <h5 class="hamburger-title">Síguenos</h5>
         <div class="social-links style-2">
           <ul>
-            <li><a href="https://www.facebook.com/" target="_blank"><i class="tji-facebook"></i></a></li>
-            <li><a href="https://www.linkedin.com/" target="_blank"><i class="tji-linkedin"></i></a></li>
-            <li><a href="https://www.instagram.com/" target="_blank"><i class="tji-instagram"></i></a></li>
-            <li><a href="https://x.com/" target="_blank"><i class="tji-x-twitter"></i></a></li>
+            <li><a href="https://www.facebook.com/share/1Z2zPaB9vT/" target="_blank"><i class="tji-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/studiocs.arg/" target="_blank"><i class="tji-instagram"></i></a></li>
           </ul>
         </div>
       </div>
@@ -540,6 +606,12 @@
                     <li>Automatización</li>
                     <li>E-learning</li>
                   </ul>
+                  <div class="sc-caso-vivo sc-rv" data-rv-delay="240">
+                    <a class="tj-primary-btn" href="https://ceramicaseloisasoria.com.ar" target="_blank" rel="noopener noreferrer" aria-label="Ver sitio en vivo (se abre en una pestaña nueva)">
+                      <span class="btn-text"><span>Ver sitio en vivo</span></span>
+                      <span class="btn-icon"><i class="tji-arrow-right-2" aria-hidden="true"></i></span>
+                    </a>
+                  </div>
                   <!-- [/DATOS DEL CASO] -->
                 </div>
 
@@ -870,10 +942,8 @@
                     <div class="social-links cta-social">
                       <span class="title">Seguinos:</span>
                       <ul>
-                        <li><a href="https://www.facebook.com/" target="_blank"><i class="tji-facebook"></i></a></li>
-                        <li><a href="https://www.instagram.com/" target="_blank"><i class="tji-instagram"></i></a></li>
-                        <li><a href="https://www.x.com/" target="_blank"><i class="tji-x-twitter"></i></a></li>
-                        <li><a href="https://www.linkedin.com/" target="_blank"><i class="tji-linkedin"></i></a></li>
+                        <li><a href="https://www.facebook.com/share/1Z2zPaB9vT/" target="_blank"><i class="tji-facebook"></i></a></li>
+                        <li><a href="https://www.instagram.com/studiocs.arg/" target="_blank"><i class="tji-instagram"></i></a></li>
                       </ul>
                     </div>
                   </div>
@@ -1064,7 +1134,8 @@
   <!-- Interruptor de tema DESACTIVADO el 23/9 (ver nota en el head) -->
   <!-- <script src="assets/js/sc-theme.js?v=202609300856"></script> -->
   <script src="assets/js/sc-buscador.js?v=202609300856"></script>
-  <script src="assets/js/sc-cookies.js?v=202609300856"></script>
+  <script src="assets/js/sc-cookies.js?v=202610081800"></script>
+  <script src="assets/js/sc-eventos.js?v=202610081900"></script>
 </body>
 
 </html>
