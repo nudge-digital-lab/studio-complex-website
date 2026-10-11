@@ -1,12 +1,15 @@
 /* ==========================================================================
-   Studio Complex · Aviso de cookies
+   Studio Complex · Aviso de cookies y consentimiento de analítica
    --------------------------------------------------------------------------
-   Muestra la barra de abajo una sola vez. Cuando la persona toca "Entendido"
-   se guarda esa marca en el navegador y no vuelve a aparecer.
+   Pregunta una sola vez si se acepta la analítica (Google Analytics y
+   Microsoft Clarity). La decisión se guarda en el navegador con la clave
+   "sc-consent" ("granted" o "denied"). Hasta que no se acepta, esas
+   herramientas no se cargan: el snippet de cada <head> expone
+   window.scCargarAnalitica y este archivo la llama solo al aceptar.
 
-   Lo único que se guarda es que el aviso ya se cerró. No hay analítica ni
-   pixeles en el sitio: si mañana se suman, este archivo es el lugar donde
-   enganchar el consentimiento antes de que carguen.
+   Desde cookies.html, un botón con data-sc-cookies-abrir permite cambiar la
+   decisión. Si se rechaza después de haber aceptado, se corta la medición en
+   el momento y el cambio rige por completo desde la próxima página.
 
    No usa requestAnimationFrame: en algunos navegadores del equipo no llega a
    dispararse y el aviso quedaba invisible. Se fuerza un reflow, igual que en
@@ -16,41 +19,70 @@
 (function () {
   "use strict";
 
-  var CLAVE = "sc-cookies-ok";
+  var CLAVE = "sc-consent";
+  var GA_ID = "G-4B82XMYNSR";
+
+  function leer() {
+    try {
+      return window.localStorage.getItem(CLAVE);
+    } catch (e) {
+      return null; // almacenamiento bloqueado: se pregunta igual
+    }
+  }
+
+  function guardar(valor) {
+    try {
+      window.localStorage.setItem(CLAVE, valor);
+    } catch (e) {
+      // Si no se puede guardar, el aviso vuelve en la próxima visita.
+    }
+  }
+
+  function aplicar(valor) {
+    if (valor === "granted") {
+      if (typeof window.scCargarAnalitica === "function") window.scCargarAnalitica();
+      if (window.clarity) window.clarity("consent", true);
+    } else {
+      window["ga-disable-" + GA_ID] = true;
+      if (window.clarity) window.clarity("consent", false);
+    }
+  }
 
   function iniciar() {
     var aviso = document.getElementById("sc-cookies");
     if (!aviso) return;
 
-    var yaCerrado = false;
-    try {
-      yaCerrado = window.localStorage.getItem(CLAVE) === "1";
-    } catch (e) {
-      // Navegación privada con almacenamiento bloqueado: se muestra igual.
-      yaCerrado = false;
+    function mostrar() {
+      aviso.hidden = false;
+      document.body.classList.add("sc-cookies-visible");
+      void aviso.offsetHeight; // fuerza el reflow para que la transición corra
+      aviso.classList.add("is-visible");
     }
-    if (yaCerrado) return;
 
-    aviso.hidden = false;
-    document.body.classList.add("sc-cookies-visible");
-    void aviso.offsetHeight; // fuerza el reflow para que la transición corra
-    aviso.classList.add("is-visible");
-
-    var boton = aviso.querySelector(".sc-cookies-ok");
-    if (!boton) return;
-
-    boton.addEventListener("click", function () {
+    function cerrar() {
       aviso.classList.remove("is-visible");
       document.body.classList.remove("sc-cookies-visible");
-      try {
-        window.localStorage.setItem(CLAVE, "1");
-      } catch (e) {
-        // Si no se puede guardar, el aviso vuelve en la próxima visita.
-      }
       window.setTimeout(function () {
         aviso.hidden = true;
       }, 350);
+    }
+
+    function decidir(valor) {
+      guardar(valor);
+      aplicar(valor);
+      cerrar();
+    }
+
+    var si = aviso.querySelector(".sc-cookies-ok");
+    var no = aviso.querySelector(".sc-cookies-no");
+    if (si) si.addEventListener("click", function () { decidir("granted"); });
+    if (no) no.addEventListener("click", function () { decidir("denied"); });
+
+    document.querySelectorAll("[data-sc-cookies-abrir]").forEach(function (el) {
+      el.addEventListener("click", mostrar);
     });
+
+    if (leer() === null) mostrar();
   }
 
   if (document.readyState === "loading") {
@@ -95,6 +127,14 @@
     document.querySelectorAll(".subscribe-form form").forEach(function (form) {
       var email = form.querySelector('input[name="email"]');
       if (!email) return;
+
+      // Consent notice under the form (no HTML edit needed in each page).
+      var aviso = document.createElement("small");
+      aviso.className = "sc-newsletter-aviso";
+      aviso.textContent =
+        "Al suscribirte aceptás recibir novedades de Studio Complex. Guardamos tu email para eso y podés pedir la baja cuando quieras escribiéndonos a hola@studiocomplex.com.ar.";
+      aviso.style.cssText = "display:block;margin-top:8px;font-size:12px;line-height:1.4;opacity:.7";
+      form.appendChild(aviso);
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -143,4 +183,56 @@
   } else {
     iniciar();
   }
+})();
+
+/* Origen de campaña.
+
+   Si la persona llega desde un anuncio o un link con parámetros de campaña
+   (utm_*, gclid de Google Ads, fbclid de Meta), se guarda en sessionStorage:
+   se borra al cerrar la pestaña y no sale del navegador. Solo viaja a nuestro
+   servidor si envía el formulario de contacto (contact-form.js llama a
+   window.scOrigenCampana). Una visita sin parámetros no pisa el dato guardado,
+   así que navegar por el sitio no pierde la campaña. */
+(function () {
+  "use strict";
+
+  var CLAVE = "sc-origen";
+  var PARAMS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid"];
+
+  function guardar() {
+    var query;
+    try {
+      query = new URLSearchParams(window.location.search);
+    } catch (e) {
+      return;
+    }
+    var origen = {};
+    var hay = false;
+    PARAMS.forEach(function (nombre) {
+      var valor = (query.get(nombre) || "").trim().slice(0, 200);
+      if (valor) {
+        origen[nombre] = valor;
+        hay = true;
+      }
+    });
+    if (!hay) return;
+    // Solo la ruta de la página: la URL completa puede traer datos de más.
+    origen.landing_page = window.location.pathname;
+    try {
+      window.sessionStorage.setItem(CLAVE, JSON.stringify(origen));
+    } catch (e) {
+      // Almacenamiento bloqueado: el formulario se envía igual, sin campaña.
+    }
+  }
+
+  window.scOrigenCampana = function () {
+    try {
+      var guardado = JSON.parse(window.sessionStorage.getItem(CLAVE) || "{}");
+      return guardado && typeof guardado === "object" ? guardado : {};
+    } catch (e) {
+      return {};
+    }
+  };
+
+  guardar();
 })();
