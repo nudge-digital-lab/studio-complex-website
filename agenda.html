@@ -6,7 +6,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-    content="Reservá 30 minutos con nosotros. Entendemos tu negocio, te decimos qué conviene hacer primero y te pasamos una propuesta concreta. Sin cargo.">
+    content="Reservá 20 minutos con nosotros. Entendemos tu negocio, te decimos qué conviene hacer primero y te pasamos una propuesta concreta. Sin cargo.">
 
   <!-- Site Title -->
   <link rel="canonical" href="https://studiocomplex.com.ar/agenda.html">
@@ -444,7 +444,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="sec-heading text-center">
-                  <span class="sub-title tj-fade-anim">30 minutos, sin cargo</span>
+                  <span class="sub-title tj-fade-anim">20 minutos, sin cargo</span>
                   <h2 class="sec-title tj-split-text-1">Elegí el Día y la Hora que te Queden Bien</h2>
                 </div>
               </div>
@@ -459,7 +459,7 @@
                   </div>
                   <div class="sc-agenda-paso">
                     <span class="sc-agenda-num">Durante</span>
-                    <p>Media hora por videollamada. Entendemos el negocio y te decimos qué conviene hacer primero.</p>
+                    <p>Veinte minutos por videollamada. Entendemos el negocio y te decimos qué conviene hacer primero.</p>
                   </div>
                   <div class="sc-agenda-paso">
                     <span class="sc-agenda-num">Después</span>
@@ -476,7 +476,7 @@
                     <span class="sc-agenda-icono"><i class="tji-calendar"></i></span>
                     <h3 class="sc-agenda-titulo">Ver los horarios disponibles</h3>
                     <p class="sc-agenda-desc">
-                      El calendario lo maneja Calendly. Lo cargamos solo cuando lo pedís,
+                      El calendario es de Google. Lo cargamos solo cuando lo pedís,
                       así no dejamos cookies de terceros en tu navegador sin avisarte.
                     </p>
                     <button type="button" class="tj-primary-btn" id="sc-agenda-abrir">
@@ -575,7 +575,7 @@
                     <div class="footer-contact-info">
                       <div class="contact-item">
                         <div class="sc-footer-cta">
-                          <p class="sc-footer-cta-gancho">Media hora y te decimos por dónde empezar.</p>
+                          <p class="sc-footer-cta-gancho">Veinte minutos y te decimos por dónde empezar.</p>
                           <a class="sc-footer-agenda" href="agenda.html">
                             <span class="sc-footer-agenda-txt">Agendá una reunión</span>
                             <span class="sc-footer-agenda-ico" aria-hidden="true"><i class="tji-calendar"></i></span>
@@ -648,13 +648,13 @@
   <!-- Interruptor de tema DESACTIVADO el 23/9 (ver nota en el head) -->
   <!-- <script src="assets/js/sc-theme.js?v=202609300856"></script> -->
   <script>
-    /* Calendly se carga a pedido: el script de ellos deja cookies de
-       terceros, y no corresponde ponerlas antes de que la persona quiera
-       ver el calendario.
-       PENDIENTE: reemplazar por la URL real de Calendly de Studio Complex.
-       La cuenta conectada en la agencia es la de nudge, que es otra empresa. */
+    /* La agenda es una página de reserva de Google Calendar (cuenta
+       jorge.studiocomplex@gmail.com, "Reunión express · Studio Complex").
+       Se carga a pedido: el iframe de Google deja cookies de terceros, y no
+       corresponde ponerlas antes de que la persona quiera ver el calendario.
+       Horarios, duración y preguntas se cambian desde Google Calendar, no acá. */
     (function () {
-      var URL_CALENDLY = "https://calendly.com/studio-complex/reunion-inicial";
+      var URL_AGENDA = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0foyMjjNQxgj8yfYuw3dTWyg-XiiwLcY57dJZBDvPSCJQaicSGId-ZTK6b-LvxE4nk7jRpc5Ck?gv=true";
 
       var boton = document.getElementById("sc-agenda-abrir");
       var previa = document.getElementById("sc-agenda-previa");
@@ -662,23 +662,14 @@
       if (!boton || !previa || !caja) return;
 
       boton.addEventListener("click", function () {
-        var tema = document.documentElement.getAttribute("data-theme") === "light" ? "ffffff" : "10151c";
-        var widget = document.createElement("div");
-        widget.className = "calendly-inline-widget";
-        widget.style.minWidth = "320px";
-        widget.style.height = "700px";
-        widget.setAttribute(
-          "data-url",
-          URL_CALENDLY + "?hide_gdpr_banner=1&background_color=" + tema + "&primary_color=f2801e"
-        );
-        caja.appendChild(widget);
+        var marco = document.createElement("iframe");
+        marco.src = URL_AGENDA;
+        marco.title = "Reservá una reunión express con Studio Complex";
+        marco.className = "sc-agenda-iframe";
+        marco.setAttribute("frameborder", "0");
+        caja.appendChild(marco);
         caja.hidden = false;
         previa.hidden = true;
-
-        var s = document.createElement("script");
-        s.src = "https://assets.calendly.com/assets/external/widget.js";
-        s.async = true;
-        document.body.appendChild(s);
       });
     })();
   </script>

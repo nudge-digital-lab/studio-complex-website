@@ -45,7 +45,7 @@
     { t: "Sobre Nosotros", d: "Quiénes somos y cómo nacimos", u: "about.html", k: "nosotros equipo empresa quienes" },
     { t: "Equipo", d: "Las personas de Studio Complex", u: "team.html", k: "equipo personas jorge sebastian" },
     { t: "Preguntas Frecuentes", d: "Plazos, precios y cómo trabajamos", u: "faq.html", k: "preguntas faq dudas" },
-    { t: "Agendá una reunión", d: "Media hora sin cargo", u: "agenda.html", k: "reunion agenda turno calendly llamada" },
+    { t: "Agendá una reunión", d: "Veinte minutos sin cargo", u: "agenda.html", k: "reunion agenda turno calendly llamada" },
     { t: "Contacto", d: "Escribinos", u: "contact.html", k: "contacto mail email telefono whatsapp" }
   ];
 
