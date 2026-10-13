@@ -1,4 +1,6 @@
-/* Portada 3D del caso "ecosistema": bases isométricas conectadas a un centro.
+/* Escena 3D del caso "simulador de financiación": ficha, catálogo y financieras
+   entran al simulador (cubo central); salen la cuota, la consulta a WhatsApp y la
+   fila de la planilla. Basada en la escena de assets/js/sc-ecosistema.js.
    Three.js r128 (assets/js/three.r128.min.js). Marcado: #sc-eco-stage > canvas#sc-eco-scene + #sc-eco-labels. */
 (function () {
   var stage = document.getElementById('sc-eco-stage');
@@ -65,79 +67,89 @@
     x.fillStyle = g; x.fillRect(0, 0, w, h);
   }, true);
 
-  var webTex = tex(512, 320, function (x, w, h) {
+  function moto2d(x, X, Y, s, c) {
+    // silueta de moto para las texturas
+    x.save(); x.translate(X, Y); x.scale(s, s);
+    x.lineWidth = 7; x.strokeStyle = '#1b232c';
+    x.beginPath(); x.arc(-46, 22, 22, 0, 7); x.stroke(); x.beginPath(); x.arc(46, 22, 22, 0, 7); x.stroke();
+    x.fillStyle = c; x.beginPath(); x.moveTo(-30, -6); x.lineTo(8, -14); x.lineTo(30, -4); x.lineTo(8, 10); x.lineTo(-24, 10); x.closePath(); x.fill();
+    x.fillStyle = '#1b232c'; rr(x, -40, -18, 34, 9, 4); x.fill();
+    x.lineWidth = 5; x.beginPath(); x.moveTo(30, -4); x.lineTo(46, 22); x.moveTo(26, -22); x.lineTo(34, -2); x.stroke();
+    x.fillStyle = '#5b6672'; rr(x, -16, 6, 26, 16, 4); x.fill();
+    x.restore();
+  }
+  var fichaTex = tex(512, 320, function (x, w, h) {
     x.fillStyle = '#f3f5f7'; x.fillRect(0, 0, w, h);
     x.fillStyle = '#ffffff'; x.fillRect(0, 0, w, 44);
-    x.fillStyle = '#F2801E'; rr(x, 22, 13, 18, 18, 5); x.fill();
-    x.fillStyle = '#1b232c'; x.font = '700 17px ' + SANS; x.fillText('Studio', 48, 28);
+    x.fillStyle = '#1b232c'; x.font = '800 17px ' + SANS; x.fillText('MOTOS', 22, 28);
     x.fillStyle = '#c4cbd2'; [300, 350, 400].forEach(function (X) { rr(x, X, 18, 38, 8, 4); x.fill(); });
-    x.fillStyle = '#F2801E'; rr(x, 448, 12, 46, 20, 10); x.fill();
-    var g = x.createLinearGradient(0, 60, w, 160); g.addColorStop(0, '#1b232c'); g.addColorStop(1, '#2b3743');
-    x.fillStyle = g; rr(x, 20, 60, w - 40, 112, 12); x.fill();
-    x.fillStyle = '#ffffff'; rr(x, 40, 86, 220, 16, 8); x.fill(); rr(x, 40, 110, 160, 16, 8); x.fill();
-    x.fillStyle = '#F2801E'; rr(x, 40, 138, 96, 22, 11); x.fill();
-    x.fillStyle = '#F2801E'; x.globalAlpha = .85; x.beginPath(); x.arc(400, 116, 38, 0, 7); x.fill(); x.globalAlpha = 1;
-    for (var i = 0; i < 3; i++) {
-      var X = 20 + i * 160;
-      x.fillStyle = '#ffffff'; rr(x, X, 186, 152, 116, 10); x.fill();
-      x.fillStyle = i === 1 ? '#fde3cc' : '#e3e8ed'; rr(x, X + 10, 196, 132, 56, 7); x.fill();
-      x.fillStyle = '#c4cbd2'; rr(x, X + 10, 262, 100, 9, 4); x.fill(); rr(x, X + 10, 278, 70, 9, 4); x.fill();
-    }
+    x.fillStyle = '#ffffff'; rr(x, 18, 58, 236, 248, 12); x.fill();
+    x.fillStyle = '#eef1f4'; rr(x, 30, 70, 212, 168, 10); x.fill();
+    moto2d(x, 136, 150, 1.25, '#F2801E');
+    x.fillStyle = '#c4cbd2'; [0, 1, 2].forEach(function (i) { rr(x, 30 + i * 74, 250, 64, 44, 7); x.fill(); });
+    x.fillStyle = '#1b232c'; x.font = '700 21px ' + SANS; x.fillText('Moto 250 cc', 272, 88);
+    x.fillStyle = '#8a939c'; x.font = '500 13px ' + SANS; x.fillText('0 km · Entrega inmediata', 272, 110);
+    x.fillStyle = '#1b232c'; x.font = '800 30px ' + SANS; x.fillText('$ 4.850.000', 272, 156);
+    x.fillStyle = '#e3e8ed'; rr(x, 272, 182, 222, 44, 9); x.fill();
+    x.fillStyle = '#6d7a87'; x.font = '700 13px ' + SANS; x.fillText('AGREGAR AL CARRITO', 306, 209);
+    x.fillStyle = '#F2801E'; rr(x, 272, 238, 222, 48, 9); x.fill();
+    x.fillStyle = '#ffffff'; x.font = '800 15px ' + SANS; x.fillText('FINANCIÁ ESTA MOTO →', 292, 268);
   });
-  var adTex = tex(512, 320, function (x, w, h) {
-    x.fillStyle = '#ffffff'; x.fillRect(0, 0, w, h);
-    x.fillStyle = '#F2801E'; x.beginPath(); x.arc(34, 30, 14, 0, 7); x.fill();
-    x.fillStyle = '#1b232c'; x.font = '700 18px ' + SANS; x.fillText('Studio Complex', 58, 28);
-    x.fillStyle = '#8a939c'; x.font = '500 13px ' + SANS; x.fillText('Patrocinado', 58, 45);
-    var g = x.createLinearGradient(0, 62, 0, 228); g.addColorStop(0, '#ffb26b'); g.addColorStop(1, '#F2801E');
-    x.fillStyle = g; x.fillRect(0, 62, w, 166);
-    x.fillStyle = 'rgba(255,255,255,.92)'; x.font = '800 64px ' + SANS; x.fillText('-30%', 28, 168);
-    x.fillStyle = '#1b232c'; rr(x, 330, 90, 150, 110, 14); x.fill();
-    x.fillStyle = '#F2801E'; rr(x, 346, 106, 118, 58, 8); x.fill();
-    x.fillStyle = '#ffffff'; rr(x, 346, 174, 80, 10, 5); x.fill();
-    x.fillStyle = '#1b232c'; x.font = '700 19px ' + SANS; x.fillText('Tu tienda online lista', 24, 266);
-    x.fillStyle = '#8a939c'; x.font = '500 14px ' + SANS; x.fillText('studiocomplex.com.ar', 24, 292);
-    x.fillStyle = '#F2801E'; rr(x, 372, 250, 116, 46, 23); x.fill();
-    x.fillStyle = '#ffffff'; x.font = '700 17px ' + SANS; x.fillText('Ver más', 398, 279);
+  var cuotaTex = tex(512, 300, function (x, w, h) {
+    x.fillStyle = '#10151c'; x.fillRect(0, 0, w, h);
+    x.fillStyle = '#1b232c'; x.fillRect(0, 0, w, 44);
+    x.fillStyle = '#F2801E'; rr(x, 16, 15, 14, 14, 4); x.fill();
+    x.fillStyle = '#e8ecef'; x.font = '700 15px ' + SANS; x.fillText('Simulador de financiación', 40, 28);
+    x.fillStyle = '#8a939c'; x.font = '600 15px ' + SANS; x.fillText('Cuota estimada · Financiera A', 30, 86);
+    x.fillStyle = '#ffffff'; x.font = '800 64px ' + SANS; x.fillText('$ 350.000', 28, 158);
+    x.fillStyle = '#F2801E'; x.font = '800 34px ' + SANS; x.fillText('× 12', 356, 156);
+    x.fillStyle = '#1b232c'; rr(x, 28, 186, 220, 40, 8); x.fill(); rr(x, 262, 186, 222, 40, 8); x.fill();
+    x.fillStyle = '#c2cad2'; x.font = '600 14px ' + SANS; x.fillText('Monto  $ 3.000.000', 42, 211); x.fillText('Financiera A ▾', 278, 211);
+    x.fillStyle = '#25D366'; rr(x, 28, 240, 456, 42, 9); x.fill();
+    x.fillStyle = '#0b141a'; x.font = '800 14px ' + SANS; x.fillText('ENVIAR CONSULTA POR WHATSAPP', 118, 266);
   });
   var chatTex = tex(256, 512, function (x, w, h) {
     x.fillStyle = '#0b141a'; x.fillRect(0, 0, w, h);
     x.fillStyle = '#1f2c34'; x.fillRect(0, 0, w, 64);
     x.fillStyle = '#25D366'; x.beginPath(); x.arc(32, 34, 16, 0, 7); x.fill();
-    x.fillStyle = '#e9edef'; x.font = '700 15px ' + SANS; x.fillText('Lucía', 58, 30);
+    x.fillStyle = '#e9edef'; x.font = '700 15px ' + SANS; x.fillText('Ventas', 58, 30);
     x.fillStyle = '#8696a0'; x.font = '500 11px ' + SANS; x.fillText('en línea', 58, 47);
-    var b = [[0, 92, 150, 46], [1, 152, 170, 64], [0, 230, 120, 40], [1, 284, 180, 46], [0, 344, 160, 64], [1, 422, 110, 40]];
-    b.forEach(function (q) {
-      var right = q[0] === 1, W = q[2], X = right ? w - W - 14 : 14;
-      x.fillStyle = right ? '#005c4b' : '#202c33'; rr(x, X, q[1], W, q[3], 10); x.fill();
-      x.fillStyle = right ? '#bfe9dc' : '#9fb0b9';
-      rr(x, X + 12, q[1] + 13, W - 30, 8, 4); x.fill();
-      if (q[3] > 44) { rr(x, X + 12, q[1] + 29, W - 60, 8, 4); x.fill(); }
-    });
+    x.fillStyle = '#202c33'; rr(x, 12, 84, 216, 186, 10); x.fill();
+    x.fillStyle = '#25D366'; x.font = '700 13px ' + SANS; x.fillText('Consulta de financiación', 24, 108);
+    x.fillStyle = '#e9edef'; x.font = '500 13px ' + SANS;
+    ['Moto: 250 cc', 'Monto: $ 3.000.000', 'Financiera A · 12 cuotas', 'Cuota: $ 350.000', 'Juan · 11 5555 5555'].forEach(function (t, i) { x.fillText(t, 24, 136 + i * 26); });
+    x.fillStyle = '#005c4b'; rr(x, 84, 288, 158, 46, 10); x.fill();
+    x.fillStyle = '#bfe9dc'; rr(x, 96, 302, 120, 8, 4); x.fill(); rr(x, 96, 318, 80, 8, 4); x.fill();
+    x.fillStyle = '#202c33'; rr(x, 12, 350, 150, 40, 10); x.fill();
+    x.fillStyle = '#9fb0b9'; rr(x, 24, 366, 110, 8, 4); x.fill();
   });
-  var kanbanTex = tex(512, 336, function (x, w, h) {
-    x.fillStyle = '#10151c'; x.fillRect(0, 0, w, h);
-    x.fillStyle = '#1b232c'; x.fillRect(0, 0, w, 40);
-    x.fillStyle = '#F2801E'; rr(x, 16, 13, 14, 14, 4); x.fill();
-    x.fillStyle = '#e8ecef'; x.font = '700 15px ' + SANS; x.fillText('CRM · Oportunidades', 40, 26);
-    var cols = ['NUEVO', 'EN CURSO', 'GANADO'], counts = [3, 2, 2];
-    cols.forEach(function (c, i) {
-      var X = 14 + i * 166;
-      x.fillStyle = '#151d26'; rr(x, X, 52, 152, 272, 10); x.fill();
-      x.fillStyle = i === 2 ? '#F2801E' : '#8a939c'; x.font = '700 12px ' + SANS; x.fillText(c, X + 12, 74);
-      for (var k = 0; k < counts[i]; k++) {
-        var Y = 88 + k * 76, hot = i === 2 && k === 0;
-        x.fillStyle = hot ? '#F2801E' : '#243040'; rr(x, X + 10, Y, 132, 64, 8); x.fill();
-        x.fillStyle = hot ? '#ffffff' : '#c2cad2'; rr(x, X + 22, Y + 14, 84, 9, 4); x.fill();
-        x.fillStyle = hot ? '#ffe2c8' : '#6d7a87'; rr(x, X + 22, Y + 32, 56, 8, 4); x.fill();
-        x.fillStyle = hot ? '#ffffff' : '#8a939c'; x.beginPath(); x.arc(X + 124, Y + 46, 7, 0, 7); x.fill();
-      }
-    });
-  });
-  var awningTex = tex(256, 64, function (x, w, h) {
-    for (var i = 0; i < 8; i++) { x.fillStyle = i % 2 ? '#f6f2ee' : '#F2801E'; x.fillRect(i * 32, 0, 32, h); }
-  });
-
+  // planilla: se le suma una fila cada vez que llega una consulta
+  var sheetCanvas = document.createElement('canvas'); sheetCanvas.width = 512; sheetCanvas.height = 336;
+  var sheetRows = 3, sheetTex = new THREE.CanvasTexture(sheetCanvas); sheetTex.encoding = THREE.sRGBEncoding; sheetTex.anisotropy = 4;
+  var MOTOS = ['250 cc', '110 cc', '150 cc', '300 cc', '125 cc', '200 cc', '400 cc'], CUOTAS = ['350.000', '198.000', '264.000', '412.000', '221.000', '305.000', '488.000'];
+  function drawSheet(hot) {
+    var x = sheetCanvas.getContext('2d'), w = 512, h = 336;
+    x.fillStyle = '#ffffff'; x.fillRect(0, 0, w, h);
+    x.fillStyle = '#0f9d58'; x.fillRect(0, 0, w, 42);
+    x.fillStyle = '#ffffff'; x.font = '700 15px ' + SANS; x.fillText('Consultas de financiación', 18, 27);
+    x.fillStyle = '#e6f4ea'; x.fillRect(0, 42, w, 30);
+    x.fillStyle = '#137333'; x.font = '700 12px ' + SANS; x.fillText('FECHA', 18, 62); x.fillText('MOTO', 150, 62); x.fillText('FINANCIERA', 260, 62); x.fillText('CUOTA', 404, 62);
+    var n = Math.min(sheetRows, 9);
+    for (var i = 0; i < n; i++) {
+      var Y = 72 + i * 29, k = (sheetRows - n + i), last = hot && i === n - 1;
+      x.fillStyle = last ? '#fde3cc' : (i % 2 ? '#f7f9fa' : '#ffffff'); x.fillRect(0, Y, w, 29);
+      x.fillStyle = '#3c4650'; x.font = '500 13px ' + SANS;
+      x.fillText((10 + k % 18) + '/10 ' + (9 + k % 9) + ':' + (10 + (k * 7) % 49), 18, Y + 19);
+      x.fillText(MOTOS[k % 7], 150, Y + 19); x.fillText('Financiera ' + 'ABC'[k % 3], 260, Y + 19); x.fillText('$ ' + CUOTAS[k % 7], 404, Y + 19);
+      x.fillStyle = '#e3e8ed'; x.fillRect(0, Y + 28, w, 1);
+    }
+    sheetTex.needsUpdate = true;
+  }
+  drawSheet(false);
+  function letterTex(L) {
+    return tex(128, 64, function (x, w, h) { x.fillStyle = '#1b232c'; x.fillRect(0, 0, w, h); x.fillStyle = '#F2801E'; x.font = '800 40px ' + SANS; x.textAlign = 'center'; x.fillText(L, w / 2, 48); });
+  }
+  var dollarTex = tex(128, 128, function (x, w, h) { x.fillStyle = '#fff3e8'; x.fillRect(0, 0, w, h); x.fillStyle = '#F2801E'; x.font = '800 92px ' + SANS; x.textAlign = 'center'; x.fillText('$', w / 2, 98); });
   /* ---------- materiales y geometría ---------- */
   function std(c, o) { var p = { color: c, roughness: .62, metalness: .04 }; for (var k in o) p[k] = o[k]; return new THREE.MeshStandardMaterial(p); }
   var M = {
@@ -179,34 +191,70 @@
     return g;
   }
 
-  /* ---------- objetos de cada base ---------- */
-  function oBillboard() {
-    var g = new THREE.Group();
-    add(g, box(.08, 1.0, .08, M.light), -.55, .5, 0); add(g, box(.08, 1.0, .08, M.light), .55, .5, 0);
-    add(g, screen(1.55, .97, adTex), 0, 1.3, .05);
-    g.rotation.y = Math.PI / 4;
-    return g;
-  }
-  function oMonitor() {
+  function oFicha() {
     var g = new THREE.Group();
     add(g, box(.72, .05, .42, M.light), 0, .025, 0);
     add(g, box(.1, .6, .08, M.light), 0, .32, -.06);
-    add(g, screen(1.62, 1.01, webTex), 0, 1.06, 0);
+    add(g, screen(1.62, 1.01, fichaTex), 0, 1.06, 0);
     g.rotation.y = Math.PI / 4;
     return g;
   }
-  function oStore() {
+  function moto3d(color) {
+    // moto armada con piezas simples, mirando hacia +x
+    var g = new THREE.Group(), body = std(color, { roughness: .45, metalness: .15 });
+    [-.42, .42].forEach(function (X) {
+      var w = add(g, mesh(new THREE.TorusGeometry(.22, .075, 10, 28), M.dark), X, .3, 0);
+      add(w, mesh(new THREE.CylinderGeometry(.11, .11, .05, 16), M.light)).rotation.x = Math.PI / 2;
+    });
+    add(g, box(.42, .2, .2, std(0x5b6672, { metalness: .5, roughness: .4 })), -.02, .36, 0);
+    var tank = add(g, box(.42, .18, .26, body), .1, .6, 0); tank.rotation.z = -.12;
+    add(g, box(.42, .08, .22, M.dark), -.26, .6, 0);
+    add(g, box(.36, .12, .18, body), -.42, .56, 0).rotation.z = .25;
+    var fork = add(g, box(.05, .5, .05, M.light), .37, .5, 0); fork.rotation.z = -.42;
+    add(g, box(.05, .05, .5, M.dark), .3, .78, 0);
+    add(g, box(.08, .1, .14, M.warm), .38, .7, 0);
+    add(g, box(.42, .04, .04, M.light), -.3, .28, .1).rotation.z = .1;
+    return g;
+  }
+  function oCatalogo() {
     var g = new THREE.Group();
-    add(g, box(1.42, .76, 1.0, M.white), 0, .38, 0);
-    add(g, box(1.58, .12, 1.16, M.dark), 0, .82, 0);
-    add(g, box(1.2, .16, .04, M.dark), 0, .68, .52);
-    add(g, box(.3, .5, .03, M.dark), -.4, .25, .51);
-    add(g, box(.62, .32, .02, M.warm), .22, .34, .51);
-    var aw = new THREE.Mesh(new THREE.PlaneGeometry(1.34, .44), new THREE.MeshStandardMaterial({ map: awningTex, side: THREE.DoubleSide, roughness: .7 }));
-    aw.castShadow = true; aw.rotation.x = -1.0; add(g, aw, 0, .6, .69);
-    var bag = add(g, box(.24, .28, .12, M.orange), .62, .14, .78);
-    var handle = new THREE.Mesh(new THREE.TorusGeometry(.07, .015, 6, 16, Math.PI), M.dark); add(bag, handle, 0, .14, 0);
-    var bag2 = add(g, box(.2, .24, .1, M.white), .36, .12, .86); add(bag2, new THREE.Mesh(new THREE.TorusGeometry(.06, .014, 6, 16, Math.PI), M.dark), 0, .12, 0);
+    var disc = add(g, mesh(new THREE.CylinderGeometry(.82, .86, .08, 48), M.dark), 0, .04, 0);
+    add(g, new THREE.Mesh(new THREE.RingGeometry(.83, .87, 64), glowMat(.6)), 0, .085, 0).rotation.x = -Math.PI / 2;
+    var spin = add(g, new THREE.Group(), 0, .08, 0);
+    add(spin, moto3d(ORANGE)).scale.setScalar(1.15);
+    g.userData.spin = spin;
+    var tag = add(g, new THREE.Group(), -.55, 1.45, .2);
+    add(tag, screen(.62, .24, tex(256, 96, function (x, w, h) { x.fillStyle = '#ffffff'; x.fillRect(0, 0, w, h); x.fillStyle = '#1b232c'; x.font = '800 40px ' + SANS; x.fillText('$ 4.85M', 18, 64); }))).rotation.y = Math.PI / 4;
+    g.userData.bob = tag; g.userData.bobY = 1.45;
+    return g;
+  }
+  function bank(L) {
+    var g = new THREE.Group();
+    add(g, box(.9, .08, .66, M.light), 0, .04, 0);
+    add(g, box(.8, .08, .58, M.white), 0, .12, 0);
+    [-.3, -.1, .1, .3].forEach(function (X) { add(g, mesh(new THREE.CylinderGeometry(.045, .045, .48, 10), M.white), X, .4, .2); });
+    add(g, box(.76, .48, .36, M.light), 0, .4, -.06);
+    add(g, box(.86, .06, .62, M.white), 0, .67, 0);
+    var s = new THREE.Shape(); s.moveTo(-.45, 0); s.lineTo(.45, 0); s.lineTo(0, .24); s.closePath();
+    var pg = new THREE.ExtrudeGeometry(s, { depth: .6, bevelEnabled: false }); pg.translate(0, 0, -.3);
+    add(g, mesh(pg, M.white), 0, .7, 0);
+    add(g, new THREE.Mesh(new THREE.PlaneGeometry(.26, .13), new THREE.MeshBasicMaterial({ map: letterTex(L) })), 0, .78, .305);
+    return g;
+  }
+  function oFinancieras() {
+    var g = new THREE.Group();
+    add(g, bank('A'), -.45, 0, .35).scale.setScalar(.8);
+    add(g, bank('B'), .45, 0, .35).scale.setScalar(.8);
+    add(g, bank('C'), 0, 0, -.45).scale.setScalar(.8);
+    g.rotation.y = Math.PI / 4;
+    return g;
+  }
+  function oCuota() {
+    var g = new THREE.Group();
+    add(g, box(.07, 1.05, .07, M.light), -.6, .52, -.05).rotation.x = .08;
+    add(g, box(.07, 1.05, .07, M.light), .6, .52, -.05).rotation.x = .08;
+    add(g, screen(1.62, .95, cuotaTex), 0, 1.15, .04).rotation.x = -.08;
+    g.rotation.y = Math.PI / 4;
     return g;
   }
   function oPhone() {
@@ -217,61 +265,30 @@
     add(tilt, new THREE.Mesh(new THREE.PlaneGeometry(.68, 1.3), new THREE.MeshBasicMaterial({ map: chatTex })), 0, .72, .047);
     var bubble = add(g, new THREE.Group(), .55, 1.75, .1);
     add(bubble, mesh(rbox(.5, .1, .34, .12), std(0x25D366, { emissive: 0x25D366, emissiveIntensity: .25 }))).rotation.x = Math.PI / 2;
-    g.userData.bob = bubble;
+    g.userData.bob = bubble; g.userData.bobY = 1.75;
     g.rotation.y = Math.PI / 4;
     return g;
   }
-  function oKanban() {
+  function oVenta() {
+    var g = new THREE.Group();
+    add(g, mesh(rbox(1.78, .05, 1.78, .2), std(0x2a3540)), 0, 0, 0);
+    var m = add(g, moto3d(ORANGE), -.05, .05, .1); m.rotation.y = Math.PI / 4;
+    var tag = add(g, new THREE.Group(), 0, 1.55, 0);
+    add(tag, screen(.86, .3, tex(256, 90, function (x, w, h) { x.fillStyle = '#F2801E'; x.fillRect(0, 0, w, h); x.fillStyle = '#ffffff'; x.font = '800 44px ' + SANS; x.textAlign = 'center'; x.fillText('VENDIDA', w / 2, 62); }))).rotation.y = Math.PI / 4;
+    g.userData.bob = tag; g.userData.bobY = 1.55;
+    return g;
+  }
+  function oSheets() {
     var g = new THREE.Group();
     add(g, box(.07, 1.05, .07, M.light), -.6, .52, -.05).rotation.x = .08;
     add(g, box(.07, 1.05, .07, M.light), .6, .52, -.05).rotation.x = .08;
-    add(g, screen(1.62, 1.06, kanbanTex), 0, 1.2, .04).rotation.x = -.08;
+    add(g, screen(1.62, 1.06, sheetTex), 0, 1.2, .04).rotation.x = -.08;
+    var badge = add(g, new THREE.Group(), .72, 1.95, .1);
+    add(badge, mesh(rbox(.34, .08, .4, .06), std(0x0f9d58, { emissive: 0x0f9d58, emissiveIntensity: .25 }))).rotation.x = Math.PI / 2;
+    g.userData.bob = badge; g.userData.bobY = 1.95;
     g.rotation.y = Math.PI / 4;
     return g;
   }
-  function oServers() {
-    var g = new THREE.Group(), leds = [];
-    [-.34, .34].forEach(function (X) {
-      add(g, box(.58, 1.28, .64, M.white), X, .64, 0);
-      add(g, box(.48, 1.14, .02, M.dark), X, .64, .325);
-      for (var r = 0; r < 7; r++) {
-        add(g, box(.4, .02, .01, std(0x2c3743)), X, .2 + r * .15, .337);
-        var led = add(g, new THREE.Mesh(new THREE.BoxGeometry(.05, .03, .01), new THREE.MeshBasicMaterial({ color: r % 3 ? 0x25D366 : ORANGE, transparent: true })), X + .15, .25 + r * .15, .338);
-        led.userData.ph = Math.random() * 6; leds.push(led);
-      }
-    });
-    g.userData.leds = leds;
-    return g;
-  }
-  function oHouse() {
-    var g = new THREE.Group();
-    add(g, mesh(rbox(1.78, .05, 1.78, .2), M.grass), 0, 0, 0);
-    add(g, box(1.0, .62, .82, M.white), -.12, .36, -.12);
-    var s = new THREE.Shape(); s.moveTo(-.62, 0); s.lineTo(.62, 0); s.lineTo(0, .48); s.closePath();
-    var rg = new THREE.ExtrudeGeometry(s, { depth: .98, bevelEnabled: false }); rg.translate(0, 0, -.49);
-    var roof = add(g, mesh(rg, M.dark), -.12, .67, -.12); roof.rotation.y = Math.PI / 2;
-    add(g, box(.2, .34, .02, M.dark), .2, .22, .3);
-    add(g, box(.22, .18, .02, M.warm), -.25, .42, .3);
-    add(g, box(.02, .18, .22, M.warm), .39, .42, -.3);
-    [[.62, .62], [-.66, .55], [.58, -.66]].forEach(function (p, i) {
-      add(g, box(.06, .26, .06, M.trunk), p[0], .15, p[1]);
-      add(g, mesh(new THREE.IcosahedronGeometry(.2 + i * .03, 0), M.tree), p[0], .42 + i * .02, p[1]);
-    });
-    for (var k = 0; k < 3; k++) add(g, box(.18, .02, .12, M.light), .2 + k * .0, .03, .45 + k * .16);
-    return g;
-  }
-  function oVan() {
-    var g = new THREE.Group();
-    add(g, box(.48, .46, .86, M.white), 0, .33, .1);
-    add(g, box(.46, .34, .3, M.white), 0, .27, -.48);
-    add(g, box(.47, .14, .02, M.dark), 0, .38, -.635);
-    add(g, box(.49, .05, .7, M.orange), 0, .3, .12);
-    [[-.25, .3], [.25, .3], [-.25, -.44], [.25, -.44]].forEach(function (p) {
-      var w = add(g, mesh(new THREE.CylinderGeometry(.1, .1, .06, 14), M.dark), p[0], .1, p[1]); w.rotation.z = Math.PI / 2;
-    });
-    return g;
-  }
-
   /* ---------- centro ---------- */
   var hub = platform(3.0);
   world.add(hub);
@@ -282,6 +299,7 @@
   var glass = add(hub, new THREE.Mesh(new THREE.BoxGeometry(1.75, 1.75, 1.75), new THREE.MeshStandardMaterial({ color: 0xffd9b8, transparent: true, opacity: .1, roughness: .1, depthWrite: false })), 0, TOP + .9, 0);
   add(glass, new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(1.75, 1.75, 1.75)), new THREE.LineBasicMaterial({ color: 0xffc996, transparent: true, opacity: .6 })));
   var coreMat = std(0xfff3e8, { emissive: ORANGE, emissiveIntensity: .55, roughness: .3 });
+  coreMat.map = dollarTex;
   var core = add(hub, mesh(new THREE.BoxGeometry(.62, .62, .62), coreMat), 0, TOP + 1.0, 0);
   var beam = add(hub, new THREE.Mesh(new THREE.CylinderGeometry(.95, .95, 2.8, 40, 1, true), new THREE.MeshBasicMaterial({ map: beamTex, color: ORANGE, transparent: true, opacity: .2, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide })), 0, TOP + 1.4, 0);
   var motes = (function () {
@@ -293,13 +311,13 @@
 
   /* ---------- bases ---------- */
   var NODES = [
-    { key: 'ads', label: 'Anuncios', x: -3.8, z: 0, make: oBillboard },
-    { key: 'web', label: 'Sitio web', x: -2.7, z: -2.8, make: oMonitor },
-    { key: 'store', label: 'Tienda online', x: 0, z: -3.8, make: oStore },
-    { key: 'wa', label: 'WhatsApp', x: 2.7, z: -2.8, make: oPhone },
-    { key: 'crm', label: 'CRM', x: 3.8, z: 0, make: oKanban },
-    { key: 'auto', label: 'Automatizaciones', x: 0, z: 3.8, make: oServers },
-    { key: 'client', label: 'Cliente', x: 2.8, z: 2.9, make: oHouse }
+    { key: 'ficha', label: 'Ficha de la moto', x: -3.8, z: 0, make: oFicha },
+    { key: 'cat', label: 'Catálogo WooCommerce', x: -2.7, z: -2.8, make: oCatalogo },
+    { key: 'fin', label: 'Financieras y tasas', x: 0, z: -3.8, make: oFinancieras },
+    { key: 'cuota', label: 'Cuota calculada', x: 2.7, z: -2.8, make: oCuota },
+    { key: 'wa', label: 'Consulta por WhatsApp', x: 3.8, z: 0, make: oPhone },
+    { key: 'sheet', label: 'Planilla en Google Drive', x: 0, z: 3.8, make: oSheets },
+    { key: 'venta', label: 'Venta cerrada', x: 2.8, z: 2.9, make: oVenta }
   ];
   var byKey = {};
   NODES.forEach(function (n, i) {
@@ -328,13 +346,14 @@
     links.push(l); return l;
   }
   var H = { x: 0, z: 0, key: 'hub' };
-  ['ads', 'web', 'store', 'wa'].forEach(function (k) { link(H, byKey[k], -1); });
-  link(H, byKey.crm, 1); link(H, byKey.auto, 1);
-  link(byKey.crm, byKey.client, 1);
-  link(byKey.auto, byKey.client, 0);
+  // entra: la ficha (con la moto elegida), el catálogo y las tasas; sale: la cuota, la consulta y la fila de la planilla
+  ['ficha', 'cat', 'fin'].forEach(function (k) { link(H, byKey[k], -1); });
+  link(H, byKey.cuota, 1); link(H, byKey.wa, 1); link(H, byKey.sheet, 1);
+  link(byKey.cuota, byKey.wa, 0);
+  link(byKey.wa, byKey.venta, 1);
 
-  /* ---------- tráfico que entra a los anuncios ---------- */
-  var adsTop = new THREE.Vector3(byKey.ads.x, 1.25, byKey.ads.z);
+  /* ---------- visitas que entran a la ficha ---------- */
+  var adsTop = new THREE.Vector3(byKey.ficha.x, 1.25, byKey.ficha.z);
   var screenLeft = new THREE.Vector3(-1, 0, 1).normalize(), screenUp = new THREE.Vector3(-1, 0, -1).normalize();
   var streaks = [], N = 64;
   var lpos = new Float32Array(N * 6), lcol = new Float32Array(N * 6);
@@ -360,19 +379,20 @@
     w.position.set(p[0], p[1], p[2]); w.userData.y = p[1]; world.add(w); wire.push(w);
   });
 
-  /* ---------- anillos, ruta y camioneta ---------- */
+  /* ---------- anillos y ruta ---------- */
   function ring(r, o, x, z) {
     var m = new THREE.Mesh(new THREE.RingGeometry(r, r + .025, 128), glowMat(o)); m.rotation.x = -Math.PI / 2; m.position.set(x || 0, .015, z || 0); world.add(m); return m;
   }
   ring(6.4, .07); ring(8.9, .045);
-  var radar = [ring(1.4, .4, byKey.ads.x, byKey.ads.z), ring(1.4, .4, byKey.client.x, byKey.client.z)];
+  var radar = [ring(1.4, .4, byKey.ficha.x, byKey.ficha.z), ring(1.4, .4, byKey.sheet.x, byKey.sheet.z)];
   var shadowFloor = new THREE.Mesh(new THREE.PlaneGeometry(70, 70), new THREE.ShadowMaterial({ opacity: .32 }));
   shadowFloor.rotation.x = -Math.PI / 2; shadowFloor.receiveShadow = true; world.add(shadowFloor);
   var ROAD_X = 5.75;
   add(world, box(1.25, .04, 44, M.road), ROAD_X, .02, 0);
   for (var d = -21; d < 21; d += 1.1) add(world, new THREE.Mesh(new THREE.BoxGeometry(.06, .01, .45), new THREE.MeshBasicMaterial({ color: 0x6b7681 })), ROAD_X, .045, d);
-  add(world, box(1.6, .03, .5, M.road), 4.6, .015, byKey.client.z + .35);
-  var van = oVan(); van.position.set(ROAD_X - .28, .04, 12); world.add(van);
+  add(world, box(1.6, .03, .5, M.road), 4.6, .015, byKey.venta.z + .35);
+  // la moto vendida sale a la ruta
+  var van = moto3d(ORANGE); van.scale.setScalar(.8); van.rotation.y = Math.PI / 2; van.position.set(ROAD_X - .2, .06, 12); world.add(van);
 
   /* ---------- pulsos ---------- */
   var pulseMat = new THREE.SpriteMaterial({ map: glowTex, color: 0xffb36b, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
@@ -422,7 +442,8 @@
       n.group.position.y = (1 - outBack(p)) * 6 + n.hover * .2;
       n.group.userData.rim.material.opacity = .45 + n.hover * .5;
       n.group.userData.halo.material.opacity = .1 + n.hover * .18;
-      if (n.obj.userData.bob) n.obj.userData.bob.position.y = 1.75 + Math.sin(T * 2.2) * .08;
+      if (n.obj.userData.bob) n.obj.userData.bob.position.y = n.obj.userData.bobY + Math.sin(T * 2.2 + n.delay * 9) * .08;
+      if (n.obj.userData.spin && !reduce) n.obj.userData.spin.rotation.y += dt * .6;
       if (n.obj.userData.leds) n.obj.userData.leds.forEach(function (l) { l.material.opacity = .35 + .65 * (Math.sin(T * 3 + l.userData.ph) > 0 ? 1 : .2); });
     });
     links.forEach(function (l) {
@@ -459,6 +480,7 @@
       if (p.box) { p.box.position.set(v3.x, .22 + Math.abs(Math.sin(p.t * 9)) * .05, v3.z); p.box.rotation.y += dt * 3; }
       if (p.t >= 1) {
         if (p.l.dir === -1) hubFlash = 1;
+        if (p.l.to === byKey.sheet && p.l.dir === 1) { sheetRows++; drawSheet(true); }
         world.remove(p.s); p.s.material.dispose(); if (p.box) world.remove(p.box); pulses.splice(j, 1);
       }
     }
