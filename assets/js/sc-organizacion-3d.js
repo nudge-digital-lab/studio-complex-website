@@ -1,6 +1,7 @@
 /* Escena 3D interna de Studio Complex: los socios CEO orquestan, el MCP (cubo central)
    reparte el trabajo entre las direcciones (comercial, marketing, onboarding) y finance,
    y escribe en el plugin de clientes de WordPress, que es lo que ve cada cliente en su panel.
+   Además, los agentes y los socios están conectados entre sí por arcos en el aire.
    Basada en la escena de assets/js/sc-simulador-3d.js. */
 (function () {
   var stage = document.getElementById('sc-eco-stage');
@@ -351,6 +352,30 @@
   link(H, byKey.wp, 1);
   link(byKey.wp, byKey.cli, 1);
 
+  /* ---------- red entre agentes: arcos por el aire de antena a antena ---------- */
+  // punto de conexión de cada agente (la antena del robot, la cabeza de la persona de finance, la mesa de los socios)
+  var PORT = { com: [.55, 1.02, .55], mkt: [.55, 1.02, .55], onb: [.55, 1.02, .55], fin: [.7, .85, -.55], ceo: [0, .75, 0] };
+  function portOf(k) { var n = byKey[k], o = PORT[k]; return new THREE.Vector3(n.x + o[0], TOP + o[1], n.z + o[2]); }
+  var arcs = [], arcPulses = [];
+  function arc(ka, kb) {
+    var A = portOf(ka), B = portOf(kb), d = A.distanceTo(B);
+    var M = A.clone().add(B).multiplyScalar(.5); M.y += 1.1 + d * .32;
+    var curve = new THREE.QuadraticBezierCurve3(A, M, B);
+    var geo = new THREE.TubeGeometry(curve, 64, .016, 6, false);
+    var tube = new THREE.Mesh(geo, glowMat(.5, 0xffb36b)); world.add(tube);
+    var halo = new THREE.Mesh(new THREE.TubeGeometry(curve, 64, .07, 6, false), glowMat(.08)); world.add(halo);
+    geo.setDrawRange(0, 0); halo.geometry.setDrawRange(0, 0);
+    var a = { c: curve, tube: tube, halo: halo, n: geo.index.count, from: byKey[ka], to: byKey[kb], next: 2 + Math.random() * 4 };
+    arcs.push(a); return a;
+  }
+  var AG = ['com', 'mkt', 'onb', 'fin'];
+  for (var ai = 0; ai < AG.length; ai++) for (var aj = ai + 1; aj < AG.length; aj++) arc(AG[ai], AG[aj]);
+  AG.forEach(function (k) { arc('ceo', k); });
+  function spawnArc(a) {
+    var s = new THREE.Sprite(pulseMat.clone()); s.scale.set(.5, .5, 1); world.add(s);
+    arcPulses.push({ s: s, a: a, t: 0, rev: Math.random() < .5, v: .45 + Math.random() * .25 });
+  }
+
   /* ---------- consultas que entran a la dirección comercial ---------- */
   var adsTop = new THREE.Vector3(byKey.com.x, 1.25, byKey.com.z);
   var screenLeft = new THREE.Vector3(-1, 0, 1).normalize(), screenUp = new THREE.Vector3(-1, 0, -1).normalize();
@@ -440,6 +465,19 @@
       var ag = n.obj.userData.agent; if (ag) { n.ping = Math.max(0, (n.ping || 0) - dt * 1.5); ag.position.y = Math.abs(Math.sin(T * 6)) * .12 * n.ping; ag.userData.head.rotation.y = Math.sin(T * 1.3 + n.delay * 7) * .4; }
       if (n.obj.userData.leds) n.obj.userData.leds.forEach(function (l) { l.material.opacity = .35 + .65 * (Math.sin(T * 3 + l.userData.ph) > 0 ? 1 : .2); });
     });
+    arcs.forEach(function (a, k) {
+      var p = clamp((intro - 2.0 - k * .07) / .9), e = 1 - Math.pow(1 - p, 3), cnt = Math.floor(a.n * e / 3) * 3;
+      a.tube.geometry.setDrawRange(0, cnt); a.halo.geometry.setDrawRange(0, cnt);
+      var lit = (hovered && (hovered === a.from || hovered === a.to)) ? 1 : 0;
+      a.tube.material.opacity = (hovered && !lit ? .14 : .36) + lit * .55; a.halo.material.opacity = .08 + lit * .12;
+      if (intro > 3.2 && !reduce) { a.next -= dt; if (a.next <= 0) { spawnArc(a); a.next = 2.2 + Math.random() * 3.8; } }
+    });
+    for (var q = arcPulses.length - 1; q >= 0; q--) {
+      var ap = arcPulses[q]; ap.t += dt * ap.v;
+      ap.a.c.getPoint(clamp(ap.rev ? 1 - ap.t : ap.t), ap.s.position);
+      ap.s.material.opacity = Math.min(1, ap.t * 6, (1 - ap.t) * 6);
+      if (ap.t >= 1) { (ap.rev ? ap.a.from : ap.a.to).ping = 1; world.remove(ap.s); ap.s.material.dispose(); arcPulses.splice(q, 1); }
+    }
     links.forEach(function (l) {
       var p = clamp((intro - 1.35) / .8); l.g.scale.x = Math.max(.0001, 1 - Math.pow(1 - p, 3));
       var lit = (hovered && (hovered === l.from || hovered === l.to)) ? 1 : 0;
