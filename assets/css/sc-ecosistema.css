@@ -20,3 +20,6 @@
 .sc-eco-hint { position: absolute; left: 16px; bottom: 14px; font: 500 11px/1.3 'IBM Plex Mono', ui-monospace, Menlo, monospace; letter-spacing: .06em; color: #a7aca6; margin: 0; text-align: left; }
 @media (hover: none) { .sc-eco-hint { display: none; } }
 .sc-eco-stage.sc-eco-nogl::after { content: "Esta animación necesita WebGL."; position: absolute; inset: 0; display: grid; place-items: center; color: #a7aca6; font: 500 13px ui-monospace, Menlo, monospace; }
+.sc-eco-play { position: absolute; left: 50%; bottom: 44px; transform: translateX(-50%); font: 700 15px/1 'Figtree', system-ui, sans-serif; color: #0b0f14; background: #F2801E; border: 0; border-radius: 999px; padding: 14px 20px; cursor: pointer; box-shadow: 0 0 28px rgba(242, 128, 30, .45); white-space: nowrap; }
+.sc-eco-play:hover { background: #fff; }
+.sc-eco-play:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }

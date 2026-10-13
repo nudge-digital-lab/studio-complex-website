@@ -371,6 +371,106 @@
   var AG = ['com', 'mkt', 'onb', 'fin'];
   for (var ai = 0; ai < AG.length; ai++) for (var aj = ai + 1; aj < AG.length; aj++) arc(AG[ai], AG[aj]);
   AG.forEach(function (k) { arc('ceo', k); });
+
+  /* ---------- guion: cómo trabajan los agentes entre sí ----------
+     Recorre flujos reales del panel (herramientas del MCP de studio-complex-panel).
+     Cada paso viaja por su camino: arco entre agentes, o por el MCP hasta WordPress. */
+  var FLOWS = [
+    { t: 'Entra un cliente nuevo', s: [
+      ['mkt', 'com', 'arc', 'ticket_abrir', 'Llegó una consulta de la web: va a Ventas'],
+      ['com', 'ceo', 'arc', 'nota_agregar', 'Propuesta lista para aprobar'],
+      ['ceo', 'com', 'arc', 'OK', 'Los socios la aprueban'],
+      ['com', 'onb', 'arc', 'cliente_alta', 'Cerró: onboarding arma la ficha'],
+      ['onb', 'wp', 'mcp', 'cliente_alta', 'Ficha y servicios creados en el plugin'],
+      ['onb', 'fin', 'arc', 'servicio_agregar', 'Seña a cobrar'],
+      ['fin', 'wp', 'mcp', 'comprobante_revisar', 'Seña acreditada y facturada'],
+      ['wp', 'cli', 'cli', 'mail_enviar', 'El cliente recibe el acceso a su panel']
+    ] },
+    { t: 'Renovación del mes', s: [
+      ['fin', 'wp', 'mcp', 'panel_resumen', 'Finance revisa qué vence en 30 días'],
+      ['fin', 'ceo', 'arc', 'mail_cliente', 'Aviso con vista previa para aprobar'],
+      ['ceo', 'fin', 'arc', 'OK', 'Aprobado: sale el aviso'],
+      ['wp', 'cli', 'cli', 'mail_cliente', 'El cliente paga desde su panel'],
+      ['fin', 'wp', 'mcp', 'servicio_renovar', 'Pago acreditado, servicio renovado']
+    ] },
+    { t: 'Soporte y resultados', s: [
+      ['onb', 'wp', 'mcp', 'ticket_abrir', 'El cliente abre un ticket desde su panel'],
+      ['onb', 'com', 'arc', 'tickets_listar', '¿Es un pedido nuevo? Pasa a comercial'],
+      ['com', 'mkt', 'arc', 'nota_agregar', 'Marketing suma la campaña al plan'],
+      ['mkt', 'wp', 'mcp', 'campanas_publicar', 'Resultados de la campaña al panel'],
+      ['mkt', 'onb', 'arc', 'proyecto_publicar', 'Onboarding actualiza "Tu proyecto"'],
+      ['wp', 'cli', 'cli', 'proyecto_publicar', 'El cliente ve todo al día']
+    ] }
+  ];
+  var NAME = { ceo: 'Socios CEO', com: 'Comercial', mkt: 'Marketing', onb: 'Onboarding', fin: 'Finance', wp: 'MCP · WordPress', cli: 'Cliente' };
+  var hud = document.createElement('div'); hud.className = 'sc-eco-hud'; hud.setAttribute('aria-live', 'polite');
+  hud.innerHTML = '<span class="sc-eco-hud-f"></span><b class="sc-eco-hud-r"></b><span class="sc-eco-hud-t"></span><code class="sc-eco-hud-c"></code><ol class="sc-eco-hud-p"></ol>';
+  stage.appendChild(hud);
+  var cap = document.createElement('span'); cap.className = 'sc-eco-cap'; labelsEl.appendChild(cap);
+  var hudF = hud.querySelector('.sc-eco-hud-f'), hudR = hud.querySelector('.sc-eco-hud-r'), hudT = hud.querySelector('.sc-eco-hud-t'), hudC = hud.querySelector('.sc-eco-hud-c'), hudP = hud.querySelector('.sc-eco-hud-p');
+  var bigMat = new THREE.SpriteMaterial({ map: glowTex, color: 0xffd0a0, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
+  var bigS = new THREE.Sprite(bigMat); bigS.scale.set(1.1, 1.1, 1); bigS.visible = false; world.add(bigS);
+  var bigBox = mesh(new THREE.BoxGeometry(.2, .2, .2), M.orange); bigBox.visible = false; world.add(bigBox);
+  function floorPt(k) { if (k === 'hub') return new THREE.Vector3(0, .2, 0); var n = byKey[k]; return new THREE.Vector3(n.x, .2, n.z); }
+  function polyline(pts) {
+    var L = [0]; for (var i = 1; i < pts.length; i++) L.push(L[i - 1] + pts[i].distanceTo(pts[i - 1]));
+    return { len: L[L.length - 1], at: function (u, out) {
+      var d = u * L[L.length - 1], i = 1; while (i < L.length - 1 && L[i] < d) i++;
+      var f = (d - L[i - 1]) / Math.max(1e-6, L[i] - L[i - 1]); return out.copy(pts[i - 1]).lerp(pts[i], f);
+    } };
+  }
+  function pathFor(st) {
+    if (st[2] === 'arc') {
+      for (var i = 0; i < arcs.length; i++) {
+        var a = arcs[i];
+        if (a.from.key === st[0] && a.to.key === st[1]) return { len: a.c.getLength(), at: function (u, o) { return a.c.getPoint(u, o); }, arc: a };
+        if (a.from.key === st[1] && a.to.key === st[0]) return { len: a.c.getLength(), at: function (u, o) { return a.c.getPoint(1 - u, o); }, arc: a };
+      }
+    }
+    if (st[2] === 'mcp') return polyline([floorPt(st[0]), floorPt('hub'), floorPt(st[1])]);
+    return polyline([floorPt(st[0]), floorPt(st[1])]);
+  }
+  var D = { f: 0, s: -1, t: 0, wait: .4, path: null, hubHit: false };
+  function showFlow() {
+    var F = FLOWS[D.f];
+    hudF.textContent = 'Flujo ' + (D.f + 1) + ' de ' + FLOWS.length + ' · ' + F.t;
+    hudP.innerHTML = F.s.map(function () { return '<li></li>'; }).join('');
+  }
+  function startStep() {
+    var st = FLOWS[D.f].s[D.s];
+    NODES.forEach(function (n) { n.focus = n.key === st[0] || n.key === st[1]; });
+    D.path = pathFor(st); D.t = 0; D.hubHit = false;
+    if (D.path.arc) D.path.arc.focus = 1;
+    hudR.textContent = NAME[st[0]] + '  →  ' + NAME[st[1]];
+    hudT.textContent = st[4]; hudC.textContent = st[3];
+    cap.textContent = st[3];
+    [].forEach.call(hudP.children, function (li, i) { li.className = i < D.s ? 'ok' : i === D.s ? 'on' : ''; });
+    hud.classList.remove('in'); void hud.offsetWidth; hud.classList.add('in');
+    bigS.visible = bigBox.visible = true;
+  }
+  function director(dt) {
+    if (D.s < 0) { showFlow(); D.s = 0; startStep(); return; }
+    if (!D.path) { D.wait -= dt; if (D.wait <= 0) next(); return; }
+    D.t += dt * 3.2 / Math.max(2, D.path.len);
+    var u = clamp(D.t);
+    D.path.at(u, bigS.position); bigBox.position.copy(bigS.position); bigBox.position.y += .02; bigBox.rotation.y += dt * 4;
+    bigS.material.opacity = Math.min(1, u * 8, (1 - u) * 8 + .2);
+    var st = FLOWS[D.f].s[D.s];
+    if (st[2] === 'mcp' && !D.hubHit && u > .5) { D.hubHit = true; hubFlash = 1; }
+    if (u >= 1) {
+      var dest = byKey[st[1]]; if (dest) dest.ping = 1.4;
+      if (D.path.arc) D.path.arc.focus = 0;
+      D.path = null; D.wait = .9; bigS.visible = bigBox.visible = false; cap.style.opacity = 0;
+    }
+  }
+  function next() {
+    D.s++;
+    if (D.s >= FLOWS[D.f].s.length) {
+      D.f = (D.f + 1) % FLOWS.length; D.s = 0; showFlow();
+      [].forEach.call(hudP.children, function (li) { li.className = ''; });
+    }
+    startStep();
+  }
   function spawnArc(a) {
     var s = new THREE.Sprite(pulseMat.clone()); s.scale.set(.5, .5, 1); world.add(s);
     arcPulses.push({ s: s, a: a, t: 0, rev: Math.random() < .5, v: .45 + Math.random() * .25 });
@@ -457,7 +557,7 @@
     var hp = clamp(intro / .9); hub.position.y = (1 - outBack(hp)) * 6;
     NODES.forEach(function (n) {
       var p = clamp((intro - n.delay) / .85);
-      n.hover += ((hovered === n ? 1 : 0) - n.hover) * Math.min(1, dt * 10);
+      n.hover += ((hovered === n || (!hovered && n.focus) ? 1 : 0) - n.hover) * Math.min(1, dt * 10);
       n.group.position.y = (1 - outBack(p)) * 6 + n.hover * .2;
       n.group.userData.rim.material.opacity = .45 + n.hover * .5;
       n.group.userData.halo.material.opacity = .1 + n.hover * .18;
@@ -468,10 +568,11 @@
     arcs.forEach(function (a, k) {
       var p = clamp((intro - 2.0 - k * .07) / .9), e = 1 - Math.pow(1 - p, 3), cnt = Math.floor(a.n * e / 3) * 3;
       a.tube.geometry.setDrawRange(0, cnt); a.halo.geometry.setDrawRange(0, cnt);
-      var lit = (hovered && (hovered === a.from || hovered === a.to)) ? 1 : 0;
+      var lit = (hovered && (hovered === a.from || hovered === a.to)) || a.focus ? 1 : 0;
       a.tube.material.opacity = (hovered && !lit ? .14 : .36) + lit * .55; a.halo.material.opacity = .08 + lit * .12;
       if (intro > 3.2 && !reduce) { a.next -= dt; if (a.next <= 0) { spawnArc(a); a.next = 2.2 + Math.random() * 3.8; } }
     });
+    if (intro > 3.4 && !reduce) director(dt);
     for (var q = arcPulses.length - 1; q >= 0; q--) {
       var ap = arcPulses[q]; ap.t += dt * ap.v;
       ap.a.c.getPoint(clamp(ap.rev ? 1 - ap.t : ap.t), ap.s.position);
@@ -525,16 +626,23 @@
   function placeLabels() {
     var show = T > 1.2, touch = noHover;
     NODES.forEach(function (n) {
-      v3.set(n.x + n.size * .5, n.group.position.y, n.z + n.size * .5).applyMatrix4(world.matrixWorld).project(cam);
+      v3.set(n.x, n.group.position.y + 2.55, n.z).applyMatrix4(world.matrixWorld).project(cam);
       var px = (v3.x * .5 + .5) * W, py = (-v3.y * .5 + .5) * Hh;
       var c = new THREE.Vector3(n.x, n.group.position.y, n.z).applyMatrix4(world.matrixWorld).project(cam);
       var cx = (c.x * .5 + .5) * W;
-      n.el.style.transform = 'translate(' + Math.round(cx) + 'px,' + Math.round(py + 6) + 'px) translateX(-50%)';
-      n.el.style.opacity = show && (touch || hovered === n) ? 1 : 0;
-      n.el.classList.toggle('on', hovered === n);
+      n.el.style.transform = 'translate(' + Math.round(cx) + 'px,' + Math.round(py) + 'px) translate(-50%, -100%)';
+      var f = hovered ? hovered === n : n.focus;
+      n.el.style.opacity = show && (touch || f) ? 1 : 0;
+      n.el.classList.toggle('on', !!f);
     });
   }
 
+  function placeCap() {
+    if (!bigS.visible) { cap.style.opacity = 0; return; }
+    v3.copy(bigS.position).applyMatrix4(world.matrixWorld).project(cam);
+    cap.style.transform = 'translate(' + Math.round((v3.x * .5 + .5) * W) + 'px,' + Math.round((-v3.y * .5 + .5) * Hh - 34) + 'px) translateX(-50%)';
+    cap.style.opacity = 1;
+  }
   function pick() {
     if (mouse.x > 2) { hovered = null; canvas.style.cursor = ''; return; }
     ray.setFromCamera(mouse, cam);
@@ -543,7 +651,7 @@
     canvas.style.cursor = hovered ? 'pointer' : '';
   }
 
-  function render() { cam.updateMatrixWorld(); world.updateMatrixWorld(); pick(); placeLabels(); renderer.render(scene, cam); }
+  function render() { cam.updateMatrixWorld(); world.updateMatrixWorld(); pick(); placeLabels(); placeCap(); renderer.render(scene, cam); }
 
   function frame(now) {
     var dt = Math.min(.05, (now - last) / 1000); last = now;
@@ -552,8 +660,7 @@
   }
 
   resize();
-  if (reduce) { update(0); render(); }
-  else {
+  function animar() {
     raf = requestAnimationFrame(frame);
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (es) {
@@ -566,4 +673,12 @@
       if (running && !raf) { last = performance.now(); raf = requestAnimationFrame(frame); }
     });
   }
+  if (reduce) {
+    // con "reducir movimiento" la escena queda quieta, pero se puede reproducir a pedido
+    update(0); render();
+    var play = document.createElement('button'); play.type = 'button'; play.className = 'sc-eco-play';
+    play.innerHTML = '<span aria-hidden="true">▶</span> Ver cómo trabajan los agentes';
+    play.addEventListener('click', function () { reduce = false; play.remove(); last = performance.now(); animar(); });
+    stage.appendChild(play);
+  } else animar();
 })();

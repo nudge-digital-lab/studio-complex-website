@@ -44,6 +44,22 @@
   @media (max-width: 520px) { .sc-eco-lbl { font-size: 9px; padding: 5px 7px; } }
   .sc-eco-hint { position: absolute; left: 16px; bottom: 14px; margin: 0; font: 500 11px/1.3 var(--mono); letter-spacing: .06em; color: var(--muted); text-align: left; }
   @media (hover: none) { .sc-eco-hint { display: none; } }
+  /* Panel del guion: qué agente le pasa qué a quién, con la herramienta del MCP */
+  .sc-eco-hud { position: absolute; left: 14px; top: 14px; max-width: min(320px, calc(100% - 28px)); background: rgba(11, 15, 20, .82); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; display: grid; gap: 5px; opacity: 0; transform: translateY(-4px); pointer-events: none; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .sc-eco-hud.in { opacity: 1; transform: none; transition: opacity .35s, transform .35s; }
+  .sc-eco-hud-f { font: 500 10.5px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+  .sc-eco-hud-r { font-size: 15px; line-height: 1.2; white-space: pre; }
+  .sc-eco-hud-t { color: var(--muted); font-size: 13.5px; line-height: 1.35; text-align: left; }
+  .sc-eco-hud-c { justify-self: start; font: 500 11.5px/1 var(--mono); color: #ffd3a6; background: rgba(242, 128, 30, .14); border: 1px solid rgba(242, 128, 30, .4); border-radius: 6px; padding: 4px 7px; }
+  .sc-eco-hud-p { display: flex; gap: 5px; list-style: none; margin: 4px 0 0; padding: 0; }
+  .sc-eco-hud-p li { width: 16px; height: 4px; border-radius: 2px; background: #2c3743; }
+  .sc-eco-hud-p li.ok { background: rgba(242, 128, 30, .55); }
+  .sc-eco-hud-p li.on { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+  .sc-eco-cap { position: absolute; left: 0; top: 0; white-space: nowrap; font: 500 11px/1 var(--mono); color: #0b0f14; background: var(--accent); border-radius: 6px; padding: 5px 8px; opacity: 0; transition: opacity .25s; box-shadow: 0 0 18px rgba(242, 128, 30, .5); }
+  @media (max-width: 520px) { .sc-eco-hud { left: 10px; top: 10px; padding: 9px 11px; } .sc-eco-hud-r { font-size: 13px; } .sc-eco-hud-t { font-size: 12px; } .sc-eco-cap { font-size: 9.5px; } }
+  .sc-eco-play { position: absolute; left: 50%; bottom: 44px; transform: translateX(-50%); font: 700 15px/1 var(--ff); color: #0b0f14; background: var(--accent); border: 0; border-radius: 999px; padding: 14px 20px; cursor: pointer; box-shadow: 0 0 28px rgba(242, 128, 30, .45); white-space: nowrap; }
+  .sc-eco-play:hover { background: #fff; }
+  .sc-eco-play:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
   .sc-eco-stage.sc-eco-nogl::after { content: "Esta animación necesita WebGL."; position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font: 500 13px var(--mono); }
 
   section { padding-block: clamp(36px, 5vw, 64px); border-top: 1px solid var(--line); }
@@ -112,7 +128,7 @@
     <div class="sc-eco-stage" id="sc-eco-stage">
       <canvas id="sc-eco-scene" role="img" aria-label="Ilustración animada en 3D: los socios CEO mandan órdenes al MCP del centro, que reparte el trabajo entre la dirección comercial, la de marketing, la de onboarding y el departamento de finance, todos conectados entre sí por arcos de luz, escribe en el plugin de clientes de WordPress y eso llega al panel de cada cliente."></canvas>
       <div class="sc-eco-labels" id="sc-eco-labels" aria-hidden="true"></div>
-      <p class="sc-eco-hint">Pasá el mouse por cada base</p>
+      <p class="sc-eco-hint">Mirá cómo se pasan el trabajo · pasá el mouse por cada base</p>
     </div>
   </div>
 </div>
@@ -239,6 +255,6 @@
 </footer>
 
 <script src="/assets/js/three.r128.min.js"></script>
-<script src="/assets/js/sc-organizacion-3d.js?v=202610132300"></script>
+<script src="/assets/js/sc-organizacion-3d.js?v=202610140005"></script>
 </body>
 </html>

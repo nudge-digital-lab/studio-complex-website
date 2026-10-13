@@ -521,8 +521,7 @@
   }
 
   resize();
-  if (reduce) { update(0); render(); }
-  else {
+  function animar() {
     raf = requestAnimationFrame(frame);
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (es) {
@@ -535,4 +534,12 @@
       if (running && !raf) { last = performance.now(); raf = requestAnimationFrame(frame); }
     });
   }
+  if (reduce) {
+    // con "reducir movimiento" la escena queda quieta, pero se puede reproducir a pedido
+    update(0); render();
+    var play = document.createElement('button'); play.type = 'button'; play.className = 'sc-eco-play';
+    play.innerHTML = '<span aria-hidden="true">▶</span> Ver la animación';
+    play.addEventListener('click', function () { reduce = false; play.remove(); last = performance.now(); animar(); });
+    stage.appendChild(play);
+  } else animar();
 })();
