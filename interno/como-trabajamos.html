@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Cómo trabajamos por dentro · Studio Complex</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+  /* Página interna (no se enlaza desde el sitio y no se indexa). Escena: /assets/js/sc-organizacion-3d.js */
+  :root {
+    --bg: #0b0f14; --panel: #121a23; --panel-2: #0f151c; --fg: #f6f7f7; --muted: #a7aca6;
+    --accent: #F2801E; --cyan: #22D3EE; --green: #25D366; --gold: #F2C94C; --line: #232d38;
+    --ff: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); overflow-x: hidden; }
+  body { font-family: var(--ff); -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  a { color: inherit; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 48px); }
+  p { text-align: justify; hyphens: auto; }
+  .eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 22px; }
+  .top img { height: 40px; width: auto; display: block; }
+  .chip { font: 500 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; }
+
+  .hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(20px, 3vw, 48px); align-items: center; padding-block: clamp(16px, 4vw, 48px) clamp(40px, 6vw, 80px); }
+  @media (max-width: 900px) { .hero { grid-template-columns: minmax(0, 1fr); } }
+  h1 { font-size: clamp(34px, 4.4vw, 58px); line-height: 1.04; letter-spacing: -.025em; margin: 0 0 18px; text-wrap: balance; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lead { color: var(--muted); font-size: clamp(15px, 1.2vw, 17px); margin: 0; max-width: 60ch; }
+
+  .sc-eco-stage { position: relative; min-width: 0; aspect-ratio: 1.12 / 1; border-radius: 22px; overflow: hidden; background: radial-gradient(110% 85% at 42% 46%, #121a23, #0b0f14 72%); border: 1px solid rgba(255, 255, 255, .08); }
+  @media (max-width: 900px) { .sc-eco-stage { aspect-ratio: 1 / 1.05; } }
+  .sc-eco-stage canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; }
+  .sc-eco-labels { position: absolute; inset: 0; pointer-events: none; }
+  .sc-eco-lbl { position: absolute; left: 0; top: 0; white-space: nowrap; font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: rgba(11, 15, 20, .8); border: 1px solid var(--line); padding: 6px 9px; border-radius: 999px; opacity: 0; transition: color .2s, border-color .2s, opacity .4s; }
+  .sc-eco-lbl.on { color: var(--fg); border-color: var(--accent); }
+  @media (max-width: 520px) { .sc-eco-lbl { font-size: 9px; padding: 5px 7px; } }
+  .sc-eco-hint { position: absolute; left: 16px; bottom: 14px; margin: 0; font: 500 11px/1.3 var(--mono); letter-spacing: .06em; color: var(--muted); text-align: left; }
+  @media (hover: none) { .sc-eco-hint { display: none; } }
+  .sc-eco-stage.sc-eco-nogl::after { content: "Esta animación necesita WebGL."; position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font: 500 13px var(--mono); }
+
+  section { padding-block: clamp(36px, 5vw, 64px); border-top: 1px solid var(--line); }
+  h2 { font-size: clamp(26px, 2.8vw, 38px); line-height: 1.1; letter-spacing: -.02em; margin: 0 0 12px; }
+  .intro { color: var(--muted); max-width: 70ch; margin: 0 0 28px; }
+
+  .roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 14px; }
+  .role { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 22px; min-width: 0; }
+  .role.ceo { border-color: rgba(242, 128, 30, .55); background: linear-gradient(160deg, rgba(242, 128, 30, .12), var(--panel) 60%); }
+  .role .tipo { font: 500 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .role h3 { font-size: 20px; margin: 10px 0 8px; }
+  .role p { color: var(--muted); margin: 0 0 12px; font-size: 15px; }
+  .role ul { margin: 0; padding-left: 18px; color: var(--fg); font-size: 14.5px; }
+  .role li { margin: 4px 0; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 8px; vertical-align: 1px; }
+
+  .mcp { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+  @media (max-width: 900px) { .mcp { grid-template-columns: minmax(0, 1fr); } }
+  .capas { display: grid; gap: 10px; }
+  .capa { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+  .capa b { display: block; font-size: 16px; }
+  .capa span { color: var(--muted); font-size: 14px; }
+  .capa i { font: 700 13px/44px var(--mono); font-style: normal; width: 44px; height: 44px; border-radius: 12px; text-align: center; background: var(--panel-2); border: 1px solid var(--line); color: var(--accent); }
+  .flecha { text-align: center; color: var(--accent); font: 700 14px/1 var(--mono); }
+
+  .flujo { margin-bottom: 28px; }
+  .flujo h3 { font-size: 19px; margin: 0 0 6px; }
+  .flujo > p { color: var(--muted); margin: 0 0 16px; max-width: 75ch; }
+  .pasos { display: flex; gap: 0; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+  .paso { flex: 0 0 auto; width: 190px; position: relative; padding-right: 26px; }
+  .paso:last-child { padding-right: 0; }
+  .paso:not(:last-child)::after { content: ""; position: absolute; right: 6px; top: 34px; width: 14px; height: 2px; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+  .paso .caja { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px; height: 100%; }
+  .paso .quien { font: 500 10.5px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+  .paso b { display: block; margin: 8px 0 4px; font-size: 15px; line-height: 1.25; }
+  .paso small { color: var(--muted); font-size: 13px; line-height: 1.4; display: block; }
+  .paso.ok .caja { border-color: rgba(242, 128, 30, .6); }
+  @media (max-width: 700px) {
+    .pasos { flex-direction: column; overflow: visible; }
+    .paso { width: auto; padding-right: 0; padding-bottom: 18px; }
+    .paso:not(:last-child)::after { right: auto; left: 28px; top: auto; bottom: 4px; width: 2px; height: 12px; }
+  }
+  .c-ceo { color: var(--accent); } .c-com { color: #ff9f4d; } .c-mkt { color: var(--cyan); } .c-onb { color: var(--green); } .c-fin { color: var(--gold); } .c-mcp { color: #ffd3a6; } .c-cli { color: #c2cad2; }
+
+  .reglas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 14px; }
+  .regla { border-left: 3px solid var(--accent); background: var(--panel); border-radius: 0 14px 14px 0; padding: 16px 18px; }
+  .regla b { display: block; margin-bottom: 4px; }
+  .regla p { margin: 0; color: var(--muted); font-size: 15px; }
+  footer { padding-block: 28px 40px; color: var(--muted); font: 500 12px/1.5 var(--mono); border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a href="/"><img src="/assets/images/logos/primary-logo.png" alt="Studio Complex"></a>
+    <span class="chip">Página interna</span>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Studio Complex · por dentro</p>
+      <h1>Dos socios orquestan, <em>los agentes ejecutan.</em></h1>
+      <p class="lead">Jorge y Sebastián son los socios CEO: deciden, aprueban y le dan las órdenes al sistema. Las direcciones comercial, de marketing y de onboarding, y el departamento de finance, son agentes que trabajan sobre la misma base de clientes. En el centro está el MCP, que es por donde pasa todo: lee y escribe en el plugin de clientes de WordPress, y lo que cambia ahí es lo que el cliente ve en su panel.</p>
+    </div>
+    <div class="sc-eco-stage" id="sc-eco-stage">
+      <canvas id="sc-eco-scene" role="img" aria-label="Ilustración animada en 3D: los socios CEO mandan órdenes al MCP del centro, que reparte el trabajo entre la dirección comercial, la de marketing, la de onboarding y el departamento de finance, escribe en el plugin de clientes de WordPress y eso llega al panel de cada cliente."></canvas>
+      <div class="sc-eco-labels" id="sc-eco-labels" aria-hidden="true"></div>
+      <p class="sc-eco-hint">Pasá el mouse por cada base</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Quién hace qué</p>
+    <h2>Un equipo chico con una estructura de empresa grande</h2>
+    <p class="intro">Cada dirección tiene su agente y su parte del trabajo. Ninguno decide solo lo que llega al cliente: proponen, los socios aprueban y el MCP lo ejecuta.</p>
+    <div class="roles">
+      <article class="role ceo">
+        <span class="tipo">Socios CEO · orquestadores</span>
+        <h3><span class="dot" style="background:var(--accent)"></span>Jorge y Sebastián</h3>
+        <p>Fijan las prioridades, reparten el trabajo entre las direcciones y aprueban todo lo que sale hacia un cliente.</p>
+        <ul><li>Aprueban propuestas, mails y cobros</li><li>Revisan lo que proponen los agentes</li><li>Hablan con los clientes clave</li></ul>
+      </article>
+      <article class="role">
+        <span class="tipo">Dirección · agente</span>
+        <h3><span class="dot" style="background:#ff9f4d"></span>Comercial</h3>
+        <p>Recibe cada consulta, la califica y la lleva hasta la propuesta. Busca qué más se le puede ofrecer a los clientes actuales.</p>
+        <ul><li>Leads y seguimiento</li><li>Presupuestos y propuestas</li><li>Plan comercial de la semana</li></ul>
+      </article>
+      <article class="role">
+        <span class="tipo">Dirección · agente</span>
+        <h3><span class="dot" style="background:var(--cyan)"></span>Marketing</h3>
+        <p>Trae las consultas: campañas, contenido, la web y los casos. Mide qué funciona y propone dónde poner el presupuesto.</p>
+        <ul><li>Google Ads y Meta Ads</li><li>Contenido y newsletter</li><li>Web, casos y SEO</li></ul>
+      </article>
+      <article class="role">
+        <span class="tipo">Dirección · agente</span>
+        <h3><span class="dot" style="background:var(--green)"></span>Onboarding</h3>
+        <p>Cuando un lead pasa a cliente, arma el alta completa para que el proyecto arranque sin perseguir a nadie.</p>
+        <ul><li>Ficha del cliente y servicios</li><li>Accesos y checklist de alta</li><li>Bienvenida y acceso a su panel</li></ul>
+      </article>
+      <article class="role">
+        <span class="tipo">Departamento</span>
+        <h3><span class="dot" style="background:var(--gold)"></span>Finance</h3>
+        <p>Lleva la plata: señas, saldos, planes mensuales y renovaciones. Avisa antes de que algo venza y registra cada pago.</p>
+        <ul><li>Cobros y comprobantes</li><li>Facturación</li><li>Vencimientos de hosting y dominios</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap mcp">
+    <div>
+      <p class="eyebrow">El centro</p>
+      <h2>El MCP maneja WordPress por nosotros</h2>
+      <p class="intro">La administración de los clientes vive en un plugin de WordPress: fichas, servicios, cobros, tickets y el panel que ve cada cliente. El MCP es la puerta que les da a los agentes herramientas concretas sobre ese plugin, como crear una ficha, sumar un servicio, registrar un cobro, abrir un ticket o publicar el avance de un proyecto. Así nadie tiene que entrar al administrador a cargar datos a mano, y todo queda registrado en un solo lugar.</p>
+    </div>
+    <div class="capas" aria-label="Capas del sistema">
+      <div class="capa"><i>01</i><div><b class="c-ceo">Socios CEO</b><span>Piden, revisan y aprueban</span></div></div>
+      <div class="flecha">↓</div>
+      <div class="capa"><i>02</i><div><b>Agentes de cada dirección</b><span>Comercial, marketing, onboarding y finance</span></div></div>
+      <div class="flecha">↓</div>
+      <div class="capa"><i>03</i><div><b class="c-mcp">MCP</b><span>Las herramientas: leer, crear, editar, avisar</span></div></div>
+      <div class="flecha">↓</div>
+      <div class="capa"><i>04</i><div><b>WordPress + plugin de clientes</b><span>La base: fichas, servicios, cobros, tickets</span></div></div>
+      <div class="flecha">↓</div>
+      <div class="capa"><i>05</i><div><b class="c-cli">Panel del cliente</b><span>Su proyecto, sus pagos y sus consultas</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Los flujos</p>
+    <h2>Cómo se mueve el trabajo</h2>
+
+    <div class="flujo">
+      <h3>De consulta a cliente</h3>
+      <p>Desde que alguien escribe hasta que el proyecto arranca, cada paso tiene dueño y queda en la ficha.</p>
+      <div class="pasos">
+        <div class="paso"><div class="caja"><span class="quien c-mkt">Marketing</span><b>Entra la consulta</b><small>Por la web, una campaña o WhatsApp</small></div></div>
+        <div class="paso"><div class="caja"><span class="quien c-com">Comercial</span><b>La califica y presupuesta</b><small>Arma la propuesta en el CRM</small></div></div>
+        <div class="paso ok"><div class="caja"><span class="quien c-ceo">Socios CEO</span><b>Aprueban la propuesta</b><small>Antes de que salga al cliente</small></div></div>
+        <div class="paso"><div class="caja"><span class="quien c-fin">Finance</span><b>Cobra la seña</b><small>Y registra el comprobante</small></div></div>
+        <div class="paso"><div class="caja"><span class="quien c-onb">Onboarding</span><b>Da el alta</b><small>Ficha, accesos y bienvenida con su panel</small></div></div>
+      </div>
+    </div>
+
+    <div class="flujo">
+      <h3>Cada mes, con cada cliente</h3>
+      <p>Lo que se repite no depende de que alguien se acuerde: el sistema avisa y los agentes lo preparan.</p>
+      <div class="pasos">
+        <div class="paso"><div class="caja"><span class="quien c-fin">Finance</span><b>Ve qué vence</b><small>Planes, hosting y dominios</small></div></div>
+        <div class="paso"><div class="caja"><span class="quien c-mcp">MCP</span><b>Prepara el aviso</b><small>Con vista previa, sin mandar nada</small></div></div>
+        <div class="paso ok"><div class="caja"><span class="quien c-ceo">Socios CEO</span><b>Lo aprueban</b><small>Y recién ahí sale</small></div></div>
+        <div class="paso"><div class="caja"><span class="quien c-cli">Cliente</span><b>Paga desde su panel</b><small>Ve el estado al instante</small></div></div>
+        <div class="paso"><div class="caja"><span class="quien c-fin">Finance</span><b>Registra y factura</b><small>El servicio queda renovado</small></div></div>
+      </div>
+    </div>
+
+    <div class="flujo">
+      <h3>Una orden de los socios</h3>
+      <p>Así se ve cualquier pedido, desde "mandale un aviso a este cliente" hasta "armame el plan comercial de la semana".</p>
+      <div class="pasos">
+        <div class="paso ok"><div class="caja"><span class="quien c-ceo">Socios CEO</span><b>Dan la orden</b><small>En lenguaje común</small></div></div>
+        <div class="paso"><div class="caja"><span class="quien c-com">Dirección</span><b>El agente la toma</b><small>Lee la ficha y el historial</small></div></div>
+        <div class="paso"><div class="caja"><span class="quien c-mcp">MCP</span><b>Propone el cambio</b><small>Con lo que va a tocar</small></div></div>
+        <div class="paso ok"><div class="caja"><span class="quien c-ceo">Socios CEO</span><b>Confirman</b><small>Si toca a un cliente o a la plata</small></div></div>
+        <div class="paso"><div class="caja"><span class="quien c-cli">WordPress</span><b>Queda hecho y registrado</b><small>Y el cliente lo ve en su panel</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Las reglas</p>
+    <h2>Lo que no se negocia</h2>
+    <div class="reglas">
+      <div class="regla"><b>Nada sale sin aprobación</b><p>Todo mail, cobro o cambio que llega a un cliente pasa antes por uno de los socios, con vista previa.</p></div>
+      <div class="regla"><b>Una sola base</b><p>Los clientes viven en el plugin de WordPress. No hay planillas paralelas ni datos que se cargan dos veces.</p></div>
+      <div class="regla"><b>Todo queda escrito</b><p>Cada acción del MCP deja su nota en la ficha: quién la pidió, qué se hizo y cuándo.</p></div>
+      <div class="regla"><b>El cliente ve lo mismo que nosotros</b><p>El avance, los pagos y las consultas salen de la misma base, así que su panel siempre está al día.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Studio Complex · página interna para los socios · no está enlazada desde el sitio</div>
+</footer>
+
+<script src="/assets/js/three.r128.min.js"></script>
+<script src="/assets/js/sc-organizacion-3d.js?v=202610132200"></script>
+</body>
+</html>
