@@ -22,8 +22,15 @@
   var scene = new THREE.Scene();
   var cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 200);
   var target = new THREE.Vector3(-0.2, 0.4, -0.2);
-  cam.position.set(14, 12.5, 14).add(target);
-  cam.lookAt(target);
+  // cámara en órbita: el giro lo hace el mundo (yaw) y la inclinación la cámara (pitch)
+  var CAM_R = Math.sqrt(14 * 14 * 2 + 12.5 * 12.5), PITCH0 = Math.atan2(12.5, Math.sqrt(14 * 14 * 2));
+  var view = { yaw: 0, vYaw: 0, pitch: PITCH0, drag: null, moved: false, reset: false };
+  function applyCam() {
+    var h = CAM_R * Math.cos(view.pitch);
+    cam.position.set(h / Math.SQRT2, CAM_R * Math.sin(view.pitch), h / Math.SQRT2).add(target);
+    cam.lookAt(target);
+  }
+  applyCam();
 
   scene.add(new THREE.HemisphereLight(0xe4ecf2, 0x0b0f14, 0.5));
   var sun = new THREE.DirectionalLight(0xffffff, 0.75);
@@ -430,32 +437,101 @@
     if (st[2] === 'mcp') return polyline([floorPt(st[0]), floorPt('hub'), floorPt(st[1])]);
     return polyline([floorPt(st[0]), floorPt(st[1])]);
   }
-  var D = { f: 0, s: -1, t: 0, wait: .4, path: null, hubHit: false };
-  function showFlow() {
-    var F = FLOWS[D.f];
-    hudF.textContent = 'Flujo ' + (D.f + 1) + ' de ' + FLOWS.length + ' · ' + F.t;
-    hudP.innerHTML = F.s.map(function () { return '<li></li>'; }).join('');
+  // ficha de cada base: qué hace y cómo trabaja (las herramientas son las del MCP de studio-complex-panel)
+  var INFO = {
+    ceo: { k: 'Socios CEO · orquestadores', h: 'Dan las órdenes, reparten el trabajo entre los agentes y aprueban todo lo que llega a un cliente.',
+      p: ['Piden en lenguaje común: "armame el plan de la semana", "avisale a este cliente".', 'Reciben cada propuesta y cada mail con vista previa.', 'Aprueban o corrigen. Sin ese OK no sale nada.', 'Ven el estado de todo en el Panel Agencia: MRR, vencimientos y tickets.'],
+      t: ['panel_resumen', 'clientes_listar', 'finanzas_ver'] },
+    com: { k: 'Dirección · agente', h: 'Toma cada consulta, la califica y la lleva hasta la propuesta. Busca qué más ofrecerles a los clientes actuales.',
+      p: ['Recibe la consulta de Marketing como ticket de Ventas.', 'Lee la ficha y el historial del cliente.', 'Arma la propuesta y la deja para que la aprueben los socios.', 'Si cierra, le pasa el cliente a Onboarding.'],
+      t: ['tickets_listar', 'cliente_ver', 'nota_agregar', 'cliente_crear'] },
+    mkt: { k: 'Dirección · agente', h: 'Trae las consultas con campañas, contenido y la web, y le muestra al cliente los resultados.',
+      p: ['Las campañas y la web generan consultas.', 'Cada consulta entra como ticket de Ventas para Comercial.', 'Publica los resultados de cada campaña en el panel del cliente.', 'Comunica las novedades en todos los paneles.'],
+      t: ['ticket_abrir', 'campanas_publicar', 'panel_banner'] },
+    onb: { k: 'Dirección · agente', h: 'Convierte un sí en un cliente andando: ficha, servicios, accesos y bienvenida.',
+      p: ['Recibe de Comercial el cliente que cerró.', 'Crea la ficha con sus servicios en el plugin.', 'Le pide a Finance que cobre la seña.', 'Le manda el acceso a su panel y publica "Tu proyecto".'],
+      t: ['cliente_alta', 'servicio_agregar', 'mail_enviar', 'proyecto_publicar'] },
+    fin: { k: 'Departamento', h: 'Lleva la plata: señas, saldos, planes mensuales, renovaciones y facturas.',
+      p: ['Revisa qué vence en los próximos 30 días.', 'Prepara el aviso al cliente con vista previa para los socios.', 'Acredita los comprobantes que sube el cliente.', 'Renueva el servicio y registra la factura.'],
+      t: ['panel_resumen', 'mail_cliente', 'comprobante_revisar', 'servicio_renovar', 'factura_agregar'] },
+    wp: { k: 'La base · MCP + WordPress', h: 'El plugin de clientes: fichas, servicios, cobros, mails y tickets con osTicket. Los agentes lo manejan por el MCP.',
+      p: ['Un agente pide algo por el MCP.', 'El plugin lo guarda y deja una nota en la ficha.', 'Lo que manda un mail pasa antes por vista previa.', 'Lo que cambia aparece en el panel del cliente.'],
+      t: ['cliente_ver', 'servicio_editar', 'mails_listar', 'backup_base'] },
+    cli: { k: 'El cliente', h: 'Su panel privado: próximo pago, servicios, proyecto, campañas y soporte.',
+      p: ['Entra con un link que le llega por mail, sin contraseña.', 'Ve su próximo pago, sus servicios y cómo va su proyecto.', 'Paga o sube el comprobante desde ahí.', 'Abre tickets y consulta el centro de ayuda.'],
+      t: ['cliente_link_entrada', 'panel_acceso'] }
+  };
+  var sel = null;
+  var card = document.createElement('div'); card.className = 'sc-eco-card'; card.hidden = true; stage.appendChild(card);
+  function chips(keys) { return keys.length ? keys.map(function (k) { return '<button type="button" class="sc-eco-chip" data-k="' + k + '">' + NAME[k] + '</button>'; }).join('') : '<span class="sc-eco-none">—</span>'; }
+  function conexiones(key) {
+    var de = [], a = [];
+    FLOWS.forEach(function (F) { F.s.forEach(function (st) {
+      if (st[1] === key && de.indexOf(st[0]) < 0) de.push(st[0]);
+      if (st[0] === key && a.indexOf(st[1]) < 0) a.push(st[1]);
+    }); });
+    return { de: de, a: a };
   }
+  function pintarCard(n) {
+    var I = INFO[n.key], c = conexiones(n.key);
+    card.innerHTML = '<button type="button" class="sc-eco-x" aria-label="Cerrar">×</button>' +
+      '<span class="sc-eco-k">' + I.k + '</span><h3>' + n.label + '</h3><p>' + I.h + '</p>' +
+      '<h4>Cómo trabaja</h4><ol>' + I.p.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol>' +
+      '<h4>Recibe trabajo de</h4><div class="sc-eco-chips">' + chips(c.de) + '</div>' +
+      '<h4>Le pasa trabajo a</h4><div class="sc-eco-chips">' + chips(c.a) + '</div>' +
+      '<h4>Herramientas del MCP</h4><div class="sc-eco-tools">' + I.t.map(function (t) { return '<code>' + t + '</code>'; }).join('') + '</div>';
+    card.hidden = false; card.classList.remove('in'); void card.offsetWidth; card.classList.add('in');
+  }
+  card.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.classList.contains('sc-eco-x')) seleccionar(null);
+    else if (b.dataset.k) seleccionar(byKey[b.dataset.k]);
+  });
+  var startAnim = null;
+  function seleccionar(n) {
+    if (n === sel) n = null;
+    sel = n;
+    NODES.forEach(function (m) { m.sel = m === n; });
+    if (n) pintarCard(n); else { card.hidden = true; }
+    stage.classList.toggle('has-card', !!n);
+    D.pl = lista(n ? n.key : null); D.k = -1; D.wait = .25;
+    if (D.path && D.path.arc) D.path.arc.focus = 0;
+    D.path = null; bigS.visible = bigBox.visible = false; cap.style.opacity = 0;
+    hudP.innerHTML = '';
+    if (n && reduce && startAnim) startAnim();
+    if (reduce || !running) { encuadre(true); render(); }
+  }
+  // lista de pasos a mostrar: todos los flujos, o solo los pasos donde participa el agente elegido
+  function lista(key) {
+    var pl = [];
+    FLOWS.forEach(function (F, fi) {
+      var steps = F.s.filter(function (st) { return !key || st[0] === key || st[1] === key; });
+      steps.forEach(function (st, i) { pl.push({ title: key ? 'Cómo trabaja ' + NAME[key] + ' · ' + F.t : 'Flujo ' + (fi + 1) + ' de ' + FLOWS.length + ' · ' + F.t, st: st, i: i, n: steps.length }); });
+    });
+    return pl;
+  }
+  var D = { pl: lista(null), k: -1, t: 0, wait: .4, path: null, hubHit: false };
   function startStep() {
-    var st = FLOWS[D.f].s[D.s];
+    var it = D.pl[D.k], st = it.st;
     NODES.forEach(function (n) { n.focus = n.key === st[0] || n.key === st[1]; });
     D.path = pathFor(st); D.t = 0; D.hubHit = false;
     if (D.path.arc) D.path.arc.focus = 1;
+    hudF.textContent = it.title;
     hudR.textContent = NAME[st[0]] + '  →  ' + NAME[st[1]];
     hudT.textContent = st[4]; hudC.textContent = st[3];
     cap.textContent = st[3];
-    [].forEach.call(hudP.children, function (li, i) { li.className = i < D.s ? 'ok' : i === D.s ? 'on' : ''; });
+    if (hudP.children.length !== it.n || it.i === 0) hudP.innerHTML = new Array(it.n + 1).join('<li></li>');
+    [].forEach.call(hudP.children, function (li, i) { li.className = i < it.i ? 'ok' : i === it.i ? 'on' : ''; });
     hud.classList.remove('in'); void hud.offsetWidth; hud.classList.add('in');
     bigS.visible = bigBox.visible = true;
   }
   function director(dt) {
-    if (D.s < 0) { showFlow(); D.s = 0; startStep(); return; }
     if (!D.path) { D.wait -= dt; if (D.wait <= 0) next(); return; }
     D.t += dt * 3.2 / Math.max(2, D.path.len);
     var u = clamp(D.t);
     D.path.at(u, bigS.position); bigBox.position.copy(bigS.position); bigBox.position.y += .02; bigBox.rotation.y += dt * 4;
     bigS.material.opacity = Math.min(1, u * 8, (1 - u) * 8 + .2);
-    var st = FLOWS[D.f].s[D.s];
+    var st = D.pl[D.k].st;
     if (st[2] === 'mcp' && !D.hubHit && u > .5) { D.hubHit = true; hubFlash = 1; }
     if (u >= 1) {
       var dest = byKey[st[1]]; if (dest) dest.ping = 1.4;
@@ -463,14 +539,7 @@
       D.path = null; D.wait = .9; bigS.visible = bigBox.visible = false; cap.style.opacity = 0;
     }
   }
-  function next() {
-    D.s++;
-    if (D.s >= FLOWS[D.f].s.length) {
-      D.f = (D.f + 1) % FLOWS.length; D.s = 0; showFlow();
-      [].forEach.call(hudP.children, function (li) { li.className = ''; });
-    }
-    startStep();
-  }
+  function next() { D.k = (D.k + 1) % D.pl.length; startStep(); }
   function spawnArc(a) {
     var s = new THREE.Sprite(pulseMat.clone()); s.scale.set(.5, .5, 1); world.add(s);
     arcPulses.push({ s: s, a: a, t: 0, rev: Math.random() < .5, v: .45 + Math.random() * .25 });
@@ -530,9 +599,57 @@
     var r = canvas.getBoundingClientRect();
     mouse.x = (e.clientX - r.left) / r.width * 2 - 1; mouse.y = -(e.clientY - r.top) / r.height * 2 + 1;
     par.tx = mouse.x; par.ty = mouse.y;
-    if (reduce) render();
+    var d = view.drag;
+    if (d && d.id === e.pointerId) {
+      var dx = e.clientX - d.x, dy = e.clientY - d.y;
+      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) view.moved = true;
+      if (view.moved) {
+        var now = performance.now(), ny = d.yaw + dx * .008;
+        view.vYaw = (ny - view.yaw) / Math.max(.016, (now - d.t) / 1000); d.t = now;
+        view.yaw = ny;
+        if (e.pointerType === 'mouse') { view.pitch = Math.max(.17, Math.min(1.3, d.pitch - dy * .005)); applyCam(); }
+        canvas.style.cursor = 'grabbing';
+      }
+    }
+    if (reduce || !running) { aplicarGiro(); render(); }
+  });
+  // girar: arrastrar con el mouse (de costado gira, para arriba o abajo inclina) o con el dedo de costado
+  canvas.addEventListener('pointerdown', function (e) {
+    view.drag = { id: e.pointerId, x: e.clientX, y: e.clientY, yaw: view.yaw, pitch: view.pitch, t: performance.now() };
+    view.moved = false; view.vYaw = 0; view.reset = false;
+    try { canvas.setPointerCapture(e.pointerId); } catch (er) {}
+  });
+  function soltar(e) {
+    if (!view.drag || view.drag.id !== e.pointerId) return;
+    view.drag = null; canvas.style.cursor = '';
+    if (!view.moved) view.vYaw = 0;
+    view.vYaw = Math.max(-4, Math.min(4, view.vYaw));
+    try { canvas.releasePointerCapture(e.pointerId); } catch (er) {}
+  }
+  canvas.addEventListener('pointerup', soltar);
+  canvas.addEventListener('pointercancel', soltar);
+  function aplicarGiro() { world.rotation.y = view.yaw + (view.drag ? 0 : par.x * .07); }
+  // botones para girar y volver a la vista inicial
+  var rot = document.createElement('div'); rot.className = 'sc-eco-rot';
+  rot.innerHTML = '<button type="button" data-r="-1" aria-label="Girar a la izquierda">⟲</button><button type="button" data-r="0" aria-label="Volver a la vista inicial">Vista inicial</button><button type="button" data-r="1" aria-label="Girar a la derecha">⟳</button>';
+  stage.appendChild(rot);
+  rot.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    var r = +b.dataset.r;
+    if (r === 0) view.reset = true; else { view.reset = false; view.yaw += r * Math.PI / 4 * (reduce || !running ? 1 : 0); if (!reduce && running) view.vYaw = r * 2.4; }
+    if (reduce || !running) { if (r === 0) { view.yaw = 0; view.pitch = PITCH0; applyCam(); } aplicarGiro(); render(); }
   });
   canvas.addEventListener('pointerleave', function () { mouse.set(9, 9); par.tx = par.ty = 0; });
+  // clic o toque en una base: abre su ficha y muestra solo sus pases
+  canvas.addEventListener('click', function (e) {
+    if (view.moved) { view.moved = false; return; }
+    var r = canvas.getBoundingClientRect();
+    var m = new THREE.Vector2((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1);
+    cam.updateMatrixWorld(); world.updateMatrixWorld();
+    ray.setFromCamera(m, cam);
+    var hit = ray.intersectObjects(pickables, false)[0];
+    seleccionar(hit ? hit.object.userData.node : null);
+  });
   var pickables = []; NODES.forEach(function (n) { n.group.traverse(function (o) { if (o.isMesh && o.material.type !== 'MeshBasicMaterial') pickables.push(o); }); });
 
   /* ---------- tamaño ---------- */
@@ -540,8 +657,19 @@
   function resize() {
     var r = stage.getBoundingClientRect(); W = Math.max(1, r.width); Hh = Math.max(1, r.height);
     renderer.setSize(W, Hh, false);
-    var a = W / Hh, view = a < 1 ? 11.8 / a : 10.4;
-    cam.left = -view * a / 2; cam.right = view * a / 2; cam.top = view / 2; cam.bottom = -view / 2;
+    var a = W / Hh, vh = a < 1 ? 11.8 / a : 10.4;
+    camBase.w = vh * a; camBase.h = vh;
+    encuadre(true);
+  }
+  // con la ficha abierta (en pantallas anchas) la escena se corre a la izquierda para que no quede tapada
+  // cw = ancho que ocupa la ficha; la escena se achica y se centra en el espacio que queda libre
+  var camBase = { w: 2, h: 2 }, cwA = 0;
+  function encuadre(ya, dt) {
+    var cw = sel && W > 700 ? card.offsetWidth + 28 : 0;
+    cwA = ya ? cw : cwA + (cw - cwA) * Math.min(1, dt * 6);
+    var z = Math.min(1.4, W / Math.max(1, W - cwA)), F = camBase.w * z;
+    cam.left = -((W - cwA) / 2) * (F / W); cam.right = cam.left + F;
+    cam.top = camBase.h / 2 * z; cam.bottom = -camBase.h / 2 * z;
     cam.updateProjectionMatrix();
   }
   window.addEventListener('resize', function () { resize(); if (reduce || !running) render(); });
@@ -557,7 +685,7 @@
     var hp = clamp(intro / .9); hub.position.y = (1 - outBack(hp)) * 6;
     NODES.forEach(function (n) {
       var p = clamp((intro - n.delay) / .85);
-      n.hover += ((hovered === n || (!hovered && n.focus) ? 1 : 0) - n.hover) * Math.min(1, dt * 10);
+      n.hover += ((hovered === n || n.sel || (!hovered && n.focus) ? 1 : 0) - n.hover) * Math.min(1, dt * 10);
       n.group.position.y = (1 - outBack(p)) * 6 + n.hover * .2;
       n.group.userData.rim.material.opacity = .45 + n.hover * .5;
       n.group.userData.halo.material.opacity = .1 + n.hover * .18;
@@ -568,7 +696,7 @@
     arcs.forEach(function (a, k) {
       var p = clamp((intro - 2.0 - k * .07) / .9), e = 1 - Math.pow(1 - p, 3), cnt = Math.floor(a.n * e / 3) * 3;
       a.tube.geometry.setDrawRange(0, cnt); a.halo.geometry.setDrawRange(0, cnt);
-      var lit = (hovered && (hovered === a.from || hovered === a.to)) || a.focus ? 1 : 0;
+      var lit = (hovered && (hovered === a.from || hovered === a.to)) || a.focus || (sel && (sel === a.from || sel === a.to)) ? 1 : 0;
       a.tube.material.opacity = (hovered && !lit ? .14 : .36) + lit * .55; a.halo.material.opacity = .08 + lit * .12;
       if (intro > 3.2 && !reduce) { a.next -= dt; if (a.next <= 0) { spawnArc(a); a.next = 2.2 + Math.random() * 3.8; } }
     });
@@ -620,7 +748,14 @@
     // camioneta
     // parallax
     par.x += (par.tx - par.x) * Math.min(1, dt * 3); par.y += (par.ty - par.y) * Math.min(1, dt * 3);
-    world.rotation.y = par.x * .07; world.position.y = par.y * .15;
+    if (!view.drag) { view.yaw += view.vYaw * dt; view.vYaw *= Math.exp(-dt * 2.6); if (Math.abs(view.vYaw) < .01) view.vYaw = 0; }
+    if (view.reset) {
+      var y0 = Math.atan2(Math.sin(view.yaw), Math.cos(view.yaw));
+      view.yaw = y0 + (0 - y0) * Math.min(1, dt * 5); view.pitch += (PITCH0 - view.pitch) * Math.min(1, dt * 5); applyCam();
+      if (Math.abs(view.yaw) < .002 && Math.abs(view.pitch - PITCH0) < .002) { view.yaw = 0; view.pitch = PITCH0; applyCam(); view.reset = false; }
+    }
+    aplicarGiro(); world.position.y = par.y * .15;
+    encuadre(false, dt);
   }
 
   function placeLabels() {
@@ -631,7 +766,7 @@
       var c = new THREE.Vector3(n.x, n.group.position.y, n.z).applyMatrix4(world.matrixWorld).project(cam);
       var cx = (c.x * .5 + .5) * W;
       n.el.style.transform = 'translate(' + Math.round(cx) + 'px,' + Math.round(py) + 'px) translate(-50%, -100%)';
-      var f = hovered ? hovered === n : n.focus;
+      var f = hovered ? hovered === n || n.sel : n.focus || n.sel;
       n.el.style.opacity = show && (touch || f) ? 1 : 0;
       n.el.classList.toggle('on', !!f);
     });
@@ -678,7 +813,8 @@
     update(0); render();
     var play = document.createElement('button'); play.type = 'button'; play.className = 'sc-eco-play';
     play.innerHTML = '<span aria-hidden="true">▶</span> Ver cómo trabajan los agentes';
-    play.addEventListener('click', function () { reduce = false; play.remove(); last = performance.now(); animar(); });
+    startAnim = function () { if (!reduce) return; reduce = false; play.remove(); last = performance.now(); animar(); };
+    play.addEventListener('click', startAnim);
     stage.appendChild(play);
   } else animar();
 })();

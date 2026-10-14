@@ -72,6 +72,41 @@
   .sc-eco-stage.is-full .sc-eco-hud-t, .sc-eco-stage:fullscreen .sc-eco-hud-t { font-size: 15px; }
   .sc-eco-stage.is-full .sc-eco-zoom, .sc-eco-stage:fullscreen .sc-eco-zoom { right: 24px; top: 24px; }
   html.sc-eco-lock, html.sc-eco-lock body { overflow: hidden; }
+  /* Ficha del agente elegido (clic en una base) */
+  .sc-eco-card { position: absolute; right: 14px; top: 62px; bottom: 58px; width: min(300px, calc(100% - 28px)); overflow-y: auto; overscroll-behavior: contain; background: rgba(11, 15, 20, .9); border: 1px solid var(--line); border-radius: 16px; padding: 18px 18px 16px; z-index: 2; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); scrollbar-width: thin; }
+  .sc-eco-card[hidden] { display: none; }
+  .sc-eco-card.in { animation: sc-eco-in .3s ease both; }
+  @keyframes sc-eco-in { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: none; } }
+  .sc-eco-card h3 { font-size: 19px; line-height: 1.2; margin: 6px 0 8px; padding-right: 26px; }
+  .sc-eco-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+  .sc-eco-card h4 { font: 500 10.5px/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin: 16px 0 7px; }
+  .sc-eco-card ol { margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.45; }
+  .sc-eco-card li { margin: 4px 0; }
+  .sc-eco-k { font: 500 10.5px/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .sc-eco-x { position: absolute; right: 10px; top: 10px; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--fg); font: 400 20px/1 var(--ff); cursor: pointer; }
+  .sc-eco-x:hover { border-color: var(--accent); }
+  .sc-eco-chips, .sc-eco-tools { display: flex; flex-wrap: wrap; gap: 6px; }
+  .sc-eco-chip { font: 600 12.5px/1 var(--ff); color: var(--fg); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 7px 11px; cursor: pointer; }
+  .sc-eco-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .sc-eco-tools code { font: 500 11.5px/1 var(--mono); color: #ffd3a6; background: rgba(242, 128, 30, .12); border: 1px solid rgba(242, 128, 30, .35); border-radius: 6px; padding: 5px 7px; }
+  .sc-eco-none { color: var(--muted); }
+  /* Girar */
+  .sc-eco-rot { position: absolute; right: 14px; bottom: 12px; display: flex; gap: 6px; z-index: 2; }
+  .sc-eco-rot button { height: 34px; min-width: 34px; padding: 0 11px; border-radius: 999px; border: 1px solid var(--line); background: rgba(11, 15, 20, .82); color: var(--fg); font: 600 13px/1 var(--ff); cursor: pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .sc-eco-rot button:hover { border-color: var(--accent); }
+  .sc-eco-rot button:focus-visible, .sc-eco-chip:focus-visible, .sc-eco-x:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .sc-eco-stage canvas { cursor: grab; }
+  @media (max-width: 700px) {
+    .sc-eco-card { left: 10px; right: 10px; top: 10px; bottom: 54px; width: auto; padding: 14px 14px 12px; }
+    .sc-eco-card h3 { font-size: 17px; }
+    .sc-eco-stage.has-card .sc-eco-hud, .sc-eco-stage.has-card .sc-eco-zoom { display: none; }
+    .sc-eco-rot { right: 10px; bottom: 10px; }
+    .sc-eco-hint { display: none; }
+    .sc-eco-hud { max-width: calc(100% - 140px); }
+    .sc-eco-hud-f { font-size: 9.5px; }
+  }
+  .sc-eco-stage.is-full .sc-eco-card, .sc-eco-stage:fullscreen .sc-eco-card { right: 24px; top: 76px; bottom: 70px; width: 380px; }
+  .sc-eco-stage.is-full .sc-eco-rot, .sc-eco-stage:fullscreen .sc-eco-rot { right: 24px; bottom: 20px; }
   .sc-eco-stage.sc-eco-nogl::after { content: "Esta animación necesita WebGL."; position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font: 500 13px var(--mono); }
 
   section { padding-block: clamp(36px, 5vw, 64px); border-top: 1px solid var(--line); }
@@ -141,7 +176,7 @@
       <canvas id="sc-eco-scene" role="img" aria-label="Ilustración animada en 3D: los socios CEO mandan órdenes al MCP del centro, que reparte el trabajo entre la dirección comercial, la de marketing, la de onboarding y el departamento de finance, todos conectados entre sí por arcos de luz, escribe en el plugin de clientes de WordPress y eso llega al panel de cada cliente."></canvas>
       <div class="sc-eco-labels" id="sc-eco-labels" aria-hidden="true"></div>
       <button type="button" class="sc-eco-zoom" id="sc-eco-zoom" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Agrandar</span></button>
-      <p class="sc-eco-hint">Mirá cómo se pasan el trabajo · pasá el mouse por cada base</p>
+      <p class="sc-eco-hint">Arrastrá para girar · hacé clic en un agente para ver cómo trabaja</p>
     </div>
   </div>
 </div>
@@ -268,7 +303,7 @@
 </footer>
 
 <script src="/assets/js/three.r128.min.js"></script>
-<script src="/assets/js/sc-organizacion-3d.js?v=202610140005"></script>
+<script src="/assets/js/sc-organizacion-3d.js?v=202610140120"></script>
 <script>
   // Botón Agrandar: pantalla completa real si el navegador la deja; si no, capa fija sobre la página.
   (function () {
