@@ -40,12 +40,13 @@
     { t: "Caso: Google Ads en un rubro con restricciones", d: "Retail sin suspensiones", u: "caso-retail-rubro-restringido.html", k: "google ads restringido retail" },
     { t: "Caso: Las consultas se reparten entre los asesores", d: "WhatsApp y planilla", u: "caso-reparto-de-consultas.html", k: "whatsapp asesores reparto consultas" },
     { t: "Caso: Una tienda con el menú a medida", d: "Más de 800 productos migrados", u: "caso-tienda-a-medida.html", k: "tienda menu tiendanube migracion" },
+    { t: "Caso: El cliente elige la moto y la consulta llega sola", d: "Simulador de financiación en WooCommerce", u: "caso-simulador-de-financiacion.html", k: "simulador financiacion cuotas woocommerce whatsapp motos planilla" },
     { t: "Blog", d: "Notas sobre web, tiendas, SEO, Ads y ventas", u: "blog.html", k: "blog notas articulos" },
     { t: "Partners", d: "Programa para agencias y freelancers", u: "partners.html", k: "partners socios agencias freelancers referidos marca blanca" },
     { t: "Sobre Nosotros", d: "Quiénes somos y cómo nacimos", u: "about.html", k: "nosotros equipo empresa quienes" },
     { t: "Equipo", d: "Las personas de Studio Complex", u: "team.html", k: "equipo personas jorge sebastian" },
     { t: "Preguntas Frecuentes", d: "Plazos, precios y cómo trabajamos", u: "faq.html", k: "preguntas faq dudas" },
-    { t: "Agendá una reunión", d: "Media hora sin cargo", u: "agenda.html", k: "reunion agenda turno calendly llamada" },
+    { t: "Agendá una reunión", d: "Veinte minutos sin cargo", u: "agenda.html", k: "reunion agenda turno calendly llamada" },
     { t: "Contacto", d: "Escribinos", u: "contact.html", k: "contacto mail email telefono whatsapp" }
   ];
 
