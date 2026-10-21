@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&display=block');
+:root{--o:#F2801E;--c:#22D3EE;--bg:#10151c;--dark:#07090c;--ink:#F6F7F7;--body:#bcbdb9;--dim:#93A2B1;--line:#1e2731;--panel:#10151c;--panel2:#161d26}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--dark);overflow:hidden}
+body{font-family:'Figtree',system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.stage{position:relative;overflow:hidden;background:var(--dark)}
+.waves{position:absolute;inset:0;background:url(../../assets/images/hero/hero-bg.webp) center/cover no-repeat;mix-blend-mode:luminosity;opacity:.42}
+.glow{position:absolute;inset:0;background:
+ radial-gradient(45% 70% at 8% 100%,rgba(242,128,30,.38),transparent 70%),
+ radial-gradient(40% 60% at 96% 0%,rgba(34,211,238,.18),transparent 70%),
+ linear-gradient(180deg,rgba(7,9,12,.15),rgba(7,9,12,.55))}
+.wrap{position:absolute;z-index:2}
+.eyebrow{color:var(--c);text-transform:uppercase;font-weight:600;letter-spacing:.14em}
+h1{font-weight:600;letter-spacing:-.035em;line-height:1.04;color:var(--ink)}
+.grad{background:linear-gradient(100deg,var(--o) 0%,var(--o) 42%,var(--c) 62%,var(--c) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chips{display:flex;flex-wrap:nowrap;justify-content:center}
+.chip{border:1px solid var(--line);background:rgba(22,29,38,.85);border-radius:999px;color:var(--ink);font-weight:500;white-space:nowrap}
+.chip.on{background:var(--o);border-color:var(--o);color:#fff;font-weight:600}
+.url{color:var(--body);font-weight:500}
+.brand{display:flex;align-items:center}
+.brand b{font-weight:600;letter-spacing:-.02em}
