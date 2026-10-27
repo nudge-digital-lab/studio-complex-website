@@ -318,13 +318,13 @@
 
   /* ---------- bases ---------- */
   var NODES = [
-    { key: 'com', label: 'Dirección comercial', x: -3.8, z: 0, make: oComercial },
-    { key: 'ceo', label: 'Socios CEO · orquestadores', x: -2.7, z: -2.8, make: oSocios },
-    { key: 'mkt', label: 'Dirección de marketing', x: 0, z: -3.8, make: oMarketing },
-    { key: 'onb', label: 'Dirección de onboarding', x: 2.7, z: -2.8, make: oOnboarding },
-    { key: 'fin', label: 'Departamento de finance', x: 3.8, z: 0, make: oFinance },
-    { key: 'wp', label: 'WordPress · plugin de clientes', x: 0, z: 3.8, make: oWordPress },
-    { key: 'cli', label: 'Clientes · su panel', x: 2.8, z: 2.9, make: oClientes }
+    { key: 'com', label: 'Dirección comercial', corto: 'Comercial', x: -3.8, z: 0, make: oComercial },
+    { key: 'ceo', label: 'Socios CEO · orquestadores', corto: 'Socios CEO', x: -2.7, z: -2.8, make: oSocios },
+    { key: 'mkt', label: 'Dirección de marketing', corto: 'Marketing', x: 0, z: -3.8, make: oMarketing },
+    { key: 'onb', label: 'Dirección de onboarding', corto: 'Onboarding', x: 2.7, z: -2.8, make: oOnboarding },
+    { key: 'fin', label: 'Departamento de finance', corto: 'Finance', x: 3.8, z: 0, make: oFinance },
+    { key: 'wp', label: 'WordPress · plugin de clientes', corto: 'WordPress', x: 0, z: 3.8, make: oWordPress },
+    { key: 'cli', label: 'Clientes · su panel', corto: 'Clientes', x: 2.8, z: 2.9, make: oClientes }
   ];
   var byKey = {};
   NODES.forEach(function (n, i) {
@@ -657,6 +657,8 @@
   function resize() {
     var r = stage.getBoundingClientRect(); W = Math.max(1, r.width); Hh = Math.max(1, r.height);
     renderer.setSize(W, Hh, false);
+    // en pantallas angostas los nombres largos se pisan: van los cortos
+    NODES.forEach(function (n) { n.el.textContent = W < 560 ? n.corto : n.label; n.medio = 0; });
     var a = W / Hh, vh = a < 1 ? 11.8 / a : 10.4;
     camBase.w = vh * a; camBase.h = vh;
     encuadre(true);
@@ -765,6 +767,9 @@
       var px = (v3.x * .5 + .5) * W, py = (-v3.y * .5 + .5) * Hh;
       var c = new THREE.Vector3(n.x, n.group.position.y, n.z).applyMatrix4(world.matrixWorld).project(cam);
       var cx = (c.x * .5 + .5) * W;
+      // que el rótulo no se salga del recuadro
+      if (!n.medio) n.medio = n.el.offsetWidth / 2;
+      cx = Math.min(W - n.medio - 6, Math.max(n.medio + 6, cx));
       n.el.style.transform = 'translate(' + Math.round(cx) + 'px,' + Math.round(py) + 'px) translate(-50%, -100%)';
       var f = hovered ? hovered === n || n.sel : n.focus || n.sel;
       n.el.style.opacity = show && (touch || f) ? 1 : 0;
@@ -795,6 +800,7 @@
   }
 
   resize();
+  if (document.fonts) document.fonts.ready.then(function () { NODES.forEach(function (n) { n.medio = 0; }); });
   function animar() {
     raf = requestAnimationFrame(frame);
     if ('IntersectionObserver' in window) {
