@@ -50,14 +50,26 @@
             url: "assets/mail/contact-form.php",
             type: "POST",
             dataType: "json",
-            data: $form.serialize() + "&recaptcha_token=" + encodeURIComponent(token),
+            data: [
+              $form.serialize(),
+              "recaptcha_token=" + encodeURIComponent(token),
+              // De qué campaña llegó (vacío si entró directo); ver sc-cookies.js.
+              $.param(window.scOrigenCampana ? window.scOrigenCampana() : {}),
+            ]
+              .filter(Boolean)
+              .join("&"),
           })
             .done(function (response) {
               $messages
                 .text(response.message)
                 .css("color", response.status === "success" ? "green" : "red");
               if (response.status === "success") {
+                if (window.scEvento) window.scEvento("generate_lead", { lead_source: "formulario_contacto" });
                 $form[0].reset();
+                // Pagina de gracias: permite medir la conversion como vista de pagina.
+                window.setTimeout(function () {
+                  window.location.href = "gracias.html";
+                }, 700);
               }
             })
             .fail(function () {
